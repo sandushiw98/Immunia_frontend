@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -8,11 +9,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';/
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
+import cover from '../../assets/images/vaccines.png'
+import { IconButton } from '@mui/material';
 
 function Copyright(props) {
     return (
@@ -32,6 +34,13 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+    const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -44,11 +53,8 @@ export default function SignIn() {
     return (
         <>
             <Row>
-                <h1>Navbar</h1>
-            </Row>
-            <Row>
-                <Col span={12}>
-                    <h1>Image</h1>
+                <Col span={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%'}}>
+                    <img src={cover} alt='login' style={{width: '80%', height: '70%'}} />
                 </Col>
                 <Col span={12}>
                     <ThemeProvider theme={defaultTheme}>
@@ -62,11 +68,8 @@ export default function SignIn() {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                                    {/* <LockOutlinedIcon /> */}
-                                </Avatar>
                                 <Typography component="h1" variant="h5">
-                                    Sign in
+                                    <h2>Login</h2>
                                 </Typography>
                                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                                     <TextField
@@ -85,9 +88,20 @@ export default function SignIn() {
                                         fullWidth
                                         name="password"
                                         label="Password"
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         id="password"
                                         autoComplete="current-password"
+                                        InputProps={{
+                                            endAdornment: (
+                                              <IconButton
+                                                onClick={handleTogglePassword}
+                                                edge="end"
+                                                aria-label="toggle password visibility"
+                                              >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                              </IconButton>
+                                            ),
+                                          }}
                                     />
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
@@ -103,12 +117,12 @@ export default function SignIn() {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link href="#" variant="body2">
+                                            <Link href="#" variant="body2" style={{textDecoration:'none'}}>
                                                 Forgot password?
                                             </Link>
                                         </Grid>
                                         <Grid item>
-                                            <Link href="#" variant="body2">
+                                            <Link href="#" variant="body2" style={{textDecoration:'none'}}>
                                                 {"Don't have an account? Sign Up"}
                                             </Link>
                                         </Grid>

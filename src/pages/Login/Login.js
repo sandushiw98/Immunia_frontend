@@ -13,15 +13,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
-import cover from '../../assets/images/vaccines.png'
+import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
 import { IconButton } from '@mui/material';
+
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+            Immunia
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -33,7 +34,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function Login() {
 
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -54,7 +55,9 @@ export default function SignIn() {
         <>
             <Row>
                 <Col span={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%'}}>
-                    <img src={cover} alt='login' style={{width: '80%', height: '70%'}} />
+            
+                    <img src={cover} alt='login' style={{ width: '100%', height: '80%', borderRadius: '10px' }} />
+
                 </Col>
                 <Col span={12}>
                     <ThemeProvider theme={defaultTheme}>

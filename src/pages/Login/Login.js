@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
 import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
+import cover1 from '../../assets/images/vaccines.png'
 import { IconButton } from '@mui/material';
 
 
@@ -38,9 +39,9 @@ export default function Login() {
 
     const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleTogglePassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+    const handleTogglePassword = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -54,10 +55,8 @@ export default function Login() {
     return (
         <>
             <Row>
-                <Col span={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%'}}>
-            
-                    <img src={cover} alt='login' style={{ width: '100%', height: '80%', borderRadius: '10px' }} />
-
+                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
+                    <img src={cover} alt='login' style={{ width: '80%', height: '70%' }} />
                 </Col>
                 <Col span={12}>
                     <ThemeProvider theme={defaultTheme}>
@@ -96,15 +95,15 @@ export default function Login() {
                                         autoComplete="current-password"
                                         InputProps={{
                                             endAdornment: (
-                                              <IconButton
-                                                onClick={handleTogglePassword}
-                                                edge="end"
-                                                aria-label="toggle password visibility"
-                                              >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                              </IconButton>
+                                                <IconButton
+                                                    onClick={handleTogglePassword}
+                                                    edge="end"
+                                                    aria-label="toggle password visibility"
+                                                >
+                                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
                                             ),
-                                          }}
+                                        }}
                                     />
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
@@ -120,12 +119,12 @@ export default function Login() {
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>
-                                            <Link href="#" variant="body2" style={{textDecoration:'none'}}>
+                                            <Link href="#" variant="body2" style={{ textDecoration: 'none' }}>
                                                 Forgot password?
                                             </Link>
                                         </Grid>
                                         <Grid item>
-                                            <Link href="#" variant="body2" style={{textDecoration:'none'}}>
+                                            <Link href="#" variant="body2" style={{ textDecoration: 'none' }}>
                                                 {"Don't have an account? Sign Up"}
                                             </Link>
                                         </Grid>

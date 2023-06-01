@@ -13,8 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
-import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
-import cover1 from '../../assets/images/vaccines.png'
+// import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
+import cover from '../../assets/images/vaccines.png'
 import { IconButton } from '@mui/material';
 
 

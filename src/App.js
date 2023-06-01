@@ -3,6 +3,7 @@ import Signup from '../src/pages/Signup/Signup'
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home  from '../src/pages/Home/Home';
 
 
 function App() {
@@ -12,11 +13,12 @@ function App() {
 
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
-      <Footer />
+      {/* <Footer /> */}
     </div>
 
 

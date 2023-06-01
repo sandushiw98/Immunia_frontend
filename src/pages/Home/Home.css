@@ -1,0 +1,59 @@
+.headet-text{
+    padding: 50px;
+}
+
+.headet-text h1 {
+    font-size: 60px;
+    color: rgb(62, 62, 189);
+}
+
+.headet-text p {
+    font-size: 40px;
+}
+
+.headet-text button {
+    border-radius: 30px;
+    background-color: rgb(58, 95, 175);
+    font-weight: bolder;
+    color: white;
+    height: 50px;
+}
+
+.headet-text button :hover {
+    color: black;
+}
+
+.vl {
+    border-left: 6px solid black;
+    height: 50px;
+}
+
+.donation-section, .about-section, .contact-section{
+    background-color: #08639c;
+    text-align: center;
+}
+
+.donation-section h1, .about-section h1, .contact-section h1{
+    font-size: 40px;
+    color: white;
+}
+
+.donation-cont{
+    background-color: lightgreen;
+    height: 400px;
+}
+
+.donation-cont h3{
+    font-size: 50px;
+    color: #08179c;
+    padding: 80px 0px 80px 80px;
+}
+
+.card-donation{
+    padding: 50px;
+}
+
+.card-donation p {
+    font-size: 30px;
+
+}

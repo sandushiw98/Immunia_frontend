@@ -1,7 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -12,10 +11,12 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { IconButton} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
 import cover from '../../assets/images/vaccines.png'
-import { IconButton } from '@mui/material';
 
 function Copyright(props) {
     return (
@@ -35,21 +36,29 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
-    const [showPassword, setShowPassword] = React.useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const password = data.get('password');
+    const confirmPassword = data.get('confirmpassword');
+    if (password === confirmPassword) {
+      console.log({
+        email: data.get('email'),
+        password,
+      });
+      setPasswordMatch(true);
+    } else {
+      setPasswordMatch(false);
+    }
+  };
 
     return (
         <>
@@ -162,26 +171,51 @@ export default function Signup() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="password"
-                  name="password"
-                  required
-                  fullWidth
-                  id="password"
-                  label="Password"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="confirmpassword"
-                  label="Confirm Password"
-                  name="confirmpassword"
-                  autoComplete="Confirm-Password"
-                />
-              </Grid>
+                      <TextField
+                        autoComplete="password"
+                        name="password"
+                        required
+                        fullWidth
+                        id="password"
+                        label="Password"
+                        type={showPassword ? 'text' : 'password'}
+                        autoFocus
+                        InputProps={{
+                          endAdornment: (
+                              <IconButton
+                                  onClick={handleTogglePassword}
+                                  edge="end"
+                                  aria-label="toggle password visibility"
+                              >
+                                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                          ),
+                      }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="confirmpassword"
+                        label="Confirm Password"
+                        name="confirmpassword"
+                        type={showPassword ? 'text' : 'password'}
+                        error={!passwordMatch}
+                        helperText={!passwordMatch && 'Passwords do not match'}
+                        InputProps={{
+                          endAdornment: (
+                              <IconButton
+                                  onClick={handleTogglePassword}
+                                  edge="end"
+                                  aria-label="toggle password visibility"
+                              >
+                                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                          ),
+                      }}
+                      />
+                    </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}

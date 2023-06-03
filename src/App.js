@@ -1,9 +1,12 @@
-import Login from '../src/pages/Login/Login'
-import Signup from '../src/pages/Signup/Signup'
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "../src/pages/Login/Login";
+import Signup from "../src/pages/Signup/Signup";
+import Navbar from "./components/Navbar/Navbar";
+import Donations from "../src/pages/Donations/Donations";
 
+//import Footer from "./components/Footer/Footer";
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -14,12 +17,11 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
+          <Route path="/Donations" element={<Donations />} />
         </Routes>
       </BrowserRouter>
-      <Footer />
+      {/*<Footer />*/}
     </div>
-
-
   );
 }
 

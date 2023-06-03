@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -74,4 +74,4 @@ export default function Footer(props) {
       </Container>
     </footer>
   );
-}
+}*/

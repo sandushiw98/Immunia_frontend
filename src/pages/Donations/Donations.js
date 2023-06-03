@@ -1,7 +1,5 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -14,8 +12,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Row, Col } from "antd";
-import cover from "../../assets/images/vaccines.png";
-import { IconButton } from "@mui/material";
+import cover from "../../assets/images/donation-jar-hero-banner.jpg";
+import './Donations.css';
+
 
 function Copyright(props) {
   return (
@@ -57,12 +56,12 @@ export default function Signup() {
 
   return (
     <>
-      <Row>
-        <Col span={12}>
+      <Row className="container">
+       <Col span={12} style={{padding:'57px'}}>
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
-              <Box
+              <Box style={{marginTop:'10px'}}
                 sx={{
                   marginTop: 8,
                   display: "flex",
@@ -70,7 +69,7 @@ export default function Signup() {
                   alignItems: "center",
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "#1976d2" }}></Avatar>
+                
                 <Typography component="h1" variant="h5">
                   Sign up
                 </Typography>
@@ -167,37 +166,9 @@ export default function Signup() {
                         autoComplete="NIC-Number"
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        autoComplete="password"
-                        name="password"
-                        required
-                        fullWidth
-                        id="password"
-                        label="Password"
-                        autoFocus
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="confirmpassword"
-                        label="Confirm Password"
-                        name="confirmpassword"
-                        autoComplete="Confirm-Password"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox value="allowExtraEmails" color="primary" />
-                        }
-                        label="I want to receive inspiration, marketing promotions and updates via email."
-                      />
-                    </Grid>
+                    
                   </Grid>
-                  <Button
+                  <Button style={{height:'40px'}}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -205,20 +176,10 @@ export default function Signup() {
                   >
                     Sign Up
                   </Button>
-                  <Grid container justifyContent="flex-end">
-                    <Grid item>
-                      <Link
-                        href="#"
-                        variant="body2"
-                        style={{ textDecoration: "none" }}
-                      >
-                        Already have an account? Sign in
-                      </Link>
-                    </Grid>
-                  </Grid>
+                  
                 </Box>
               </Box>
-              <Copyright sx={{ mt: 5 }} />
+             
             </Container>
           </ThemeProvider>
         </Col>
@@ -232,13 +193,12 @@ export default function Signup() {
             paddingTop: "3%",
           }}
         >
-          <img
-            src={cover}
-            alt="login"
-            style={{ width: "80%", height: "70%" }}
-          />
-        </Col>
+        
+        </Col> 
+        
       </Row>
+       
     </>
   );
+      
 }

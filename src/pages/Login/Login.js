@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col} from 'antd';
 // import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
-import cover from '../../assets/images/vaccines.png'
+import login from '../../assets/images/login.jpg'
 import { IconButton } from '@mui/material';
 
 
@@ -56,9 +56,9 @@ export default function Login() {
         <>
             <Row>
                 <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
-                    <img src={cover} alt='login' style={{ width: '80%', height: '70%' }} />
+                    <img src={login} alt='login' style={{ width: '90%', height: '80%' }} />
                 </Col>
-                <Col span={12}>
+                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%', paddingRight:'5%' }}>
                     <ThemeProvider theme={defaultTheme}>
                         <Container component="main" maxWidth="xs">
                             <CssBaseline />
@@ -115,7 +115,7 @@ export default function Login() {
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
                                     >
-                                        Sign In
+                                        Login
                                     </Button>
                                     <Grid container>
                                         <Grid item xs>

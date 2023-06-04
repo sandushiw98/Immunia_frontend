@@ -4,22 +4,23 @@ import { Row, Col, Button } from 'antd';
 import Card from '@mui/material/Card';
 import SimpleImageSlider from 'react-simple-image-slider';
 import './Home.css';
-import image1 from '../../assets/images/vaccines_spot.png';
-import image2 from '../../assets/images/baby-getting-vaccine.jpg';
-import image3 from '../../assets/images/image2.jpg';
+import image1 from '../../assets/images/Untitled.jpeg';
+import image2 from '../../assets/images/vaccine-boy.jpeg';
+import image3 from '../../assets/images/vaccine-doctor.jpg';
 import image4 from '../../assets/images/pfl-paid-family-leave-bonding-5.jpg';
-import image5 from '../../assets/images/images1.jpg';
+import image5 from '../../assets/images/vaccine-girl.jpg';
 import image6 from '../../assets/images/donation.jpg';
 import image7 from '../../assets/images/whyVaccine.jpg';
 import image8 from '../../assets/images/ministryOfHealth-removebg-preview.png';
 import twitter from '../../assets/images/twitter.png';
 import facebook from '../../assets/images/facebook.png';
 import youtube from '../../assets/images/youtube.png';
+import image10 from '../../assets/images/vaccines_spot.png';
 
 const Home = () => {
     const sliderImages = [
         {
-            url: image1,
+            url: image5,
             caption: 'SCHEDULE VACCINATION\nFOR YOUR CHILD\nThe booking service will provide an option\nfor parents to book a vaccine for their\nchild vaccination, accessible on\nonline for everyone',
         },
         {
@@ -35,7 +36,7 @@ const Home = () => {
             caption: 'image 1 caption',
         },
         {
-            url: image5,
+            url: image1,
             caption: 'image 1 caption',
         },
     ];
@@ -211,7 +212,7 @@ const Home = () => {
                     </Row>
                 </Col>
                 <Col span={12} style={{ padding: '100px' }}>
-                    <img src={image1} alt="image1" style={{ width: '100%', height: '100%' }} />
+                    <img src={image10} alt="image1" style={{ width: '100%', height: '100%' }} />
                 </Col>
             </Row>
 

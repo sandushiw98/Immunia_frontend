@@ -56,7 +56,7 @@ function ResponsiveAppBar() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              {/* <MenuIcon /> */}
+           
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -98,22 +98,19 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0, display:'flex', gap:'10px'}}>
-          {/* <Button variant="contained">Sign Up</Button>
-          <Button variant="contained">Login</Button> */}
-          <button>
-              Login
-              <div class="arrow-wrapper">
-              <div class="arrow"></div>
-
-              </div>
-          </button> 
+         
+          <button className='login-btn'>
+            Login
+            <div class="arrow-wrapper">
+            <div class="arrow"></div>
+            </div>
+          </button>
           </Box>
-          <button>
-                 Sign Up
-          <div class="arrow-wrapper">
-              <div class="arrow"></div>
-
-         </div>
+          <button className='login-btn'>
+            Sign Up
+            <div class="arrow-wrapper">
+            <div class="arrow"></div>
+            </div>
           </button>
         </Toolbar>
       </Container>

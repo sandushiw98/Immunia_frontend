@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Row, Col } from "antd";
 import cover from "../../assets/images/donation-jar-hero-banner.jpg";
 import './Donations.css';
+import { Select, MenuItem, InputLabel } from "@mui/material";
+
 
 
 function Copyright(props) {
@@ -36,10 +38,13 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
+
+
 const defaultTheme = createTheme();
 
 export default function Signup() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [selectedOption, setSelectedOption] = React.useState('');
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -53,6 +58,11 @@ export default function Signup() {
       password: data.get("password"),
     });
   };
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  
 
   return (
     <>
@@ -90,19 +100,7 @@ export default function Signup() {
                         label="First Name"
                         autoFocus
                         className="custom-textfield"
-                        sx={{
-                          width: "100%", // Adjust the width as desired
-                          "& .MuiInputBase-input": {
-                            fontSize: "14px", // Adjust the font size as desired
-                            height: "20px", // Adjust the height as desired
-                          },
-                        }}
-                        inputProps={{
-                          style: {
-                            fontSize: "14px", // Adjust the font size as desired
-                            height: "20px", // Adjust the height as desired
-                          },
-                        }}
+                        
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -139,31 +137,36 @@ export default function Signup() {
                       <TextField
                         required
                         fullWidth
-                        id="emergency"
-                        label="Emergency Contact Number"
-                        name="emergency"
-                        autoComplete="Emergency-Contact-Number"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="address"
+                        id="Home Address"
                         label="Home Address"
-                        name="address"
-                        autoComplete="Home-Address"
+                        name="Home Address"
+                        autoComplete="Home Address"
                       />
                     </Grid>
+                    <Grid item xs={12}>
+                      <InputLabel id="dropdown-label">Donate For</InputLabel>
+                      <Select
+                        labelId="dropdown-label"
+                        id="dropdown"
+                        value={selectedOption}
+                        onChange={handleOptionChange}
+                        fullWidth
+                      >
+                        <MenuItem value="option1">Vaccination Centre</MenuItem>
+                        <MenuItem value="option2">MOH</MenuItem>
+                        
+                      </Select>
+                    </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         required
                         fullWidth
-                        name="nic"
-                        label="NIC Number"
-                        type="nic"
-                        id="nic"
-                        autoComplete="NIC-Number"
+                        name="comment"
+                        label="Comment"
+                        type="Comment"
+                        id="Comment"
+                        autoComplete="Comment"
                       />
                     </Grid>
                     
@@ -174,7 +177,7 @@ export default function Signup() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    Sign Up
+                   Donate 
                   </Button>
                   
                 </Box>

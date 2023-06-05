@@ -69,4 +69,7 @@
     outline: none;
   }
 
+  .custom-textfield{
+    border: 10px solid black;
+  }
   

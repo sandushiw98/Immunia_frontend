@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home  from '../src/pages/Home/Home';
 import Donations from "../src/pages/Donations/Donations";
 
-//import Footer from "./components/Footer/Footer";
 
 
 
@@ -24,7 +23,7 @@ function App() {
           <Route path="/Donations" element={<Donations />} />
         </Routes>
       </BrowserRouter>
-      {/* <Footer /> */}
+      <Footer /> 
     </div>
   );
 }

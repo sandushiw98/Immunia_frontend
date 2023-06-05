@@ -6,34 +6,36 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Row, Col} from 'antd';
-// import cover from '../../assets/images/vaccine_istock_000015676356small.jpg'
-import login from '../../assets/images/login.jpg'
+import { Row, Col } from 'antd';
+import login1 from '../../assets/images/login.jpg'
 import { IconButton } from '@mui/material';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Immunia
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+    return (
+        <Typography
+            variant="body2"
+            color="text.secondary"
+            align="center"
+            {...props}
+        >
+            {"Copyright © "}
+            <Link color="inherit" href="https://mui.com/">
+                Immunia
+            </Link>{" "}
+            {new Date().getFullYear()}
+            {"."}
+        </Typography>
+    );
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -41,28 +43,57 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    //   const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     console.log({
+    //       username: data.get("username"),
+    //       password: data.get("password"),
+    //     });
+    //   };
+
+
+
+    const login = async (event) => {
+        event.preventDefault();
+        try {
+          const response = await axios.post("http://localhost:8080/api/v1/user", {
+            email: email,
+            password: password,
+          });
+    
+          const data = response.data;
+          if (data.message === "Email not exists") {
+            alert("Email does not exist");
+          } else if (data.message === "Login Success") {
+            navigate('/');
+          } else {
+            alert("Incorrect email or password");
+          }
+        } catch (error) {
+          console.error(error);
+          alert("An error occurred during login");
+        }
+      };
+
 
     return (
         <>
             <Row>
                 <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
-                    <img src={login} alt='login' style={{ width: '90%', height: '80%' }} />
+                    <img src={login1} alt='login' style={{ width: '90%', height: '80%' }} />
                 </Col>
-                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%', paddingRight:'5%' }}>
+                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingRight: '5%' }}>
                     <ThemeProvider theme={defaultTheme}>
                         <Container component="main" maxWidth="xs">
                             <CssBaseline />
@@ -77,13 +108,13 @@ export default function Login() {
                                 <Typography component="h1" variant="h5">
                                     <h2>Login</h2>
                                 </Typography>
-                                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                                <Box component="form"  noValidate sx={{ mt: 1 }}>
                                     <TextField
                                         margin="normal"
                                         required
                                         fullWidth
                                         id="email"
-                                        label="Email Address"
+                                        label="email"
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
@@ -118,6 +149,7 @@ export default function Login() {
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
+                                        onClick={login}
                                     >
                                         Login
                                     </Button>
@@ -128,7 +160,7 @@ export default function Login() {
                                             </Link>
                                         </Grid>
                                         <Grid item>
-                                            <Link href="#" variant="body2" style={{ textDecoration: 'none' }}>
+                                            <Link to='/signup' variant="body2" style={{ textDecoration: 'none' }}>
                                                 {"Don't have an account? Sign Up"}
                                             </Link>
                                         </Grid>

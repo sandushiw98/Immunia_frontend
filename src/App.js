@@ -14,7 +14,7 @@ import Donations from "../src/pages/Donations/Donations";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+
 
       <BrowserRouter>
         <Routes>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber } from 'antd';
+import { Form, Input } from 'antd';
 import { Row, Col, Button } from 'antd';
 import Card from '@mui/material/Card';
 import SimpleImageSlider from 'react-simple-image-slider';
@@ -16,6 +16,7 @@ import twitter from '../../assets/images/twitter.png';
 import facebook from '../../assets/images/facebook.png';
 import youtube from '../../assets/images/youtube.png';
 import image10 from '../../assets/images/vaccines_spot.png';
+import Navbar from '../../components/Navbar/Navbar';
 
 const Home = () => {
     const sliderImages = [
@@ -64,8 +65,9 @@ const Home = () => {
 
     return (
         <>
+              <Navbar />
             {/* slider images */}
-            <Row>
+            <Row id='home'>
                 <Col span={24}>
                     <div className="slider-container">
                         <SimpleImageSlider
@@ -197,7 +199,7 @@ const Home = () => {
             </Row>
 
             {/* about page */}
-            <Row style={{ backgroundColor: '#f6f3ee' }}>
+            <Row style={{ backgroundColor: '#f6f3ee' }} id='about'>
                 <Col span={12} style={{ padding: '20px' }}>
                     <Row style={{ paddingLeft: '18%' }}>
                         <h3 style={{ fontSize: '48px' }}>About</h3>
@@ -218,7 +220,7 @@ const Home = () => {
 
             {/* Donate page */}
             <Row>
-                <Row style={{ width: '100%' }}>
+                <Row style={{ width: '100%' }} id='donate'>
                     <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Donate</h3>
                 </Row>
                 <Row className="horizontal-line-donate" ></Row>
@@ -258,7 +260,7 @@ const Home = () => {
             </Row>
 
             {/* Contact page */}
-            <Row style={{ backgroundColor: '#f6f3ee' }}>
+            <Row style={{ backgroundColor: '#f6f3ee' }} id='contact'>
                 <Row style={{ width: '100%' }}>
                     <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Contact</h3>
                 </Row>

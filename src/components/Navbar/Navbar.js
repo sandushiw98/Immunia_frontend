@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 const pages = ['Home', 'Donations', 'About', 'Contact Us'];
 
 function ResponsiveAppBar() {
@@ -24,8 +25,13 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    section.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl" >
         <Toolbar disableGutters >
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -86,32 +92,53 @@ function ResponsiveAppBar() {
           
         
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+          <Button
+                
+                onClick={() => scrollToSection('home')}
                 sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
               >
-                {page}
+                Home
               </Button>
-            ))}
+              <Button
+                
+                onClick={() => scrollToSection('about')}
+                sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
+              >
+                About
+              </Button>
+              <Button
+                
+                onClick={() => scrollToSection('donate')}
+                sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
+              >
+                Donation
+              </Button>
+            
+              <Button
+                
+                onClick={() => scrollToSection('contact')}
+                sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
+              >
+                Contact Us
+              </Button>
+        
           </Box>
 
           <Box sx={{ flexGrow: 0, display:'flex', gap:'10px'}}>
          
-          <button className='login-btn'>
+          <Link className='login-btn' to="/login" underline="none">
             Login
             <div class="arrow-wrapper">
             <div class="arrow"></div>
             </div>
-          </button>
-          </Box>
-          <button className='login-btn'>
-            Sign Up
+          </Link>
+          <Link className='login-btn' to="/signup" underline="none">
+            Signup
             <div class="arrow-wrapper">
             <div class="arrow"></div>
             </div>
-          </button>
+          </Link>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

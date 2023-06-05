@@ -1,11 +1,15 @@
 .css-19r6kue-MuiContainer-root{
     background-color: rgb(255, 255, 255);
     width: 100%;
+    max-width: 100% !important;
+    height: 80px !important;
+    padding-top: 8px;
 }
 .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     box-shadow: none !important;
     display: none;
 }
+
 
 .login-btn {
   --primary-color: #1667e1;
@@ -24,16 +28,18 @@
   align-items: center;
   gap: 0.6em;
   font-weight: bold;
+  text-decoration: none;
   margin-right: 20px;
+  height: 40px !important;
 }
 
-button .arrow-wrapper {
+.login-btn .arrow-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-button .arrow {
+.login-btn .arrow {
   margin-top: 1px;
   width: var(--arrow-width);
   background: var(--primary-color);
@@ -42,7 +48,7 @@ button .arrow {
   transition: 0.2s;
 }
 
-button .arrow::before {
+.login-btn .arrow::before {
   content: "";
   box-sizing: border-box;
   position: absolute;
@@ -56,14 +62,14 @@ button .arrow::before {
   transform: rotate(-45deg);
 }
 
-button:hover {
+.login-btn:hover {
   background-color: var(--hover-color);
 }
 
-button:hover .arrow {
+.login-btn:hover .arrow {
   background: var(--secondary-color);
 }
 
-button:hover .arrow:before {
+.login-btn:hover .arrow:before {
   right: 0;
 }

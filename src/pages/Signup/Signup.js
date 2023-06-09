@@ -18,6 +18,35 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col } from 'antd';
 import signup from '../../assets/images/signup.jpg';
 
+
+function validateFirstName(firstName) {
+  
+  const minLength = 2; 
+  const lettersOnlyRegex = /^[A-Za-z']+$/;
+  if (firstName.length < minLength) {
+    return false;
+  }
+  if (!lettersOnlyRegex.test(firstName)) {
+  
+    return false;
+  }
+  return true;
+}
+
+function validateLastName(lastName) {
+
+  const minLength = 2; 
+  const lettersOnlyRegex = /^[A-Za-z']+$/;
+  if (lastName.length < minLength) {
+    return false;
+  }
+  if (!lettersOnlyRegex.test(lastName)) {
+    return false;
+  }
+  return true;
+}
+
+
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
@@ -29,6 +58,10 @@ function validatePassword(password) {
 
 function validateContactNumber(mobile) {
   return /^[0-9]{10}$/.test(mobile); // Validates if the contact number is a 10-digit number
+}
+
+function validateEmergencyNumber(emergency) {
+  return /^[0-9]{10}$/.test(emergency); // Validates if the contact number is a 10-digit number
 }
 
 function validateNIC(nic) {
@@ -51,12 +84,24 @@ export default function Signup() {
     const data = new FormData(event.currentTarget);
 
     // Validate inputs
+    const firstName = data.get('firstName');
+    const lastName = data.get('lastName');
     const email = data.get('email');
     const password = data.get('password');
     const confirmPassword = data.get('confirmpassword');
     const mobile = data.get('mobile');
+    const emergency = data.get('emergency');
     const nic = data.get('nic');
+    const address = data.get('address');
+    
     const newErrors = {};
+    if (!validateFirstName(firstName)) {
+      newErrors.firstName = 'Invalid First Name';
+    }
+
+    if (!validateLastName(lastName)) {
+      newErrors.lastName = 'Invalid Last Name';
+    }
 
     if (!validateEmail(email)) {
       newErrors.email = 'Invalid email address';
@@ -74,9 +119,17 @@ export default function Signup() {
       newErrors.mobile = 'Invalid contact number';
     }
 
+    if (!validateEmergencyNumber(emergency)) {
+      newErrors.emergency = 'Invalid contact number';
+    }
+
     if (!validateNIC(nic)) {
       newErrors.nic = 'Invalid NIC number';
     }
+
+    if (!address) {  
+         newErrors.address = 'Address is required';    
+     }
 
     if (Object.keys(newErrors).length === 0) {
       console.log({
@@ -115,6 +168,8 @@ export default function Signup() {
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
+                        error={!!errors.firstName}
+                        helperText={errors.firstName}
                           autoComplete="given-name"
                           name="firstName"
                           required
@@ -126,6 +181,8 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <TextField
+                        error={!!errors.lastName}
+                        helperText={errors.lastName}
                           required
                           fullWidth
                           id="lastName"
@@ -172,6 +229,8 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
+                        error={!!errors.address}
+                        helperText={errors.address}
                           required
                           fullWidth
                           id="address"
@@ -264,13 +323,13 @@ export default function Signup() {
                     </Grid>
                   </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+              
               </Container>
             </ThemeProvider>
           </Row>
         </Col>
         <Col span={12} style={{ paddingTop: '120px' }}>
-          <img src={signup} alt="login" style={{ width: '80%', height: '80%' }} />
+          <img src={signup} alt="signup" style={{ width: '80%', height: '70%', marginTop:'110px'}} />
         </Col>
       </Row>
     </>

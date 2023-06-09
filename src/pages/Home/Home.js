@@ -17,84 +17,95 @@ import facebook from '../../assets/images/facebook.png';
 import youtube from '../../assets/images/youtube.png';
 import image10 from '../../assets/images/vaccines_spot.png';
 import Navbar from '../../components/Navbar/Navbar';
+import { Opacity } from '@mui/icons-material';
 
 const Home = () => {
-    const sliderImages = [
-        {
-            url: image5,
-            caption: 'SCHEDULE VACCINATION\nFOR YOUR CHILD\nThe booking service will provide an option\nfor parents to book a vaccine for their\nchild vaccination, accessible on\nonline for everyone',
-        },
-        {
-            url: image2,
-            caption: 'image 2 caption',
-        },
-        {
-            url: image3,
-            caption: 'image 1 caption',
-        },
-        {
-            url: image4,
-            caption: 'image 1 caption',
-        },
-        {
-            url: image1,
-            caption: 'image 1 caption',
-        },
-    ];
 
-    const renderSliderItem = (item) => (
-        <div style={{ display: 'none' }}>
-            <img src={item.url} alt={item.caption} />
-        </div>
-    );
+            const sliderImages = [
+                {
+                    url: image5,
+                    caption: 'SCHEDULE VACCINATION FOR YOUR CHILD\nThe booking service will provide an option\nfor parents to book a vaccine for their\nchild vaccination, accessible on\nonline for everyone',
+                },
+                {
+                    url: image2,
+                    caption: 'image 2 caption',
+                },
+                {
+                    url: image3,
+                    caption: 'image 1 caption',
+                },
+                {
+                    url: image4,
+                    caption: 'image 1 caption',
+                },
+                {
+                    url: image1,
+                    caption: 'image 1 caption',
+                },
+            ];
 
-    const splitCaption = (caption) => caption.split('\n');
+            sliderImages.forEach((image) => {
+                const lines = image.caption.split('\n');
+                const title = lines[0];
+                const content = lines.slice(1).join(' ');
 
-    const layout = {
-        labelCol: {
-            span: 10,
-        },
-        wrapperCol: {
-            span: 16,
-        },
-    };
+                console.log('Title:', title);
+                console.log('Content:', content);
+});
 
-    const onFinish = (values) => {
-        console.log(values);
-    };
+            const renderSliderItem = (item) => (
+                <div >
+                    <img src={item.url} alt={item.caption} className='slideshow'/>
+                </div>
+            );
 
-    return (
-        <>
-              <Navbar />
-            {/* slider images */}
-            <Row id='home'>
-                <Col span={24}>
-                    <div className="slider-container">
-                        <SimpleImageSlider
-                            width="100%"
-                            height={700}
-                            images={sliderImages}
-                            autoPlay={true}
-                            showBullets={true}
-                            showNavs={false}
-                            showIndex={true}
-                            disableScroll={true}
-                            slideDuration={0}
-                            slideInterval={5000}
-                            onItemClick={null}
-                            renderItem={renderSliderItem}
-                        />
-                        <div className="caption-container">
-                            {splitCaption(sliderImages[0].caption).map((line, index) => (
-                                <div className={`caption-line caption-line-${index}`} key={index}>
-                                    {line}
-                                </div>
-                            ))}
+            const splitCaption = (caption) => caption.split('\n');
+
+            const layout = {
+                labelCol: {
+                    span: 10,
+                },
+                wrapperCol: {
+                    span: 16,
+                },
+            };
+
+            const onFinish = (values) => {
+                console.log(values);
+            };
+    
+        return (
+            <>
+                <Navbar/>
+                {/* slider images */}
+                <Row className='rsis-image'>
+                    <Col span={24}>
+                        <div className="slider-container" >
+                            <SimpleImageSlider
+                                width="100%"
+                                height={700}
+                                images={sliderImages}
+                                autoPlay={true}
+                                showBullets={true}
+                                showNavs={false}
+                                showIndex={true}
+                                disableScroll={true}
+                                slideDuration={0}
+                                slideInterval={5000}
+                                onItemClick={null}
+                                renderItem={renderSliderItem}
+                            />
+                            <div className="caption-container">
+                                {splitCaption(sliderImages[0].caption).map((line, index) => (
+                                    <div className={`caption-line caption-line-${index}`} key={index}>
+                                        {line}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </Col>
-            </Row>
-
+                    </Col>
+                </Row>
+    
             {/* Vaccine details by age */}
             <Row>
                 <Col span={12} style={{ padding: '50px', paddingLeft: '5%' }}>
@@ -207,9 +218,15 @@ const Home = () => {
                     <Row className="horizontal-line" ></Row>
                     <Row style={{ paddingLeft: '18%' }}>
                         <p style={{ fontSize: '20px' }}>
-                            The About page is the core description of your website. Here<br />is where you let clients know what your website is about.<br />You can edit all of this text and replace it with what you<br />want to write. For example you can let them know how long<br />you have been in business, what makes your company<br />special, what are its core values and more.<br /><br />
+                           
 
-                            Edit your About page from the Pages tab by clicking the edit<br />button.
+                            Welcome to our Child Vaccination Management System! We are dedicated to providing a convenient and efficient solution for managing and tracking children's vaccination schedules. Our system is designed to empower parents, guardians, and healthcare providers with the tools they need to ensure timely and accurate vaccinations, ultimately promoting better health outcomes for children.<br/><br/>
+                            <h2>Our Mission and Vision</h2>
+
+                            Our Mission and Vision
+                            Our mission is to promote and prioritize children's health by simplifying the management of vaccination schedules. We envision a world where every child receives the recommended vaccinations on time, leading to healthier and happier lives.<br />
+
+                            
                         </p>
                     </Row>
                 </Col>
@@ -227,8 +244,8 @@ const Home = () => {
                 <Row style={{ width: '100%' }}>
                     <Col span={12} style={{ width: '100%', paddingTop: '55px' }}>
                         <Row style={{ paddingLeft: '18%' }}>
-                            <p style={{ fontSize: '20px' }}>
-                                This page is used for setting up your website to receive donations. It can<br />be used for causes and charities to collect money. You can edit all of this<br />text and replace it with what you want to write. Edit your Donate from<br />the Pages tab by clicking the edit button.
+                            <p style={{ fontSize: '20px',textAlign:'justify' }}>
+                            Thank you for considering a donation to support our Child Vaccination <br/>Management System. Your contribution can make a significant difference <br/> in ensuring that children receive timely and life-saving vaccinations,<br/> protecting them from preventable diseases and improving their overall health.
                             </p>
                         </Row>
                         <Row style={{ padding: '10px 150px 10px 160px' }}>
@@ -337,7 +354,7 @@ const Home = () => {
                     </Col>
                     <Col span={12} style={{ width: '100%', paddingLeft: '200px', paddingTop: '1%' }}>
                         <Row>
-                            <img src={image8} alt="image8" style={{ width: '15%', height: '15%' }} />
+                            <img src={image8} alt="image8" style={{ width: '15%', height: '15%', marginRight:'500px'}} />
                         </Row>
                         <Row>
                             <span style={{ marginLeft: '22px', fontSize: '28px', fontWeight: 'bolder', marginTop: '10px' }}>Ministry Of Health</span>

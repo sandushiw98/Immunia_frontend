@@ -20,6 +20,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+
 function Copyright(props) {
     return (
         <Typography
@@ -38,7 +39,7 @@ function Copyright(props) {
     );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
@@ -52,17 +53,6 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
-    //   const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const data = new FormData(event.currentTarget);
-    //     console.log({
-    //       username: data.get("username"),
-    //       password: data.get("password"),
-    //     });
-    //   };
-
-
 
     const login = async (event) => {
         event.preventDefault();
@@ -90,23 +80,23 @@ export default function Login() {
     return (
         <>
             <Row>
-                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
-                    <img src={login1} alt='login' style={{ width: '90%', height: '80%' }} />
+                <Col span={10} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
+                    <img src={login1} alt='login' style={{ width: '100%', height: '90%', marginTop:'100px' }} />
                 </Col>
-                <Col span={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingRight: '5%' }}>
+                <Col span={14} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingRight: '5%' }}>
                     <ThemeProvider theme={defaultTheme}>
                         <Container component="main" maxWidth="xs">
                             <CssBaseline />
                             <Box
                                 sx={{
-                                    marginTop: 8,
+                                    marginTop: 25,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                 }}
                             >
                                 <Typography component="h1" variant="h5">
-                                    <h2>Login</h2>
+                                    <h1>Login</h1>
                                 </Typography>
                                 <Box component="form"  noValidate sx={{ mt: 1 }}>
                                     <TextField

@@ -5,6 +5,10 @@
     height: 80px !important;
     padding-top: 8px;
 }
+
+.css-1aimhub-MuiTypography-root{
+  padding-right: 1px !important ;
+}
 .css-hip9hq-MuiPaper-root-MuiAppBar-root{
     box-shadow: none !important;
     display: none;

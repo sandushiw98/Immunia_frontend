@@ -1,6 +1,5 @@
 
  import * as React from 'react';
-//Rest of your code
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +10,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css';
+import logo from '../../assets/images/logonew.png';
 import { Link } from 'react-router-dom';
+import { Padding } from '@mui/icons-material';
 const pages = ['Home', 'Donations', 'About', 'Contact Us'];
 
 function ResponsiveAppBar() {
@@ -50,10 +51,11 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            <img src={logo} alt='logo' style={{ width: '30%', height: '30%' }} />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -62,6 +64,7 @@ function ResponsiveAppBar() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
+              
            
             </IconButton>
             <Menu

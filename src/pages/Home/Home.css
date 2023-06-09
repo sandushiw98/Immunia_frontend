@@ -1,10 +1,21 @@
+.slider-container{
+    background-color: rgb(0, 0, 0);
+}
+.rsis-container{
+    opacity: 0.3;
+}
+
+.slideshow{
+    opacity: 0.1;
+}
+
 .headet-text {
     padding: 50px;
 }
 
 .headet-text h1 {
     font-size: 60px;
-    color: rgb(62, 62, 189);
+    color: rgb(28, 28, 93);
 }
 
 .headet-text p {
@@ -67,17 +78,20 @@
 }
 
 .caption-line-0 {
-    font-size: 58px;
+    
+    font-size: 60px;
     font-weight: bolder;
     line-height: 1.5;
     position: absolute;
-    bottom: 70%;
-    left: 4%;
+    bottom: 65%;
+    /* left: 4%; */
     padding: 10px;
-    color: #003580;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
 }
 
-.caption-line-1 {
+/* .caption-line-1 {
     font-size: 58px;
     font-weight: bolder;
     line-height: 1.5;
@@ -85,51 +99,63 @@
     bottom: 60%;
     left: 4%;
     padding: 10px;
-    color: #003580;
-}
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+} */
 
-.caption-line-2 {
-    font-size: 25px;
+.caption-line-1 {
+    font-size: 30px;
     line-height: 1.5;
     font-weight: bolder;
     position: absolute;
     bottom: 45%;
-    left: 4%;
+    /* left: 4%; */
     padding: 10px;
-    color: black;
+    color: rgb(215, 195, 195);
+    text-align: center;
+    width: 100%;
+    
+    
 }
 
-.caption-line-3 {
-    font-size: 25px;
+.caption-line-2 {
+    font-size: 30px;
     line-height: 1.5;
     font-weight: bolder;
     position: absolute;
     bottom: 40%;
-    left: 4%;
+    /* left: 4%; */
     padding: 10px;
-    color: black;
+    color: rgb(215, 195, 195);
+    text-align: center;
+    width: 100%;
 }
 
-.caption-line-4 {
-    font-size: 25px;
+.caption-line-3 {
+    font-size: 30px;
     line-height: 1.5;
     font-weight: bolder;
     position: absolute;
     bottom: 35%;
-    left: 4%;
+    /* left: 4%; */
     padding: 10px;
-    color: black;
+    color: rgb(215, 195, 195);
+    text-align: center;
+    width: 100%;
 }
 
-.caption-line-5 {
-    font-size: 25px;
+.caption-line-4 {
+    font-size: 30px;
     line-height: 1.5;
     font-weight: bolder;
     position: absolute;
     bottom: 30%;
-    left: 4%;
+    /* left: 4%; */
     padding: 10px;
-    color: black;
+    color: rgb(215, 195, 195);
+    text-align: center;
+    width: 100%;
 }
 
 .horizontal-line {
@@ -137,6 +163,8 @@
     width: 10%;
     background-color: #092b5c;
     margin-left: 18%;
+    text-align: center;
+    width: 100%;
 }
 
 .horizontal-line-donate {
@@ -194,7 +222,7 @@ button {
     margin: 0;
     width: 3rem;
     height: 3rem;
-    background: #39409e;
+    background: #e39667;
     border-radius: 1.625rem;
     }
     

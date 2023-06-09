@@ -12,18 +12,24 @@ import Donations from "../src/pages/Donations/Donations";
 
 function App() {
   return (
+    
     <div className="App">
-
-
+      
       <BrowserRouter>
+      
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route path="/Donations" element={<Donations />} />
+          <Route path="/Donations" element={<Donations />} /> 
         </Routes>
+      
+       
       </BrowserRouter>
-      <Footer /> 
+      <Footer />
+      
+      
     </div>
   );
 }

@@ -67,7 +67,7 @@ export default function Signup() {
   return (
     <>
       <Row className="container">
-       <Col span={12} style={{padding:'57px'}}>
+       <Col span={12} style={{padding:'60px'}}>
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
@@ -81,7 +81,7 @@ export default function Signup() {
               >
                 
                 <Typography component="h1" variant="h5">
-                  Sign up
+                  Donation
                 </Typography>
                 <Box
                   component="form"
@@ -90,29 +90,20 @@ export default function Signup() {
                   sx={{ mt: 3 }}
                 >
                   <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} >
                       <TextField
                         autoComplete="given-name"
-                        name="firstName"
+                        name="fullName"
                         required
                         fullWidth
-                        id="firstName"
-                        label="First Name"
+                        id="fullName"
+                        label="Full Name"
                         autoFocus
-                        className="custom-textfield"
+                        className="fulltextfield"
                         
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        fullWidth
-                        id="lastName"
-                        label="Last Name"
-                        name="lastName"
-                        autoComplete="family-name"
-                      />
-                    </Grid>
+                  
                     <Grid item xs={12}>
                       <TextField
                         required
@@ -144,7 +135,25 @@ export default function Signup() {
                       />
                     </Grid>
                     <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="Amount"
+                        label="Amount Rs."
+                        name="Amount"
+                        autoComplete="Amount"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
                       <InputLabel id="dropdown-label">Donate For</InputLabel>
+                      {/* <TextField
+                        required
+                        fullWidth
+                        id="Donations"
+                        label="Donate For"
+                        name="Donations"
+                        autoComplete="Donate for"
+                      /> */}
                       <Select
                         labelId="dropdown-label"
                         id="dropdown"

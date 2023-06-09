@@ -43,8 +43,8 @@ const Home = () => {
     ];
 
     const renderSliderItem = (item) => (
-        <div style={{ display: 'none' }}>
-            <img src={item.url} alt={item.caption} />
+        <div >
+            <img src={item.url} alt={item.caption} style={imageStyle}/>
         </div>
     );
 
@@ -61,6 +61,10 @@ const Home = () => {
 
     const onFinish = (values) => {
         console.log(values);
+    };
+
+    const imageStyle = {
+        opacity: 0.5, // Set the desired opacity value (0.0 - 1.0)
     };
 
     return (
@@ -102,7 +106,7 @@ const Home = () => {
                         <span style={{ fontSize: '35px', fontWeight: 'bold', marginBottom: '5px' }}>Why Vaccinate?</span>
                     </Row>
                     <Row style={{ paddingLeft: '8%' }}>
-                        <img src={image7} alt="image1" style={{ width: '80%', height: '100%', marginTop: '20px', borderRadius: '10px' }} />
+                        <img src={image7} alt="image1" style={{ width: '80%', height: '100%', marginTop: '20px', borderRadius: '10px'}} />
                     </Row>
                     <Row style={{ paddingLeft: '8%' }}>
                         <span style={{ fontSize: '25px', marginTop: '20px' }}>Reasons to Vaccinate Your Child</span>

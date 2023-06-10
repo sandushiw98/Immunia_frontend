@@ -17,68 +17,70 @@ import facebook from '../../assets/images/facebook.png';
 import youtube from '../../assets/images/youtube.png';
 import image10 from '../../assets/images/vaccines_spot.png';
 import Navbar from '../../components/Navbar/Navbar';
-import { Opacity } from '@mui/icons-material';
+import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
 
-            const sliderImages = [
-                {
-                    url: image5,
-                    caption: 'SCHEDULE VACCINATION FOR YOUR CHILD\nThe booking service will provide an option\nfor parents to book a vaccine for their\nchild vaccination, accessible on\nonline for everyone',
-                },
-                {
-                    url: image2,
-                    caption: 'image 2 caption',
-                },
-                {
-                    url: image3,
-                    caption: 'image 1 caption',
-                },
-                {
-                    url: image4,
-                    caption: 'image 1 caption',
-                },
-                {
-                    url: image1,
-                    caption: 'image 1 caption',
-                },
-            ];
+    const sliderImages = [
+        {
+            url: image5,
+            caption: 'SCHEDULE VACCINATION FOR YOUR CHILD\nThe booking service will provide an option\nfor parents to book a vaccine for their\nchild vaccination, accessible on\nonline for everyone',
+        },
+        {
+            url: image2,
+            caption: 'image 2 caption',
+        },
+        {
+            url: image3,
+            caption: 'image 1 caption',
+        },
+        {
+            url: image4,
+            caption: 'image 1 caption',
+        },
+        {
+            url: image1,
+            caption: 'image 1 caption',
+        },
+    ];
 
-            sliderImages.forEach((image) => {
-                const lines = image.caption.split('\n');
-                const title = lines[0];
-                const content = lines.slice(1).join(' ');
+    sliderImages.forEach((image) => {
+        const lines = image.caption.split('\n');
+        const title = lines[0];
+        const content = lines.slice(1).join(' ');
 
-                console.log('Title:', title);
-                console.log('Content:', content);
-});
+        console.log('Title:', title);
+        console.log('Content:', content);
+    });
 
-            const renderSliderItem = (item) => (
-                <div >
-                    <img src={item.url} alt={item.caption} className='slideshow'/>
-                </div>
-            );
+    const renderSliderItem = (item) => (
+        <div >
+            <img src={item.url} alt={item.caption} className='slideshow' />
+        </div>
+    );
 
-            const splitCaption = (caption) => caption.split('\n');
+    const splitCaption = (caption) => caption.split('\n');
 
-            const layout = {
-                labelCol: {
-                    span: 10,
-                },
-                wrapperCol: {
-                    span: 16,
-                },
-            };
+    const layout = {
+        labelCol: {
+            span: 10,
+        },
+        wrapperCol: {
+            span: 16,
+        },
+    };
 
-            const onFinish = (values) => {
-                console.log(values);
-            };
-    
-        return (
-            <>
-                <Navbar/>
+    const onFinish = (values) => {
+        console.log(values);
+    };
+
+    return (
+        <>
+            <div style={{overflowX:'hidden', position:'relative'}}>
+
+                <Navbar />
                 {/* slider images */}
-                <Row className='rsis-image'>
+                <Row className='rsis-image' id='home'>
                     <Col span={24}>
                         <div className="slider-container" >
                             <SimpleImageSlider
@@ -105,274 +107,276 @@ const Home = () => {
                         </div>
                     </Col>
                 </Row>
-    
-            {/* Vaccine details by age */}
-            <Row>
-                <Col span={12} style={{ padding: '50px', paddingLeft: '5%' }}>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <span style={{ fontSize: '35px', fontWeight: 'bold', marginBottom: '5px' }}>Why Vaccinate?</span>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <img src={image7} alt="image1" style={{ width: '80%', height: '100%', marginTop: '20px', borderRadius: '10px'}} />
-                    </Row>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <span style={{ fontSize: '25px', marginTop: '20px' }}>Reasons to Vaccinate Your Child</span>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <p style={{ fontSize: '15px', marginTop: '10px' }}>On-time vaccination helps provide immunity<br />against potentially life-threatening diseases.</p>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <Button type="primary" style={{ width: '200px', height: '45px', backgroundColor: '#1976d2', fontWeight: 'bolder', fontSize: '20px', marginBottom: '20px' }}>
-                            Why Vaccinate
-                        </Button>
-                    </Row>
-                </Col>
-                <Col span={12} style={{ padding: '50px', paddingLeft: '5%' }}>
-                    <Row style={{ paddingLeft: '8%' }}>
-                        <span style={{ fontSize: '35px', fontWeight: 'bold', marginBottom: '5px' }}>Vaccines By Age</span>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">New Born</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">1 -2 Months</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">4 Months</span>
-                        </button>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
 
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">6 Months</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">7 - 11 Months</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">12 - 23 Months</span>
-                        </button>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">2 - 3 Years</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">4 - 6 Years</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">7 - 10 Years</span>
-                        </button>
-                    </Row>
-                    <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">11 - 12 Years</span>
-                        </button>
-                        <button class="learn-more">
-                            <span class="circle" aria-hidden="true">
-                                <span class="icon arrow"></span>
-                            </span>
-                            <span class="button-text">13 - 18 Years</span>
-                        </button>
-                    </Row>
-                </Col>
-            </Row>
+                {/* Vaccine details by age */}
+                <Row>
+                    <Col span={12} style={{ padding: '50px', paddingLeft: '5%' }}>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <span style={{ fontSize: '35px', fontWeight: 'bold', marginBottom: '5px' }}>Why Vaccinate?</span>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <img src={image7} alt="image1" style={{ width: '80%', height: '100%', marginTop: '20px', borderRadius: '10px' }} />
+                        </Row>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <span style={{ fontSize: '25px', marginTop: '20px' }}>Reasons to Vaccinate Your Child</span>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <p style={{ fontSize: '15px', marginTop: '10px' }}>On-time vaccination helps provide immunity<br />against potentially life-threatening diseases.</p>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <Button type="primary" style={{ width: '200px', height: '45px', backgroundColor: '#1976d2', fontWeight: 'bolder', fontSize: '20px', marginBottom: '20px' }}>
+                                Why Vaccinate
+                            </Button>
+                        </Row>
+                    </Col>
+                    <Col span={12} style={{ padding: '50px', paddingLeft: '5%' }}>
+                        <Row style={{ paddingLeft: '8%' }}>
+                            <span style={{ fontSize: '35px', fontWeight: 'bold', marginBottom: '5px' }}>Vaccines By Age</span>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">New Born</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">1 -2 Months</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">4 Months</span>
+                            </button>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
 
-            {/* about page */}
-            <Row style={{ backgroundColor: '#f6f3ee' }} id='about'>
-                <Col span={12} style={{ padding: '20px' }}>
-                    <Row style={{ paddingLeft: '18%' }}>
-                        <h3 style={{ fontSize: '48px' }}>About</h3>
-                    </Row>
-                    <Row className="horizontal-line" ></Row>
-                    <Row style={{ paddingLeft: '18%' }}>
-                        <p style={{ fontSize: '20px' }}>
-                           
-
-                            Welcome to our Child Vaccination Management System! We are dedicated to providing a convenient and efficient solution for managing and tracking children's vaccination schedules. Our system is designed to empower parents, guardians, and healthcare providers with the tools they need to ensure timely and accurate vaccinations, ultimately promoting better health outcomes for children.<br/><br/>
-                            <h2>Our Mission and Vision</h2>
-
-                            Our Mission and Vision
-                            Our mission is to promote and prioritize children's health by simplifying the management of vaccination schedules. We envision a world where every child receives the recommended vaccinations on time, leading to healthier and happier lives.<br />
-
-                            
-                        </p>
-                    </Row>
-                </Col>
-                <Col span={12} style={{ padding: '100px' }}>
-                    <img src={image10} alt="image1" style={{ width: '100%', height: '100%' }} />
-                </Col>
-            </Row>
-
-            {/* Donate page */}
-            <Row>
-                <Row style={{ width: '100%' }} id='donate'>
-                    <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Donate</h3>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">6 Months</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">7 - 11 Months</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">12 - 23 Months</span>
+                            </button>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">2 - 3 Years</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">4 - 6 Years</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">7 - 10 Years</span>
+                            </button>
+                        </Row>
+                        <Row style={{ paddingLeft: '8%', paddingTop: '50px' }}>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">11 - 12 Years</span>
+                            </button>
+                            <button class="learn-more">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">13 - 18 Years</span>
+                            </button>
+                        </Row>
+                    </Col>
                 </Row>
-                <Row className="horizontal-line-donate" ></Row>
-                <Row style={{ width: '100%' }}>
-                    <Col span={12} style={{ width: '100%', paddingTop: '55px' }}>
+
+                {/* about page */}
+                <Row style={{ backgroundColor: '#f6f3ee' }} id='about'>
+                    <Col span={12} style={{ padding: '20px' }}>
                         <Row style={{ paddingLeft: '18%' }}>
-                            <p style={{ fontSize: '20px',textAlign:'justify' }}>
-                            Thank you for considering a donation to support our Child Vaccination <br/>Management System. Your contribution can make a significant difference <br/> in ensuring that children receive timely and life-saving vaccinations,<br/> protecting them from preventable diseases and improving their overall health.
+                            <h3 style={{ fontSize: '48px' }}>About</h3>
+                        </Row>
+                        <Row className="horizontal-line" ></Row>
+                        <Row style={{ paddingLeft: '18%' }}>
+                            <p style={{ fontSize: '20px' }}>
+
+
+                                Welcome to our Child Vaccination Management System! We are dedicated to providing a convenient and efficient solution for managing and tracking children's vaccination schedules. Our system is designed to empower parents, guardians, and healthcare providers with the tools they need to ensure timely and accurate vaccinations, ultimately promoting better health outcomes for children.<br /><br />
+                                <h2>Our Mission and Vision</h2>
+
+                                Our Mission and Vision
+                                Our mission is to promote and prioritize children's health by simplifying the management of vaccination schedules. We envision a world where every child receives the recommended vaccinations on time, leading to healthier and happier lives.<br />
+
+
                             </p>
                         </Row>
-                        <Row style={{ padding: '10px 150px 10px 160px' }}>
-                            <img src={image6} alt="image6" style={{ width: '100%', height: '100%' }} />
-                        </Row>
                     </Col>
-                    <Col span={12} style={{ width: '100%', padding: '90px 100px' }}>
-                        <Card sx={{ minWidth: 275 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '30px 60px', backgroundColor: '#f6f3ee', width: '60%', marginTop: '20px' }}>
-                            <Row><span style={{ fontSize: '100px', color: 'brown' }}>100 Rs</span></Row>
-                            <Row><span style={{ fontSize: '30px', color: 'black', marginTop: '10px', marginBottom: '20px' }}>Donation Amount</span></Row>
-                            <Row>
-                                <Button className='donate-btn'>Rs 10</Button>
-                                <Button className='donate-btn'>Rs 25</Button>
-                                <Button className='donate-btn'>Rs 50</Button>
-                                <Button className='donate-btn'>Rs 100</Button>
-                                <Button className='donate-btn'>Rs 200</Button>
-                            </Row>
-                            <Row>
-                                <Button style={{ marginTop: '30px', color: 'brown', border: '1px solid brown' }}>Other</Button>
-                            </Row>
-                            <Row>
-                                <Button type="primary" style={{ marginTop: '50px', width: '300px', height: '45px', backgroundColor: 'brown', fontWeight: 'bolder', fontSize: '20px' }}>
-                                    Donate Now
-                                </Button>
-                            </Row>
-                        </Card>
+                    <Col span={12} style={{ padding: '100px' }}>
+                        <img src={image10} alt="image1" style={{ width: '100%', height: '100%' }} />
                     </Col>
                 </Row>
-            </Row>
 
-            {/* Contact page */}
-            <Row style={{ backgroundColor: '#f6f3ee' }} id='contact'>
-                <Row style={{ width: '100%' }}>
-                    <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Contact</h3>
+                {/* Donate page */}
+                <Row>
+                    <Row style={{ width: '100%' }} id='donate'>
+                        <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Donate</h3>
+                    </Row>
+                    <Row className="horizontal-line-donate" ></Row>
+                    <Row style={{ width: '100%' }}>
+                        <Col span={12} style={{ width: '100%', paddingTop: '55px' }}>
+                            <Row style={{ paddingLeft: '18%' }}>
+                                <p style={{ fontSize: '20px', textAlign: 'justify' }}>
+                                    Thank you for considering a donation to support our Child Vaccination <br />Management System. Your contribution can make a significant difference <br /> in ensuring that children receive timely and life-saving vaccinations,<br /> protecting them from preventable diseases and improving their overall health.
+                                </p>
+                            </Row>
+                            <Row style={{ padding: '10px 150px 10px 160px' }}>
+                                <img src={image6} alt="image6" style={{ width: '100%', height: '100%' }} />
+                            </Row>
+                        </Col>
+                        <Col span={12} style={{ width: '100%', padding: '90px 100px' }}>
+                            <Card sx={{ minWidth: 275 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '30px 60px', backgroundColor: '#f6f3ee', width: '60%', marginTop: '20px' }}>
+                                <Row><span style={{ fontSize: '100px', color: 'brown' }}>100 Rs</span></Row>
+                                <Row><span style={{ fontSize: '30px', color: 'black', marginTop: '10px', marginBottom: '20px' }}>Donation Amount</span></Row>
+                                <Row>
+                                    <Button className='donate-btn'>Rs 10</Button>
+                                    <Button className='donate-btn'>Rs 25</Button>
+                                    <Button className='donate-btn'>Rs 50</Button>
+                                    <Button className='donate-btn'>Rs 100</Button>
+                                    <Button className='donate-btn'>Rs 200</Button>
+                                </Row>
+                                <Row>
+                                    <Button style={{ marginTop: '30px', color: 'brown', border: '1px solid brown' }}>Other</Button>
+                                </Row>
+                                <Row>
+                                    <Button type="primary" style={{ marginTop: '50px', width: '300px', height: '45px', backgroundColor: 'brown', fontWeight: 'bolder', fontSize: '20px' }}>
+                                        Donate Now
+                                    </Button>
+                                </Row>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Row>
-                <Row className="horizontal-line-donate" ></Row>
-                <Row style={{ width: '100%' }}>
-                    <Col span={12} style={{ width: '100%', padding: '50px' }}>
-                        {/* <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', borderRadius: '10px' }}> */}
-                        <Form
-                            {...layout}
-                            name="nest-messages"
-                            onFinish={onFinish}
-                            style={{
-                                maxWidth: 800,
-                                padding: '50px'
-                            }}
-                        >
-                            <Form.Item
-                                name={['user', 'name']}
-                                label="Name"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name={['user', 'email']}
-                                label="Email"
-                                rules={[
-                                    {
-                                        type: 'email',
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                name={['user', 'age']}
-                                label="Phone Number"
-                                rules={[
-                                    {
-                                        type: 'number',
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item name={['user', 'Message']}
-                                label="Message"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}>
-                                <Input.TextArea />
-                            </Form.Item>
-                            <Form.Item
-                                wrapperCol={{
-                                    ...layout.wrapperCol,
-                                    offset: 8,
+
+                {/* Contact page */}
+                <Row style={{ backgroundColor: '#f6f3ee' }} id='contact'>
+                    <Row style={{ width: '100%' }}>
+                        <h3 style={{ fontSize: '48px', width: '100%', textAlign: 'center' }}>Contact</h3>
+                    </Row>
+                    <Row className="horizontal-line-donate" ></Row>
+                    <Row style={{ width: '100%' }}>
+                        <Col span={12} style={{ width: '100%', padding: '50px' }}>
+                            {/* <Card style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', borderRadius: '10px' }}> */}
+                            <Form
+                                {...layout}
+                                name="nest-messages"
+                                onFinish={onFinish}
+                                style={{
+                                    maxWidth: 800,
+                                    padding: '50px'
                                 }}
                             >
-                                <Button type="primary" htmlType="submit" style={{ marginLeft: '84%', marginTop: '5%' }}>
-                                    Submit
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                        {/* </Card> */}
+                                <Form.Item
+                                    name={['user', 'name']}
+                                    label="Name"
+                                    rules={[
+                                        {
+                                            required: true,
+                                        },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name={['user', 'email']}
+                                    label="Email"
+                                    rules={[
+                                        {
+                                            type: 'email',
+                                            required: true,
+                                        },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name={['user', 'age']}
+                                    label="Phone Number"
+                                    rules={[
+                                        {
+                                            type: 'number',
+                                            required: true,
+                                        },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item name={['user', 'Message']}
+                                    label="Message"
+                                    rules={[
+                                        {
+                                            required: true,
+                                        },
+                                    ]}>
+                                    <Input.TextArea />
+                                </Form.Item>
+                                <Form.Item
+                                    wrapperCol={{
+                                        ...layout.wrapperCol,
+                                        offset: 8,
+                                    }}
+                                >
+                                    <Button type="primary" htmlType="submit" style={{ marginLeft: '84%', marginTop: '5%' }}>
+                                        Submit
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                            {/* </Card> */}
 
-                    </Col>
-                    <Col span={12} style={{ width: '100%', paddingLeft: '200px', paddingTop: '1%' }}>
-                        <Row>
-                            <img src={image8} alt="image8" style={{ width: '15%', height: '15%', marginRight:'500px'}} />
-                        </Row>
-                        <Row>
-                            <span style={{ marginLeft: '22px', fontSize: '28px', fontWeight: 'bolder', marginTop: '10px' }}>Ministry Of Health</span>
-                        </Row>
-                        <Row>
-                            <p style={{ marginLeft: '22px', fontSize: '18px', marginTop: '10px' }}>SUWASIRIPAYA, No 385, Rev.<br/>Baddegama Wimalawansa Thero Mawatha,<br/>Colombo 10, Sri Lanka.<br/>Telephone(General):<br/>(+94)112 694033, (+94)112 675011,<br/> (+94)112 675449, (+94)112 693493</p>
-                        </Row>
-                        <Row>
-                            <span style={{ marginLeft: '22px', fontSize: '22px', fontWeight: 'bolder', marginTop: '10px' }}>Social Links</span>
-                        </Row>
-                        <Row style={{display:'flex', flexDirection:'row'}}>
-                            <Col span={3} style={{width:'100%', height:'100%'}}><a href="https://twitter.com/MoH_SriLanka" target="_blank" rel="noreferrer"><img src={twitter} alt="twitter" style={{ width: '65%', height: '65%', marginLeft:'5px' }} /></a></Col>
-                            <Col span={3} style={{width:'100%', height:'100%'}}><a href="https://web.facebook.com/MoHNIMSriLanka/?_rdc=1&_rdr" target="_blank" rel="noreferrer"><img src={facebook} alt="twitter" style={{ width: '60%', height: '60%' }} /></a></Col>
-                            <Col span={3} style={{width:'100%', height:'100%'}}><a href="https://www.youtube.com/channel/UCqcu0trpaF_EEgs9dBsYJcw/featured" target="_blank" rel="noreferrer" ><img src={youtube} alt="twitter" style={{ width: '55%', height: '55%' }} /></a></Col> 
-                        </Row>
-                    </Col>
+                        </Col>
+                        <Col span={12} style={{ width: '100%', paddingLeft: '200px', paddingTop: '1%' }}>
+                            <Row>
+                                <img src={image8} alt="image8" style={{ width: '15%', height: '15%', marginRight: '500px' }} />
+                            </Row>
+                            <Row>
+                                <span style={{ marginLeft: '22px', fontSize: '28px', fontWeight: 'bolder', marginTop: '10px' }}>Ministry Of Health</span>
+                            </Row>
+                            <Row>
+                                <p style={{ marginLeft: '22px', fontSize: '18px', marginTop: '10px' }}>SUWASIRIPAYA, No 385, Rev.<br />Baddegama Wimalawansa Thero Mawatha,<br />Colombo 10, Sri Lanka.<br />Telephone(General):<br />(+94)112 694033, (+94)112 675011,<br /> (+94)112 675449, (+94)112 693493</p>
+                            </Row>
+                            <Row>
+                                <span style={{ marginLeft: '22px', fontSize: '22px', fontWeight: 'bolder', marginTop: '10px' }}>Social Links</span>
+                            </Row>
+                            <Row style={{ display: 'flex', flexDirection: 'row' }}>
+                                <Col span={3} style={{ width: '100%', height: '100%' }}><a href="https://twitter.com/MoH_SriLanka" target="_blank" rel="noreferrer"><img src={twitter} alt="twitter" style={{ width: '65%', height: '65%', marginLeft: '5px' }} /></a></Col>
+                                <Col span={3} style={{ width: '100%', height: '100%' }}><a href="https://web.facebook.com/MoHNIMSriLanka/?_rdc=1&_rdr" target="_blank" rel="noreferrer"><img src={facebook} alt="twitter" style={{ width: '60%', height: '60%' }} /></a></Col>
+                                <Col span={3} style={{ width: '100%', height: '100%' }}><a href="https://www.youtube.com/channel/UCqcu0trpaF_EEgs9dBsYJcw/featured" target="_blank" rel="noreferrer" ><img src={youtube} alt="twitter" style={{ width: '55%', height: '55%' }} /></a></Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Row>
-            </Row>
+            </div>
+            {/* <Footer/> */}
         </>
     );
 };

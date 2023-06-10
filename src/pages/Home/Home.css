@@ -160,7 +160,7 @@
 
 .horizontal-line {
     height: 7px;
-    width: 10%;
+    width: 10% !important;
     background-color: #092b5c;
     margin-left: 18%;
     text-align: center;

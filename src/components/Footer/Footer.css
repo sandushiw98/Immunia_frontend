@@ -1,19 +1,11 @@
-
-
-footer {
-
-    position: fixed;
-
-    background-color: rgb(209, 178, 135);
-
-    bottom: 0;
-
-    left: 0;
-
-    right: 0;
-
-    padding: 15px;
-
+.footer{
+    background-color: #EAF0FC;
+    height: 40px;
     text-align: center;
-
+    padding-top: 10px;
+    font-weight: bolder;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    margin-top: 50px !important;
 }

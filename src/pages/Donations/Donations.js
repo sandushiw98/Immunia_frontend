@@ -1,10 +1,7 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,43 +9,17 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Row, Col } from "antd";
-import cover from "../../assets/images/donation-jar-hero-banner.jpg";
 import './Donations.css';
 import { Select, MenuItem, InputLabel } from "@mui/material";
-
-
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Immunia
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";  
 
 
 const defaultTheme = createTheme();
 
-export default function Signup() {
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [selectedOption, setSelectedOption] = React.useState('');
+const Donation = () => {
 
-  const handleTogglePassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+  const [selectedOption, setSelectedOption] = React.useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -66,6 +37,7 @@ export default function Signup() {
 
   return (
     <>
+    <Navbar/>
       <Row className="container">
        <Col span={12} style={{padding:'60px'}}>
           <ThemeProvider theme={defaultTheme}>
@@ -146,20 +118,13 @@ export default function Signup() {
                     </Grid>
                     <Grid item xs={12}>
                       <InputLabel id="dropdown-label">Donate For</InputLabel>
-                      {/* <TextField
-                        required
-                        fullWidth
-                        id="Donations"
-                        label="Donate For"
-                        name="Donations"
-                        autoComplete="Donate for"
-                      /> */}
                       <Select
                         labelId="dropdown-label"
                         id="dropdown"
                         value={selectedOption}
                         onChange={handleOptionChange}
                         fullWidth
+                        
                       >
                         <MenuItem value="option1">Vaccination Centre</MenuItem>
                         <MenuItem value="option2">MOH</MenuItem>
@@ -167,15 +132,17 @@ export default function Signup() {
                       </Select>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} >
                       <TextField
                         required
                         fullWidth
                         name="comment"
                         label="Comment"
-                        type="Comment"
-                        id="Comment"
+                        type="comment"
+                        id="comment"
                         autoComplete="Comment"
+                        multiline
+                        rows={3}
                       />
                     </Grid>
                     
@@ -209,8 +176,10 @@ export default function Signup() {
         </Col> 
         
       </Row>
+      <Footer/>
        
     </>
   );
       
 }
+export default Donation;

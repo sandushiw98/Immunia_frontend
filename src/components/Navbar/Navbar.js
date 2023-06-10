@@ -12,7 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import './Navbar.css';
 import logo from '../../assets/images/logonew.png';
 import { Link } from 'react-router-dom';
-import { Padding } from '@mui/icons-material';
 const pages = ['Home', 'Donations', 'About', 'Contact Us'];
 
 function ResponsiveAppBar() {

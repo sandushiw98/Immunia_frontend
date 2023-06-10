@@ -1,3 +1,17 @@
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+   height: 60px;
+   width: 90px;
+}
+
+.comment{
+  height: 300px ;
+ 
+}
+
+.css-wb57ya-MuiFormControl-root-MuiTextField-root{
+  height: 60px;
+}
+
 .container{
     background-image: url(../../assets/images/donation-jar-hero-banner.jpg);
     background-repeat: no-repeat;

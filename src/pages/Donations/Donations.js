@@ -118,6 +118,7 @@ const Donation = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <InputLabel id="dropdown-label">Donate For</InputLabel>
+                    
                       <Select
                         labelId="dropdown-label"
                         id="dropdown"
@@ -131,9 +132,9 @@ const Donation = () => {
                         
                       </Select>
                     </Grid>
-
-                    <Grid item xs={12} >
-                      <TextField
+                        
+                    <Grid item xs={12}>
+                      <TextField className="comment"
                         required
                         fullWidth
                         name="comment"

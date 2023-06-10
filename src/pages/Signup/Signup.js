@@ -17,6 +17,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Row, Col } from 'antd';
 import signup from '../../assets/images/signup.jpg';
+import './Signup.css';
+
 
 
 function validateFirstName(firstName) {
@@ -147,6 +149,11 @@ export default function Signup() {
 
   return (
     <>
+    <Row>
+    <button className='backbtn'>
+    <Link className='back-btn' to="/" underline="none">Back to Home</Link>
+    </button>
+</Row>
       <Row>
         <Col span={12}>
           <Row>
@@ -155,7 +162,7 @@ export default function Signup() {
                 <CssBaseline />
                 <Box
                   sx={{
-                    marginTop: 8,
+                    marginTop: 1,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -329,7 +336,7 @@ export default function Signup() {
           </Row>
         </Col>
         <Col span={12} style={{ paddingTop: '120px' }}>
-          <img src={signup} alt="signup" style={{ width: '80%', height: '70%', marginTop:'110px'}} />
+          <img src={signup} alt="signup" style={{ width: '80%', height: '80%', marginTop:'70px'}} />
         </Col>
       </Row>
     </>

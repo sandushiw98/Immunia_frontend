@@ -15,7 +15,62 @@ TextField{
     height: 100px;
 }
 
-
-
-
-
+.backbtn {
+    width: 150px;
+    height: 45px;
+    background: #ffffff0d;
+    border-radius: 8px;
+    border: 2px solid #334b79;
+    font-size: 15px;
+    font-weight: bold;
+    color: #334b79;
+    -webkit-transition: 0.5s all ease;
+    transition: 0.5s all ease;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 10px;
+    z-index: 1;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  .backbtn:before {
+    width: 50%;
+    height: 100%;
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 0%;
+    left: -50%;
+    background: #334b79;
+    transition: all 0.5s ease;
+    z-index: -1;
+  }
+  
+  .backbtn:after {
+    width: 50%;
+    height: 100%;
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 0%;
+    left: 100%;
+    background: #334b79;
+    transition: all 0.5s ease;
+    z-index: -1;
+  }
+  
+  .backbtn:hover {
+    color: white;
+    cursor: pointer;
+  }
+  
+  .backbtn:hover:before {
+    top: 0;
+    left: 0;
+  }
+  
+  .backbtn:hover:after {
+    top: 0;
+    left: 50%;
+  }

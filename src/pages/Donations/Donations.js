@@ -1,10 +1,7 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Row, Col } from "antd";
-import cover from "../../assets/images/donation-jar-hero-banner.jpg";
 import './Donations.css';
 import { Select, MenuItem, InputLabel } from "@mui/material";
 
@@ -146,14 +142,7 @@ export default function Signup() {
                     </Grid>
                     <Grid item xs={12}>
                       <InputLabel id="dropdown-label">Donate For</InputLabel>
-                      {/* <TextField
-                        required
-                        fullWidth
-                        id="Donations"
-                        label="Donate For"
-                        name="Donations"
-                        autoComplete="Donate for"
-                      /> */}
+                    
                       <Select
                         labelId="dropdown-label"
                         id="dropdown"
@@ -166,9 +155,9 @@ export default function Signup() {
                         
                       </Select>
                     </Grid>
-
+                        
                     <Grid item xs={12}>
-                      <TextField
+                      <TextField className="comment"
                         required
                         fullWidth
                         name="comment"
@@ -176,6 +165,8 @@ export default function Signup() {
                         type="Comment"
                         id="Comment"
                         autoComplete="Comment"
+                        
+                      
                       />
                     </Grid>
                     

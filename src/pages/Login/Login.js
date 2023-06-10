@@ -18,6 +18,7 @@ import { IconButton } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 
 
@@ -79,6 +80,13 @@ export default function Login() {
 
     return (
         <>
+           <Row>
+           <button className='backbtn'>
+               
+                <Link className='back-btn' to="/" underline="none">Back to Home</Link>
+                </button>
+
+           </Row>
             <Row>
                 <Col span={10} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
                     <img src={login1} alt='login' style={{ width: '100%', height: '90%', marginTop:'100px' }} />
@@ -89,14 +97,14 @@ export default function Login() {
                             <CssBaseline />
                             <Box
                                 sx={{
-                                    marginTop: 25,
+                                    marginTop: 10,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                 }}
                             >
                                 <Typography component="h1" variant="h5">
-                                    <h1>Login</h1>
+                                    <h2>Login</h2>
                                 </Typography>
                                 <Box component="form"  noValidate sx={{ mt: 1 }}>
                                     <TextField

@@ -91,18 +91,7 @@
     width: 100%;
 }
 
-/* .caption-line-1 {
-    font-size: 58px;
-    font-weight: bolder;
-    line-height: 1.5;
-    position: absolute;
-    bottom: 60%;
-    left: 4%;
-    padding: 10px;
-    color: #ffffff;
-    width: 100%;
-    text-align: center;
-} */
+
 
 .caption-line-1 {
     font-size: 30px;
@@ -160,11 +149,11 @@
 
 .horizontal-line {
     height: 7px;
-    width: 10%;
+    width: 20%;
     background-color: #092b5c;
     margin-left: 18%;
     text-align: center;
-    width: 100%;
+    
 }
 
 .horizontal-line-donate {
@@ -297,3 +286,115 @@ button {
     button:hover .button-text {
     color: #fff;
     }
+
+    .btn {
+        position: relative;
+        outline: 0;
+        border: 1px solid transparent;
+        background-color: #488aec;
+        color: #ffffff;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+        margin-left: 160px;
+      }
+      
+      .btn span {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        transition: all .4s ease;
+      }
+      
+      button svg {
+        width: 1.00rem;
+        height: 1.00rem;
+      }
+      
+      .btn span:nth-child(2),.btn span:nth-child(3) {
+        position: absolute;
+        top: 40px;
+        color: #fff;
+      }
+      
+      .btn span:nth-child(2) {
+        background-color: #488aec;
+      }
+      
+      .btn span:nth-child(3) {
+        background-color: #488aec;
+      }
+      
+      .btn:hover {
+        box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+      }
+      
+      .btn:hover span:nth-child(2), .btn:focus span:nth-child(3) {
+        top: 0;
+      }
+      
+      .btn:focus {
+        box-shadow: none;
+      }
+
+      .button {
+        font-size: 19px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgb(106, 158, 210) 0%, rgb(67, 102, 209) 66%, rgb(74, 90, 209) 100%);
+        color: rgb(218, 218, 218);
+        border: none;
+         padding: 2px; 
+    
+        font-weight: 800;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+     
+      }
+      
+      .button span {
+        border-radius: 10px;
+        padding: 0.8em 1.3em;
+        padding-right: 1.2em;
+        text-shadow: 0px 0px 20px #4b4b4b;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s;
+        background-image: linear-gradient(to right, #d9e6de, #dd94d3, #d1dce7, #b9c3bc,#f9f9f9);
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 300%;
+        background-position: -100%;
+        animation: animatedText 3s infinite alternate-reverse;
+      }
+      
+      .button-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-conic-gradient(rgb(48, 47, 47) 0.0000001%, rgb(51, 51, 51) 0.000104%) 60% 60%/600% 600%;
+        filter: opacity(10%) contrast(105%);
+        -webkit-filter: opacity(10%) contrast(105%);
+      }
+      
+      @keyframes animatedText {
+        to {
+          background-position: 100%;
+        }
+      }

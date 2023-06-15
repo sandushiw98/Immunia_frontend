@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -58,38 +58,40 @@ export default function Login() {
     const login = async (event) => {
         event.preventDefault();
         try {
-          const response = await axios.post("http://localhost:8080/api/v1/user", {
-            email: email,
-            password: password,
-          });
-    
-          const data = response.data;
-          if (data.message === "Email not exists") {
-            alert("Email does not exist");
-          } else if (data.message === "Login Success") {
-            navigate('/');
-          } else {
-            alert("Incorrect email or password");
-          }
+            const response = await axios.post("http://localhost:8080/api/v1/user", {
+                email: email,
+                password: password,
+            });
+
+            const data = response.data;
+            if (data.message === "Email not exists") {
+                alert("Email does not exist");
+            } else if (data.message === "Login Success") {
+                navigate('/');
+            } else {
+                alert("Incorrect email or password");
+            }
         } catch (error) {
-          console.error(error);
-          alert("An error occurred during login");
+            console.error(error);
+            alert("An error occurred during login");
         }
-      };
+    };
 
 
     return (
         <>
-           <Row>
-           <button className='backbtn'>
-               
-                <Link className='back-btn' to="/" underline="none">Back to Home</Link>
-                </button>
+            <Row>
 
-           </Row>
+
+                <Link className='back-btn' to="/" underline="none">
+                    <button className='backbtn'>Back to Home</button>
+                </Link>
+
+
+            </Row>
             <Row>
                 <Col span={10} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingTop: '3%' }}>
-                    <img src={login1} alt='login' style={{ width: '100%', height: '90%', marginTop:'100px' }} />
+                    <img src={login1} alt='login' style={{ width: '100%', height: '90%', marginTop: '100px' }} />
                 </Col>
                 <Col span={14} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '5%', paddingRight: '5%' }}>
                     <ThemeProvider theme={defaultTheme}>
@@ -106,7 +108,7 @@ export default function Login() {
                                 <Typography component="h1" variant="h5">
                                     <h2>Login</h2>
                                 </Typography>
-                                <Box component="form"  noValidate sx={{ mt: 1 }}>
+                                <Box component="form" noValidate sx={{ mt: 1 }}>
                                     <TextField
                                         margin="normal"
                                         required

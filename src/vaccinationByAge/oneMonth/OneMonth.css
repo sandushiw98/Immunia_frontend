@@ -1,0 +1,13 @@
+.expandable-panel {
+    height: 40px; /* Initial height of the panel */
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+  
+  .expandable-panel.expanded {
+    height: auto; /* Expand the panel to fit the content */
+  }
+
+  .ant-collapse{
+    width: 100%;
+  }

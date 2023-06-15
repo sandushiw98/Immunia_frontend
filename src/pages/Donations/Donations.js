@@ -2,7 +2,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -12,7 +11,7 @@ import { Row, Col } from "antd";
 import './Donations.css';
 import { Select, MenuItem, InputLabel } from "@mui/material";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";  
+import Footer from "../../components/Footer/Footer";
 
 
 const defaultTheme = createTheme();
@@ -33,17 +32,17 @@ const Donation = () => {
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
-  
+
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Row className="container">
-       <Col span={12} style={{padding:'60px'}}>
+        <Col span={12} style={{ padding: '60px' }}>
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
-              <Box style={{marginTop:'10px'}}
+              <Box style={{ marginTop: '10px' }}
                 sx={{
                   marginTop: 8,
                   display: "flex",
@@ -51,7 +50,7 @@ const Donation = () => {
                   alignItems: "center",
                 }}
               >
-                
+
                 <Typography component="h1" variant="h5">
                   Donation
                 </Typography>
@@ -72,10 +71,10 @@ const Donation = () => {
                         label="Full Name"
                         autoFocus
                         className="fulltextfield"
-                        
+
                       />
                     </Grid>
-                  
+
                     <Grid item xs={12}>
                       <TextField
                         required
@@ -118,21 +117,21 @@ const Donation = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <InputLabel id="dropdown-label">Donate For</InputLabel>
-                    
+
                       <Select
                         labelId="dropdown-label"
                         id="dropdown"
                         value={selectedOption}
                         onChange={handleOptionChange}
                         fullWidth
-                        
+
                       >
                         <MenuItem value="option1">Vaccination Centre</MenuItem>
                         <MenuItem value="option2">MOH</MenuItem>
-                        
+
                       </Select>
                     </Grid>
-                        
+
                     <Grid item xs={12}>
                       <TextField className="comment"
                         required
@@ -146,20 +145,20 @@ const Donation = () => {
                         rows={3}
                       />
                     </Grid>
-                    
+
                   </Grid>
-                  <Button style={{height:'40px'}}
+                  <Button style={{ height: '40px' }}
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                   Donate 
+                    Donate
                   </Button>
-                  
+
                 </Box>
               </Box>
-             
+
             </Container>
           </ThemeProvider>
         </Col>
@@ -173,14 +172,11 @@ const Donation = () => {
             paddingTop: "3%",
           }}
         >
-        
-        </Col> 
-        
+        </Col>
+        <Footer />
       </Row>
-      <Footer/>
-       
     </>
   );
-      
+
 }
 export default Donation;

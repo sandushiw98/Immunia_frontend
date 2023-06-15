@@ -1,400 +1,427 @@
-.slider-container{
-    background-color: rgb(0, 0, 0);
-}
-.rsis-container{
-    opacity: 0.3;
+.slider-container {
+  background-color: rgb(0, 0, 0);
 }
 
-.slideshow{
-    opacity: 0.1;
+.rsis-container {
+  opacity: 0.3;
+}
+
+.slideshow {
+  opacity: 0.1;
 }
 
 .headet-text {
-    padding: 50px;
+  padding: 50px;
 }
 
 .headet-text h1 {
-    font-size: 60px;
-    color: rgb(28, 28, 93);
+  font-size: 60px;
+  color: rgb(28, 28, 93);
 }
 
 .headet-text p {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .headet-text button {
-    border-radius: 30px;
-    background-color: rgb(58, 95, 175);
-    font-weight: bolder;
-    color: white;
-    height: 50px;
+  border-radius: 30px;
+  background-color: rgb(58, 95, 175);
+  font-weight: bolder;
+  color: white;
+  height: 50px;
 }
 
 .headet-text button :hover {
-    color: black;
+  color: black;
 }
 
 .vl {
-    border-left: 6px solid black;
-    height: 50px;
+  border-left: 6px solid black;
+  height: 50px;
 }
 
 .donation-section,
 .about-section,
 .contact-section {
-    background-color: #08639c;
-    text-align: center;
+  background-color: #08639c;
+  text-align: center;
 }
 
 .donation-section h1,
 .about-section h1,
 .contact-section h1 {
-    font-size: 40px;
-    color: white;
+  font-size: 40px;
+  color: white;
 }
 
 .donation-cont {
-    background-color: lightgreen;
-    height: 400px;
+  background-color: lightgreen;
+  height: 400px;
 }
 
 .donation-cont h3 {
-    font-size: 50px;
-    color: #08179c;
-    padding: 80px 0px 80px 80px;
+  font-size: 50px;
+  color: #08179c;
+  padding: 80px 0px 80px 80px;
 }
 
 .card-donation {
-    padding: 50px;
+  padding: 50px;
 }
 
 .card-donation p {
-    font-size: 30px;
+  font-size: 30px;
 
 }
 
 .contact-section {
-    height: 400px;
+  height: 400px;
 }
 
 .caption-line-0 {
-    
-    font-size: 60px;
-    font-weight: bolder;
-    line-height: 1.5;
-    position: absolute;
-    bottom: 65%;
-    /* left: 4%; */
-    padding: 10px;
-    color: #ffffff;
-    text-align: center;
-    width: 100%;
+
+  font-size: 60px;
+  font-weight: bolder;
+  line-height: 1.5;
+  position: absolute;
+  bottom: 65%;
+  /* left: 4%; */
+  padding: 10px;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
 }
 
 
 
 .caption-line-1 {
-    font-size: 30px;
-    line-height: 1.5;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 45%;
-    /* left: 4%; */
-    padding: 10px;
-    color: rgb(215, 195, 195);
-    text-align: center;
-    width: 100%;
-    
-    
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 45%;
+  /* left: 4%; */
+  padding: 10px;
+  color: rgb(215, 195, 195);
+  text-align: center;
+  width: 100%;
+
+
 }
 
 .caption-line-2 {
-    font-size: 30px;
-    line-height: 1.5;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 40%;
-    /* left: 4%; */
-    padding: 10px;
-    color: rgb(215, 195, 195);
-    text-align: center;
-    width: 100%;
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 40%;
+  /* left: 4%; */
+  padding: 10px;
+  color: rgb(215, 195, 195);
+  text-align: center;
+  width: 100%;
 }
 
 .caption-line-3 {
-    font-size: 30px;
-    line-height: 1.5;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 35%;
-    /* left: 4%; */
-    padding: 10px;
-    color: rgb(215, 195, 195);
-    text-align: center;
-    width: 100%;
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 35%;
+  /* left: 4%; */
+  padding: 10px;
+  color: rgb(215, 195, 195);
+  text-align: center;
+  width: 100%;
 }
 
 .caption-line-4 {
-    font-size: 30px;
-    line-height: 1.5;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 30%;
-    /* left: 4%; */
-    padding: 10px;
-    color: rgb(215, 195, 195);
-    text-align: center;
-    width: 100%;
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: bolder;
+  position: absolute;
+  bottom: 30%;
+  /* left: 4%; */
+  padding: 10px;
+  color: rgb(215, 195, 195);
+  text-align: center;
+  width: 100%;
 }
 
 .horizontal-line {
-    height: 7px;
-    width: 20%;
-    background-color: #092b5c;
-    margin-left: 18%;
-    text-align: center;
-    
+  height: 7px;
+  width: 20%;
+  background-color: #092b5c;
+  margin-left: 18%;
+  text-align: center;
+
 }
 
 .horizontal-line-donate {
-    height: 7px;
-    width: 4%;
-    background-color: #092b5c;
-    margin-left: 48%;
+  height: 7px;
+  width: 4%;
+  background-color: #092b5c;
+  margin-left: 48%;
 }
 
-.donate-btn{
-    margin-right: 10px;
-    margin-top: 30px;
-    color: brown;
-    border: 1px solid brown;
+.donate-btn {
+  margin-right: 10px;
+  margin-top: 30px;
+  color: brown;
+  border: 1px solid brown;
 }
 
-.donate-btn-vac{
-    margin-right: 50px;
-    margin-top: 50px;
-    width: 20%;
-    height: 50px;
-    color: #1976d2;
-    border: 1px solid #1976d2;
+.donate-btn-vac {
+  margin-right: 50px;
+  margin-top: 50px;
+  width: 20%;
+  height: 50px;
+  color: #1976d2;
+  border: 1px solid #1976d2;
 }
 
 
 button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    vertical-align: middle;
-    text-decoration: none;
-    background: transparent;
-    padding: 0;
-    font-size: inherit;
-    font-family: inherit;
-    }
-    
-     
-    
-    button.learn-more {
-    width: 12rem;
-    height: auto;
-    margin-right: 30px;
-    }
-    
-     
-    
-    button.learn-more .circle {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: relative;
-    display: block;
-    margin: 0;
-    width: 3rem;
-    height: 3rem;
-    background: #e39667;
-    border-radius: 1.625rem;
-    }
-    
-     
-    
-    button.learn-more .circle .icon {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    background: #fff;
-    }
-    
-     
-    
-    button.learn-more .circle .icon.arrow {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    left: 0.625rem;
-    width: 1.125rem;
-    height: 0.125rem;
-    background: none;
-    }
-    
-     
-    
-    button.learn-more .circle .icon.arrow::before {
-    position: absolute;
-    content: "";
-    top: -0.29rem;
-    right: 0.0625rem;
-    width: 0.625rem;
-    height: 0.625rem;
-    border-top: 0.125rem solid #fff;
-    border-right: 0.125rem solid #fff;
-    transform: rotate(45deg);
-    }
-    
-     
-    
-    button.learn-more .button-text {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
-    color: #3641d3;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
-    text-transform: uppercase;
-    }
-    
-     
-    
-    button:hover .circle {
-    width: 100%;
-    }
-    
-     
-    
-    button:hover .circle .icon.arrow {
-    background: #fff;
-    transform: translate(1rem, 0);
-    }
-    
-     
-    
-    button:hover .button-text {
-    color: #fff;
-    }
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
 
-    .btn {
-        position: relative;
-        outline: 0;
-        border: 1px solid transparent;
-        background-color: #488aec;
-        color: #ffffff;
-        font-size: 0.75rem;
-        line-height: 1rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        vertical-align: middle;
-        overflow: hidden;
-        box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
-        margin-left: 160px;
-      }
-      
-      .btn span {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        transition: all .4s ease;
-      }
-      
-      button svg {
-        width: 1.00rem;
-        height: 1.00rem;
-      }
-      
-      .btn span:nth-child(2),.btn span:nth-child(3) {
-        position: absolute;
-        top: 40px;
-        color: #fff;
-      }
-      
-      .btn span:nth-child(2) {
-        background-color: #488aec;
-      }
-      
-      .btn span:nth-child(3) {
-        background-color: #488aec;
-      }
-      
-      .btn:hover {
-        box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
-      }
-      
-      .btn:hover span:nth-child(2), .btn:focus span:nth-child(3) {
-        top: 0;
-      }
-      
-      .btn:focus {
-        box-shadow: none;
-      }
 
-      .button {
-        font-size: 19px;
-        border-radius: 12px;
-        background: linear-gradient(180deg, rgb(106, 158, 210) 0%, rgb(67, 102, 209) 66%, rgb(74, 90, 209) 100%);
-        color: rgb(218, 218, 218);
-        border: none;
-         padding: 2px; 
-    
-        font-weight: 800;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-     
-      }
-      
-      .button span {
-        border-radius: 10px;
-        padding: 0.8em 1.3em;
-        padding-right: 1.2em;
-        text-shadow: 0px 0px 20px #4b4b4b;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        transition: all 0.3s;
-        background-image: linear-gradient(to right, #d9e6de, #dd94d3, #d1dce7, #b9c3bc,#f9f9f9);
-        -webkit-background-clip: text;
-        color: transparent;
-        background-size: 300%;
-        background-position: -100%;
-        animation: animatedText 3s infinite alternate-reverse;
-      }
-      
-      .button-overlay {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: repeating-conic-gradient(rgb(48, 47, 47) 0.0000001%, rgb(51, 51, 51) 0.000104%) 60% 60%/600% 600%;
-        filter: opacity(10%) contrast(105%);
-        -webkit-filter: opacity(10%) contrast(105%);
-      }
-      
-      @keyframes animatedText {
-        to {
-          background-position: 100%;
-        }
-      }
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+  margin-right: 30px;
+}
+
+
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #e39667;
+  border-radius: 1.625rem;
+}
+
+
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #3641d3;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+
+button:hover .circle {
+  width: 100%;
+}
+
+
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+
+
+button:hover .button-text {
+  color: #fff;
+}
+
+.btn {
+  position: relative;
+  outline: 0;
+  border: 1px solid transparent;
+  background-color: #488aec;
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+  margin-left: 160px;
+}
+
+.btn span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all .4s ease;
+}
+
+button svg {
+  width: 1.00rem;
+  height: 1.00rem;
+}
+
+.btn span:nth-child(2),
+.btn span:nth-child(3) {
+  position: absolute;
+  top: 40px;
+  color: #fff;
+}
+
+.btn span:nth-child(2) {
+  background-color: #488aec;
+}
+
+.btn span:nth-child(3) {
+  background-color: #488aec;
+}
+
+.btn:hover {
+  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.btn:hover span:nth-child(2),
+.btn:focus span:nth-child(3) {
+  top: 0;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.button {
+  font-size: 19px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgb(106, 158, 210) 0%, rgb(67, 102, 209) 66%, rgb(74, 90, 209) 100%);
+  color: rgb(218, 218, 218);
+  border: none;
+  padding: 2px;
+
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.button span {
+  border-radius: 10px;
+  padding: 0.8em 1.3em;
+  padding-right: 1.2em;
+  text-shadow: 0px 0px 20px #4b4b4b;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+  background-image: linear-gradient(to right, #d9e6de, #dd94d3, #d1dce7, #b9c3bc, #f9f9f9);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 300%;
+  background-position: -100%;
+  animation: animatedText 3s infinite alternate-reverse;
+}
+
+.button-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-conic-gradient(rgb(48, 47, 47) 0.0000001%, rgb(51, 51, 51) 0.000104%) 60% 60%/600% 600%;
+  filter: opacity(10%) contrast(105%);
+  -webkit-filter: opacity(10%) contrast(105%);
+}
+
+@keyframes animatedText {
+  to {
+    background-position: 100%;
+  }
+}
+
+
+/* Small Screen */
+@media screen and (min-width: 577px) and (max-width: 992px) {
+  .why-vaccine{
+    margin-left: 5%;
+  }
+  .donate-image{
+    display: none;
+  }
+  .donate-form{
+    margin-left: 5%;
+  }
+
+  .btn{
+    margin-left: 60px !important;
+  }
+
+  .cntct-us{
+    padding-left: 50px !important;
+    padding-top: 5% !important;
+  }
+ 
+}

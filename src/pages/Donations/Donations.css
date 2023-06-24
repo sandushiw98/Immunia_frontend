@@ -1,9 +1,11 @@
+
+
 .container{
-  background-image: url(../../assets/images/donation-jar-hero-banner.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 100%;
-  margin-top: 80px;
+    background-image: url(../../assets/images/charity1.avif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 90vh;
+    margin-top: 80px;
 }
 
 .form {

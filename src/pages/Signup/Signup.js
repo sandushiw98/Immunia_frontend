@@ -151,10 +151,8 @@ export default function Signup() {
     <>
     <Row>
     
-    <Link className='back-btn' to="/" underline="none">
-      <button className='backbtn'>Back to Home</button>
-      </Link>
-    
+    <Link className='back-btn' to="/" underline="none"><button className='backbtn'>Back to Home </button></Link>
+   
 </Row>
       <Row>
         <Col span={12}>

@@ -18,12 +18,16 @@ public class UserEntity {
     @Column(name = "password", length = 255)
     private String password;
 
-    public UserEntity(Long userId, String phoneNumber, String username, String userRole, String password) {
+    @Column(name = "email", length = 255)
+    private String email;
+
+    public UserEntity(Long userId, String phoneNumber, String username, String userRole, String password, String email) {
         this.userId = userId;
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.userRole = userRole;
         this.password = password;
+        this.email = email;
     }
 
     public UserEntity() {
@@ -69,14 +73,23 @@ public class UserEntity {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "userEntity{" +
+        return "UserEntity{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", userRole='" + userRole + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

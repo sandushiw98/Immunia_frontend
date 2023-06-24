@@ -1,0 +1,48 @@
+.table-container{
+
+   padding-top: 20px;
+}
+
+.column1{
+    border-right: rgb(222, 213, 213) solid 1px;
+   
+}
+.column2{
+    border-right: rgb(222, 213, 213) solid 1px;
+   
+}
+
+.column3{
+    border-right: rgb(222, 213, 213) solid 1px;
+   
+}
+
+/* .donor-details{
+    
+        background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+      
+} */
+
+/* .who-receive-vaccines{
+    background-image: linear-gradient(to right, rgba(66, 71, 69,0), rgba(66, 71, 69,0.3));
+    border-radius: 10px;
+} */
+
+/* .issued-vaccines{
+    background-image: linear-gradient(to right, rgba(66, 71, 69,0), rgba(66, 71, 69,0.3));
+    border-radius: 10px;
+
+} */
+
+/* .monthly-vaccine-count{
+    background-image: linear-gradient(to right, rgba(66, 71, 69,0), rgba(66, 71, 69,0.3));
+    border-radius: 10px;
+
+} */
+
+.userimage{
+    padding: 0px  !important; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

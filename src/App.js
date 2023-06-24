@@ -5,6 +5,11 @@ import Footer from './components/Footer/Footer';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home  from '../src/pages/Home/Home';
 import Donations from "../src/pages/Donations/Donations";
+import Dashboard from '../src/Admin/Dashboard/Dashboard';
+import ViewCenter from '../src/Admin/ViewCenter/ViewCenter';
+import ViewParent from '../src/Admin/ViewParent/ViewParent';
+import Appointments from '../src/Admin/Appointments/Appointments';
+
 
 
 
@@ -22,7 +27,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route path="/Donations" element={<Donations />} /> 
+          <Route path="/donations" element={<Donations />} /> 
+          <Route path="/adminDashboard" element={<Dashboard />} /> 
+          <Route path="/viewCenter" element={<ViewCenter/>}/>
+          <Route path="/viewParent" element={<ViewParent/>}/>
+          <Route path="/Appointments" element={<Appointments/>}/>
+          
         </Routes>
       
        

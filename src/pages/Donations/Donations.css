@@ -1,22 +1,10 @@
-.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
-   height: 60px;
-   width: 90px;
-}
 
-.comment{
-  height: 300px ;
- 
-}
-
-.css-wb57ya-MuiFormControl-root-MuiTextField-root{
-  height: 60px;
-}
 
 .container{
-    background-image: url(../../assets/images/donation-jar-hero-banner.jpg);
+    background-image: url(../../assets/images/charity1.avif);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: 100%;
+    height: 90vh;
     margin-top: 80px;
 }
 

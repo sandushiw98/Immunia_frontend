@@ -68,10 +68,10 @@ const Appointments = () => {
           value: "Jim",
         },
       ],
-      filteredValue: filteredInfo.name || null,
-      onFilter: (value, record) => record.name.includes(value),
-      sorter: (a, b) => a.name.length - b.name.length,
-      sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.appointments || null,
+      onFilter: (value, record) => record.appointments.includes(value),
+      sorter: (a, b) => a.appointments.length - b.appointments.length,
+      sortOrder: sortedInfo.columnKey === "appointments" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
@@ -90,24 +90,60 @@ const Appointments = () => {
         sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
         ellipsis: true,
       },
+      {
+        title: "Child Name",
+        dataIndex: "childname",
+        key: "childname",
+        sorter: (a, b) => a.childname - b.childname,
+        sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
+        ellipsis: true,
+      },
+      {
+        title: "Parent Name",
+        dataIndex: "parentname",
+        key: "parentname",
+        sorter: (a, b) => a.parentname - b.parentname,
+        sortOrder: sortedInfo.columnKey === "parentname" ? sortedInfo.order : null,
+        ellipsis: true,
+      },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Vaccination Center Name",
+      dataIndex: "vaccinationName",
+      key: "vaccinationName",
       filters: [
         {
-          text: "London",
-          value: "London",
+          text: "Lady Ridgway ",
+          value: "Lady Ridgway",
         },
         {
-          text: "New York",
-          value: "New York",
+          text: "National Hospital Colombo",
+          value: "National Hospital Colombo",
         },
       ],
-      filteredValue: filteredInfo.address || null,
-      onFilter: (value, record) => record.address.includes(value),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortOrder: sortedInfo.columnKey === "address" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.vaccinationName || null,
+      onFilter: (value, record) => record.vaccinationName.includes(value),
+      sorter: (a, b) => a.vaccinationName.length - b.vaccinationName.length,
+      sortOrder: sortedInfo.columnKey === "vaccinationName" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Vaccination Type",
+      dataIndex: "vaccinationType",
+      key: "vaccinationType",
+      filters: [
+        {
+          text: "Poliyo ",
+          value: "Poliyo",
+        },
+        {
+          text: "Hepatiteas",
+          value: "Hepatiteas",
+        },
+      ],
+      filteredValue: filteredInfo.vaccinationType || null,
+      onFilter: (value, record) => record.vaccinationType.includes(value),
+      sorter: (a, b) => a.vaccinationType.length - b.vaccinationType.length,
+      sortOrder: sortedInfo.columnKey === "vaccinationType" ? sortedInfo.order : null,
       ellipsis: true,
     },
   ];
@@ -122,17 +158,17 @@ const Appointments = () => {
           <h1 className="heading"> Appointments</h1>
         </Col>
       </Row>
-      <Row>
+      <Row style={{ padding:'20px' }}>
         <Space
           style={{
             marginBottom: 16,
           }}
         >
-          <Button onClick={setAgeSort}>Sort age</Button>
+          <Button onClick={setAgeSort} >Sort age</Button>
           <Button onClick={clearFilters}>Clear filters</Button>
           <Button onClick={clearAll}>Clear filters and sorters</Button>
         </Space>
-        <Table columns={columns} dataSource={data} onChange={handleChange} />
+        <Table columns={columns} dataSource={data} onChange={handleChange} pagination = {false} />
       </Row>
     </>
   );

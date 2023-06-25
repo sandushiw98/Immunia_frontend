@@ -31,36 +31,113 @@ const ViewCenter = () => {
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
   };
+
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const handleChange = (pagination, filters, sorter) => {
+    console.log("Various parameters", pagination, filters, sorter);
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
+  };
+  const clearFilters = () => {
+    setFilteredInfo({});
+  };
+  const clearAll = () => {
+    setFilteredInfo({});
+    setSortedInfo({});
+  };
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: "descend",
+      columnKey: "age",
+    });
+  };
+
   const columns = [
     {
       title: "Center ID",
       dataIndex: "id",
+       filters: [
+        {
+          text: "1",
+          value: "1",
+        },
+        {
+          text: "2",
+          value: "2",
+        },
+      ],
+      filteredValue: filteredInfo.appointments || null,
+      onFilter: (value, record) => record.appointments.includes(value),
+      sorter: (a, b) => a.appointments.length - b.appointments.length,
+      sortOrder: sortedInfo.columnKey === "appointments" ? sortedInfo.order : null,
+      ellipsis: true,
      
     },
     {
       title: "name",
       dataIndex: "name",
       width: "30%",
+      sorter: (a, b) => a.name - b.name,
+      sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
+      ellipsis: true,
       
     },
     {
       title: "Location",
       dataIndex: "location",
+      filters: [
+        {
+          text: "Boralla",
+          value: "Boralla",
+        },
+        {
+          text: "Maradana",
+          value: "Maradana",
+        },
+      ],
+      filteredValue: filteredInfo.location || null,
+      onFilter: (value, record) => record.location.includes(value),
+      sorter: (a, b) => a.location.length - b.location.length,
+      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
+      ellipsis: true,
+     
       
     },
     {
       title: "Contact Numner",
       dataIndex: "mobile",
+      orter: (a, b) => a.mobile - b.mobile,
+      sortOrder: sortedInfo.columnKey === "mobile" ? sortedInfo.order : null,
+      ellipsis: true,
       
     },
     {
       title: "Director's Name",
       dataIndex: "name0fDirector",
+      orter: (a, b) => a.name0fDirector - b.name0fDirector,
+      sortOrder: sortedInfo.columnKey === "name0fDirector" ? sortedInfo.order : null,
+      ellipsis: true,
       
     },
     {
       title: "Center Type",
       dataIndex: "type",
+      filters: [
+        {
+          text: "MOH",
+          value: "BMOH",
+        },
+        {
+          text: "Hospital",
+          value: "Hospital",
+        },
+      ],
+      filteredValue: filteredInfo.location || null,
+      onFilter: (value, record) => record.type.includes(value),
+      sorter: (a, b) => a.type.length - b.type.length,
+      sortOrder: sortedInfo.columnKey === "type" ? sortedInfo.order : null,
+      ellipsis: true,
       
     },
     {
@@ -114,7 +191,7 @@ const ViewCenter = () => {
         </Col>
       </Row>
       <Row style={{ padding:'20px' }} >
-        <Col span={24}>
+        <Col  span={24}>
 
           <Table
             

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,10 +9,14 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-//import './Navbar.css';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 import logo from "../../assets/images/logonew.png";
-import { Link } from "react-router-dom";
 const pages = ["Home", "Donations", "About", "Contact Us"];
+
+
+
+const settings = ['Profile', 'Logout'];
 
 function DashboardNavbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -23,6 +28,20 @@ function DashboardNavbar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
 
   
 
@@ -90,7 +109,7 @@ function DashboardNavbar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 
-          <Link to = '../../viewCenter'>
+          <Link to = '/'>
             <Button
               sx={{
                 my: 2,
@@ -117,7 +136,8 @@ function DashboardNavbar() {
               Centers
             </Button>
             </Link>
-           
+
+           <Link to = '../../viewParent'>
             <Button
               sx={{
                 my: 2,
@@ -129,6 +149,8 @@ function DashboardNavbar() {
             >
               Parents 
             </Button>
+            </Link>
+
             <Button
               sx={{
                 my: 2,
@@ -141,6 +163,7 @@ function DashboardNavbar() {
               Notifications
             </Button>
 
+            <Link to = '../../Appointments'>
             <Button
               sx={{
                 my: 2,
@@ -150,8 +173,10 @@ function DashboardNavbar() {
                 mx: 3,
               }}
             >
-              Appointment
+              Appointments
             </Button>
+            </Link>
+
             <Button
               sx={{
                 my: 2,
@@ -167,12 +192,34 @@ function DashboardNavbar() {
 
           <Box sx={{ flexGrow: 0, display: "flex", gap: "10px" }} >
             
-            <Link className="login-btn" to="/signup" underline="none">
-              Logout
-              <div class="arrow-wrapper">
-                <div class="arrow"></div>
-              </div>
-            </Link>
+          <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jp" />
+                
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>

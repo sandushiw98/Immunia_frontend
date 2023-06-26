@@ -13,6 +13,7 @@ import Dashboard from '../src/Admin/Dashboard/Dashboard';
 import ViewCenter from '../src/Admin/ViewCenter/ViewCenter';
 import ViewParent from '../src/Admin/ViewParent/ViewParent';
 import Appointments from '../src/Admin/Appointments/Appointments';
+import AdminProfile from './Admin/AdminProfile/AdminProfile';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/viewCenter" element={<ViewCenter />} />
           <Route path="/viewParent" element={<ViewParent />} />
           <Route path="/Appointments" element={<Appointments />} />
+          <Route path="/adminprofile" element={<AdminProfile />} />
         </Routes>
       </BrowserRouter>
       <Footer />

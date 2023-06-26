@@ -214,7 +214,7 @@ const Dashbaord = () => {
       <Row>
         <DashboardNavbar />
       </Row>
-      <Row gutter={[16]} style={{ paddingTop: "120px", width: "100%" }}>
+      <Row gutter={[16]} style={{ paddingTop: "120px"}}>
         <Col span={4}>
           <Card
             title="Number of Registered Centres"

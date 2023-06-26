@@ -43,7 +43,7 @@ function DashboardNavbar() {
   };
 
 
-  
+
 
   return (
     <AppBar position="fixed">
@@ -109,47 +109,59 @@ function DashboardNavbar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 
-          <Link to = '/'>
-            <Button
-              sx={{
-                my: 2,
-                color: "#28465c",
-                display: "block",
-                fontWeight: "bold",
-                mx: 3,
-              }}
-            >
-              Dashboard
-            </Button>
+            <Link to='/adminDashboard'>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "#28465c",
+                  display: "block",
+                  fontWeight: "bold",
+                  mx: 3,
+                }}
+              >
+                Dashboard
+              </Button>
             </Link>
 
-            <Link to = '../../viewCenter'>
-            <Button
-              sx={{
-                my: 2,
-                color: "#28465c",
-                display: "block",
-                fontWeight: "bold",
-                mx: 3,
-              }}
-            >
-              Centers
-            </Button>
+            <Link to='../../viewCenter'>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "#28465c",
+                  display: "block",
+                  fontWeight: "bold",
+                  mx: 3,
+                }}
+              >
+                Centers
+              </Button>
             </Link>
 
-           <Link to = '../../viewParent'>
-            <Button
-              sx={{
-                my: 2,
-                color: "#28465c",
-                display: "block",
-                fontWeight: "bold",
-                mx: 3,
-              }}
-            >
-              Parents 
-            </Button>
+            <Link to='../../viewParent'>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "#28465c",
+                  display: "block",
+                  fontWeight: "bold",
+                  mx: 3,
+                }}
+              >
+                Parents
+              </Button>
             </Link>
+
+              <Button
+                sx={{
+                  my: 2,
+                  color: "#28465c",
+                  display: "block",
+                  fontWeight: "bold",
+                  mx: 3,
+                }}
+              >
+                Donations
+              </Button>
 
             <Button
               sx={{
@@ -163,18 +175,18 @@ function DashboardNavbar() {
               Notifications
             </Button>
 
-            <Link to = '../../Appointments'>
-            <Button
-              sx={{
-                my: 2,
-                color: "#28465c",
-                display: "block",
-                fontWeight: "bold",
-                mx: 3,
-              }}
-            >
-              Appointments
-            </Button>
+            <Link to='../../Appointments'>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "#28465c",
+                  display: "block",
+                  fontWeight: "bold",
+                  mx: 3,
+                }}
+              >
+                Appointments
+              </Button>
             </Link>
 
             <Button
@@ -191,11 +203,11 @@ function DashboardNavbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex", gap: "10px" }} >
-            
-          <Tooltip title="Open settings">
+
+            <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jp" />
-                
+
               </IconButton>
             </Tooltip>
             <Menu

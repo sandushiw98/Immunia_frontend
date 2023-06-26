@@ -177,6 +177,7 @@ function DashboardNavbar() {
             </Button>
             </Link>
 
+            <Link to = '../../Reviews'>
             <Button
               sx={{
                 my: 2,
@@ -188,6 +189,7 @@ function DashboardNavbar() {
             >
               Reports
             </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex", gap: "10px" }} >

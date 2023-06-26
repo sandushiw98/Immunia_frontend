@@ -14,7 +14,9 @@ const AdminProfile = () => {
 
     return (
         <>
-            <DashboardNavbar />
+            <Row>
+                <DashboardNavbar />
+            </Row>
             <Row style={{ paddingTop: '80px' }}>
                 <Col span={24} style={{ width: '100%', textAlign: 'center', fontSize: '18px' }}>
                     <h1>Profile</h1>
@@ -32,7 +34,7 @@ const AdminProfile = () => {
                         initialValues={formData} // Set initial form values from the state
                         onValuesChange={(changedValues) => setFormData({ ...formData, ...changedValues })} >
                         <Row>
-                            <Col span={24} style={{ display: 'flex', alignItems: 'left', justifyContent: 'left', paddingBottom: '20px' }}>
+                            <Col span={24} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: '20px' }}>
                                 {editMode ? (
                                     <>
                                         <Image
@@ -48,7 +50,7 @@ const AdminProfile = () => {
                                                 // Handle image update logic
                                                 // You can open a file picker or show a modal to select a new image
                                             }}
-                                            style={{ marginTop:'13%', color:'blue', backgroundColor:'white', borderColor:'blue' }}
+                                            style={{ marginTop: '13%', color: 'blue', backgroundColor: 'white', borderColor: 'blue' }}
                                         >
                                             Upload Image
                                         </Button>

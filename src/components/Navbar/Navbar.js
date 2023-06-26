@@ -110,6 +110,13 @@ function ResponsiveAppBar() {
               </Button>
               <Button
                 
+                onClick={() => scrollToSection('service')}
+                sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
+              >
+                Service
+              </Button>
+              <Button
+                
                 onClick={() => scrollToSection('donate')}
                 sx={{ my: 2, color: '#28465c', display: 'block',fontWeight: 'bold',mx: 3, }}
               >

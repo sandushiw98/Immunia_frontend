@@ -88,7 +88,7 @@ const Home = () => {
     <>
       <Navbar />
       {/* slider images */}
-      <Row className="rsis-image">
+      <Row className="rsis-image" id="home">
         <Col span={24}>
           <div className="slider-container">
             <SimpleImageSlider
@@ -307,8 +307,8 @@ const Home = () => {
         </Col>
       </Row>
       {/* service page */}
-      <Row style={{ backgroundColor: "#b2cdeb" }}>
-        <Row style={{ width: "100%" }} id="donate">
+      <Row style={{ backgroundColor: "#b2cdeb" }} >
+        <Row style={{ width: "100%" }} id="service">
           <h3 style={{ fontSize: "48px", width: "100%", textAlign: "center" }}>
             Our Services
           </h3>

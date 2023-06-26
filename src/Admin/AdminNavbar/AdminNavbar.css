@@ -1,0 +1,38 @@
+.nav-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-section-name{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.nav-section-img{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.nav-section Button{
+    border: none;
+    font-weight: 700;
+    font-size: 17px;
+    color: #28465c;
+    box-shadow: none;
+}
+
+.main-row{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-container {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}

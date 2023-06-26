@@ -15,6 +15,7 @@ import ViewParent from '../src/Admin/ViewParent/ViewParent';
 import Appointments from '../src/Admin/Appointments/Appointments';
 import AdminProfile from './Admin/AdminProfile/AdminProfile';
 import Reviews from '../src/Admin/Reviews/Reviews';
+import AdminNavbar from './Admin/AdminNavbar/AdminNavbar';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/adminprofile" element={<AdminProfile />} />
           <Route path="/Reviews" element={<Reviews />} />
+          <Route path="/adminNavbar" element={<AdminNavbar />} />
           
         </Routes>
       </BrowserRouter>

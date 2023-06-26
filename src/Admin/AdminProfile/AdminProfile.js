@@ -1,10 +1,10 @@
 // this is the admin profile page
 import React, { useState } from 'react';
-import DashboardNavbar from '../../components/DashboardNavbar/DashboardNavbar';
 import { Col, Image, Row } from 'antd';
 import { Button, Form, Input } from 'antd';
 import { LockOutlined, MobileOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import './AdminProfile.css';
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
 
 
 const AdminProfile = () => {
@@ -14,10 +14,8 @@ const AdminProfile = () => {
 
     return (
         <>
-            <Row>
-                <DashboardNavbar />
-            </Row>
-            <Row style={{ paddingTop: '80px' }}>
+            <AdminNavbar />
+            <Row style={{paddingTop:'100px'}}>
                 <Col span={24} style={{ width: '100%', textAlign: 'center', fontSize: '18px' }}>
                     <h1>Profile</h1>
                 </Col>

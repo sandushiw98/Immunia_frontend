@@ -1,9 +1,9 @@
 import React from "react";
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import { Button, Space, Table } from "antd";
 import { useState } from "react";
-import { Col, Row, Card } from "antd";
+import { Col, Row } from "antd";
 import "./Appointments.css";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 const data = [
   {
@@ -83,29 +83,29 @@ const Appointments = () => {
       ellipsis: true,
     },
     {
-        title: "Time",
-        dataIndex: "time",
-        key: "time",
-        sorter: (a, b) => a.time - b.time,
-        sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
-        ellipsis: true,
-      },
-      {
-        title: "Child Name",
-        dataIndex: "childname",
-        key: "childname",
-        sorter: (a, b) => a.childname - b.childname,
-        sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
-        ellipsis: true,
-      },
-      {
-        title: "Parent Name",
-        dataIndex: "parentname",
-        key: "parentname",
-        sorter: (a, b) => a.parentname - b.parentname,
-        sortOrder: sortedInfo.columnKey === "parentname" ? sortedInfo.order : null,
-        ellipsis: true,
-      },
+      title: "Time",
+      dataIndex: "time",
+      key: "time",
+      sorter: (a, b) => a.time - b.time,
+      sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Child Name",
+      dataIndex: "childname",
+      key: "childname",
+      sorter: (a, b) => a.childname - b.childname,
+      sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Parent Name",
+      dataIndex: "parentname",
+      key: "parentname",
+      sorter: (a, b) => a.parentname - b.parentname,
+      sortOrder: sortedInfo.columnKey === "parentname" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
     {
       title: "Vaccination Center Name",
       dataIndex: "vaccinationName",
@@ -150,15 +150,13 @@ const Appointments = () => {
 
   return (
     <>
-      <Row>
-        <DashboardNavbar />
-      </Row>
-      <Row style={{ paddingTop: "80px" }}>
+      <AdminNavbar />
+      <Row style={{paddingTop:'100px'}}>
         <Col span={24}>
           <h1 className="heading"> Appointments</h1>
         </Col>
       </Row>
-      <Row style={{ padding:'20px' }}>
+      <Row style={{ padding: '20px' }}>
         <Space
           style={{
             marginBottom: 16,
@@ -168,7 +166,7 @@ const Appointments = () => {
           <Button onClick={clearFilters}>Clear filters</Button>
           <Button onClick={clearAll}>Clear filters and sorters</Button>
         </Space>
-        <Table columns={columns} dataSource={data} onChange={handleChange} pagination = {false} />
+        <Table columns={columns} dataSource={data} onChange={handleChange} pagination={false} />
       </Row>
     </>
   );

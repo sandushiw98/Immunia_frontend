@@ -1,7 +1,6 @@
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import { Table } from "antd";
 import { Col, Row, Card } from "antd";
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -14,6 +13,7 @@ import {
 } from "recharts";
 import userpic from "../../assets/images/user.png";
 import './Dashboard.css'
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 const data1 = [
   {
@@ -211,10 +211,8 @@ function getBarColor(index) {
 const Dashbaord = () => {
   return (
     <>
-      <Row>
-        <DashboardNavbar />
-      </Row>
-      <Row gutter={[16]} style={{ paddingTop: "120px"}}>
+      <AdminNavbar/>
+      <Row gutter={[16]} style={{paddingTop:'100px'}}>
         <Col span={4}>
           <Card
             title="Number of Registered Centres"

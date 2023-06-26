@@ -1,9 +1,9 @@
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
-import { Col, Row, Card } from "antd";
+import { Col, Row } from "antd";
 import "./ViewParent.css";
-import { Button, Form, Input, Popconfirm, Table } from "antd";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { Button,Popconfirm, Table } from "antd";
+import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 const ViewCenter = () => {
   const [dataSource, setDataSource] = useState([
@@ -123,10 +123,8 @@ const ViewCenter = () => {
 
   return (
     <>
-      <Row>
-        <DashboardNavbar />
-      </Row>
-      <Row style={{ paddingTop: "80px" }}>
+      <AdminNavbar />
+      <Row style={{paddingTop:'100px'}}>
         <Col span={24}>
           <h1 className="heading"> Parent</h1>
         </Col>

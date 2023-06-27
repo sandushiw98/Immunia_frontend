@@ -9,12 +9,13 @@ import OneMonth from './vaccinationByAge/oneMonth/OneMonth';
 import FourMonth from './vaccinationByAge/fourMonth/FourMonth';
 import SixMonth from './vaccinationByAge/sixMonth/SixMonth';
 import SevenMonth from './vaccinationByAge/sevenMonth/SevenMonth';
-import Dashboard from '../src/Admin/Dashboard/Dashboard';
+import Dashboard from './Admin/AdminDashboard/Dashboard';
 import ViewCenter from '../src/Admin/ViewCenter/ViewCenter';
 import ViewParent from '../src/Admin/ViewParent/ViewParent';
 import Appointments from '../src/Admin/Appointments/Appointments';
 import AdminProfile from './Admin/AdminProfile/AdminProfile';
 import Reviews from '../src/Admin/Reviews/Reviews';
+import AdminDonations from './Admin/AdminDonations/AdminDonations';
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/adminprofile" element={<AdminProfile />} />
           <Route path="/Reviews" element={<Reviews />} />
+          <Route path="/AdminDonations" element={<AdminDonations />} />
+
           
         </Routes>
       </BrowserRouter>

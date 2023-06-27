@@ -150,7 +150,8 @@ function DashboardNavbar() {
                 Parents
               </Button>
             </Link>
-
+            
+            <Link to='../../AdminDonations'>
               <Button
                 sx={{
                   my: 2,
@@ -162,6 +163,7 @@ function DashboardNavbar() {
               >
                 Donations
               </Button>
+              </Link>
 
             <Button
               sx={{
@@ -199,7 +201,7 @@ function DashboardNavbar() {
                 mx: 3,
               }}
             >
-              Reports
+              Reviews
             </Button>
             </Link>
           </Box>

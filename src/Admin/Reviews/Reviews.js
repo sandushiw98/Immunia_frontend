@@ -1,6 +1,6 @@
 import React from "react";
 import "./Reviews.css";
-import { Avatar, Badge, Divider } from "antd";
+import { Avatar, Badge, Divider,Rate } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { Col, Row } from "antd";
@@ -15,7 +15,7 @@ const Reviews = () => {
 
       <Row style={{ padding: '100px 50px 0px 50px' }}>
         <Col span={20}>
-          <h1 style={{ margin: '0' }}>Reviews</h1>
+          <h1 style={{ margin: '0' }}>Reviews   <Rate disabled defaultValue={2} /></h1> 
         </Col>
         <Col span={4} >
           <Space direction="vertical" size={12}>

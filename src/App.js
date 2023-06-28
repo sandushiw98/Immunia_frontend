@@ -17,6 +17,9 @@ import AdminProfile from './Admin/AdminProfile/AdminProfile';
 import Reviews from '../src/Admin/Reviews/Reviews';
 import AdminNavbar from './Admin/AdminNavbar/AdminNavbar';
 import AdminDonations from './Admin/AdminDonations/AdminDonations';
+import ParentNavbar from './Parent/ParentNavbar/ParentNavbar';
+import ParentSearch from './Parent/ParentSearch/ParentSearch';
+
 
 function App() {
   return (
@@ -41,6 +44,8 @@ function App() {
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/adminNavbar" element={<AdminNavbar />} />
           <Route path="/AdminDonations" element={<AdminDonations />} />
+          <Route path="/parentNavbar" element={<ParentNavbar />} />
+          <Route path="/parentsearch" element={<ParentSearch />} />
 
           
         </Routes>

@@ -46,3 +46,7 @@
     justify-content: center;
     align-items: center;
 }
+
+.dashboard-cards{
+    background: linear-gradient(90deg, rgba(228,227,249,1) 0%, rgba(166,162,241,1) 100%);
+}

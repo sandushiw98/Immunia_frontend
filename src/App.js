@@ -19,6 +19,8 @@ import AdminNavbar from './Admin/AdminNavbar/AdminNavbar';
 import AdminDonations from './Admin/AdminDonations/AdminDonations';
 import ParentNavbar from './Parent/ParentNavbar/ParentNavbar';
 import ParentSearch from './Parent/ParentSearch/ParentSearch';
+import ParentBooking  from './Parent/ParentBooking/ParentBooking';
+import ParentChildAccount from './Parent/ParentChildAccount/ParentChildAccount';
 
 
 function App() {
@@ -46,6 +48,9 @@ function App() {
           <Route path="/AdminDonations" element={<AdminDonations />} />
           <Route path="/parentNavbar" element={<ParentNavbar />} />
           <Route path="/parentsearch" element={<ParentSearch />} />
+          <Route path="/parentbooking" element={<ParentBooking />} />
+          <Route path="/parentchildaccount" element={<ParentChildAccount />} />
+
 
           
         </Routes>

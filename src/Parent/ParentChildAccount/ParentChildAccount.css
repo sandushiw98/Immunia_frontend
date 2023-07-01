@@ -1,0 +1,11 @@
+.lastbtn{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 30px;
+}
+
+label{
+    font-size: 150px;
+}
+

@@ -40,7 +40,7 @@ function App() {
           <Route path="/adminprofile" element={<AdminProfile />} />
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/adminNavbar" element={<AdminNavbar />} />
-          <Route path="/AdminDonations" element={<AdminDonations />} />
+          <Route path="/adminDonations" element={<AdminDonations />} />
 
           
         </Routes>

@@ -28,78 +28,81 @@ const AdminNavbar = () => {
 
     return (
         <div className="navbar-container">
-        <Row gutter={8} className="main-row">
-            <Col span={4} className='nav-section'>
-                <Link to='/'>
-                <img
-                    src={logo}
-                    alt="logo"
-                    style={{ width: "60%", }}
-                />
-                </Link>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='/adminDashboard'>
-                    <Button>
-                        DASHBOARD
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='../../viewCenter'>
-                    <Button>
-                        CENTERS
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='../../viewParent'>
-                    <Button>
-                        PARENTS
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Button>
-                    DONATIONS
-                </Button>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Button>
-                    NOTIFICATIONS
-                </Button>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='../../Appointments'>
-                    <Button>
-                        APPOINMENTS
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='../../Reviews'>
-                    <Button>
-                        REVIEWS
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={5} className='nav-section-name'>
-                <Link to='/adminprofile'>
-                    <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
-                </Link>
+            <Row gutter={8} className="main-row">
+                <Col span={4} className='nav-section'>
+                    <Link to='/'>
+                        <img
+                            src={logo}
+                            alt="logo"
+                            style={{ width: "60%", }}
+                        />
+                    </Link>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='/adminDashboard'>
+                        <Button>
+                            DASHBOARD
+                        </Button>
+                    </Link>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='../../viewCenter'>
+                        <Button>
+                            CENTERS
+                        </Button>
+                    </Link>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='../../viewParent'>
+                        <Button>
+                            PARENTS
+                        </Button>
+                    </Link>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='/adminDonations'>
+                        <Button>
+                            DONATIONS
+                        </Button>
+                    </Link>
 
-            </Col>
-            <Col span={1} className='nav-section-img'>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottomRight"
-                >
-                    <Avatar size={48} icon={<UserOutlined />} />
-                </Dropdown>
-            </Col>
-        </Row>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Button>
+                        NOTIFICATIONS
+                    </Button>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='../../Appointments'>
+                        <Button>
+                            APPOINMENTS
+                        </Button>
+                    </Link>
+                </Col>
+                <Col span={2} className='nav-section'>
+                    <Link to='../../Reviews'>
+                        <Button>
+                            REVIEWS
+                        </Button>
+                    </Link>
+                </Col>
+                <Col span={5} className='nav-section-name'>
+                    <Link to='/adminprofile'>
+                        <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
+                    </Link>
+
+                </Col>
+                <Col span={1} className='nav-section-img'>
+                    <Dropdown
+                        menu={{
+                            items,
+                        }}
+                        placement="bottomRight"
+                    >
+                        <Avatar size={48} icon={<UserOutlined />} />
+                    </Dropdown>
+                </Col>
+            </Row>
         </div>
     );
 };

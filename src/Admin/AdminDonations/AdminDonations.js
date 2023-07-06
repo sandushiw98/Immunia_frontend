@@ -1,20 +1,15 @@
 import React from "react";
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import { Col, Row, Card } from "antd";
 import { Table } from "antd";
-import { PureComponent } from "react";
+import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   ResponsiveContainer,
-  PieChart,
-  Pie,
 } from "recharts";
-import { red } from "@mui/material/colors";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const data = [
   {
@@ -105,29 +100,29 @@ const AdminDonations = () => {
       location: "Matara",
     },
     {
-        id: "0",
-        donorname: "Sunil Weraduwa",
-        receiver: "National Hospital Colombo",
-        date: "23/5/2024",
-        time: "10.34 A.M",
-        amount: "120,000",
-        email: "sunil@gmail.com",
-        contactnumber: "0752345678",
-        location: "Matara",
+      id: "0",
+      donorname: "Sunil Weraduwa",
+      receiver: "National Hospital Colombo",
+      date: "23/5/2024",
+      time: "10.34 A.M",
+      amount: "120,000",
+      email: "sunil@gmail.com",
+      contactnumber: "0752345678",
+      location: "Matara",
     },
     {
-        id: "0",
-        donorname: "Sunil Weraduwa",
-        receiver: "National Hospital Colombo",
-        date: "23/5/2024",
-        time: "10.34 A.M",
-        amount: "120,000",
-        email: "sunil@gmail.com",
-        contactnumber: "0752345678",
-        location: "Matara",
+      id: "0",
+      donorname: "Sunil Weraduwa",
+      receiver: "National Hospital Colombo",
+      date: "23/5/2024",
+      time: "10.34 A.M",
+      amount: "120,000",
+      email: "sunil@gmail.com",
+      contactnumber: "0752345678",
+      location: "Matara",
     },
     {
-        id: "0",
+      id: "0",
       donorname: "Sunil Weraduwa",
       receiver: "National Hospital Colombo",
       date: "23/5/2024",
@@ -136,9 +131,9 @@ const AdminDonations = () => {
       email: "sunil@gmail.com",
       contactnumber: "0752345678",
       location: "Matara",
-      },
-      {
-        id: "0",
+    },
+    {
+      id: "0",
       donorname: "Sunil Weraduwa",
       receiver: "National Hospital Colombo",
       date: "23/5/2024",
@@ -147,9 +142,9 @@ const AdminDonations = () => {
       email: "sunil@gmail.com",
       contactnumber: "0752345678",
       location: "Matara",
-      },
-      {
-        id: "0",
+    },
+    {
+      id: "0",
       donorname: "Sunil Weraduwa",
       receiver: "National Hospital Colombo",
       date: "23/5/2024",
@@ -158,9 +153,9 @@ const AdminDonations = () => {
       email: "sunil@gmail.com",
       contactnumber: "0752345678",
       location: "Matara",
-      },
-      {
-        id: "0",
+    },
+    {
+      id: "0",
       donorname: "Sunil Weraduwa",
       receiver: "National Hospital Colombo",
       date: "23/5/2024",
@@ -169,9 +164,9 @@ const AdminDonations = () => {
       email: "sunil@gmail.com",
       contactnumber: "0752345678",
       location: "Matara",
-      },
-      {
-        id: "0",
+    },
+    {
+      id: "0",
       donorname: "Sunil Weraduwa",
       receiver: "National Hospital Colombo",
       date: "23/5/2024",
@@ -180,7 +175,7 @@ const AdminDonations = () => {
       email: "sunil@gmail.com",
       contactnumber: "0752345678",
       location: "Matara",
-      },
+    },
   ]);
 
   const [count, setCount] = useState(2);
@@ -233,9 +228,44 @@ const AdminDonations = () => {
     {
       title: "Donor Name",
       dataIndex: "donorname",
-    //   width: "30%",
+      //   width: "30%",
       sorter: (a, b) => a.donorname - b.donorname,
       sortOrder: sortedInfo.columnKey === "donorname" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Donor Email",
+      dataIndex: "email",
+      sorter: (a, b) => a.email - b.email,
+      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+        
+    {
+      title: "Donor Conatch Number",
+      dataIndex: "contactnumber",
+      sorter: (a, b) => a.contactnumber - b.contactnumber,
+      sortOrder:
+        sortedInfo.columnKey === "contactnumber" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Donor Location",
+      dataIndex: "location",
+      filters: [
+        {
+          text: "Boralla",
+          value: "Boralla",
+        },
+        {
+          text: "Maradana",
+          value: "Maradana",
+        },
+      ],
+      filteredValue: filteredInfo.location || null,
+      onFilter: (value, record) => record.location.includes(value),
+      sorter: (a, b) => a.location.length - b.location.length,
+      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
@@ -255,6 +285,13 @@ const AdminDonations = () => {
       onFilter: (value, record) => record.receiver.includes(value),
       sorter: (a, b) => a.receiver.length - b.receiver.length,
       sortOrder: sortedInfo.columnKey === "receiver" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Amount Rs.",
+      dataIndex: "amount",
+      sorter: (a, b) => a.amount - b.amount,
+      sortOrder: sortedInfo.columnKey === "amount" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
@@ -283,56 +320,17 @@ const AdminDonations = () => {
       sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
       ellipsis: true,
     },
-    {
-      title: "Amount Rs.",
-      dataIndex: "amount",
-      sorter: (a, b) => a.amount - b.amount,
-      sortOrder: sortedInfo.columnKey === "amount" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      sorter: (a, b) => a.email - b.email,
-      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Conatch Number",
-      dataIndex: "contactnumber",
-      sorter: (a, b) => a.contactnumber - b.contactnumber,
-      sortOrder:
-        sortedInfo.columnKey === "contactnumber" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-        title: "Location",
-        dataIndex: "location",
-        filters: [
-          {
-            text: "Boralla",
-            value: "Boralla",
-          },
-          {
-            text: "Maradana",
-            value: "Maradana",
-          },
-        ],
-        filteredValue: filteredInfo.location || null,
-        onFilter: (value, record) => record.location.includes(value),
-        sorter: (a, b) => a.location.length - b.location.length,
-        sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
-        ellipsis: true,
-    },
+
+
   ];
   return (
     <>
       <Row>
-        <DashboardNavbar />
+        <AdminNavbar />
       </Row>
       <Row style={{ paddingTop: "80px" }}>
         <Col span={24}>
-          <p style={{fontSize: "30px", fontWeight: "bold", textAlign: "center"}}> Donations</p>
+          <p style={{ fontSize: "30px", fontWeight: "bold", textAlign: "center" }}> Donations</p>
         </Col>
       </Row>
       <Row style={{ padding: "50px" }}>
@@ -354,9 +352,9 @@ const AdminDonations = () => {
             >
               <Row>
                 {/* <Col span={12}></Col> */}
-                
-                    
-               
+
+
+
               </Row>
               <h2 style={{ textAlign: "center" }}>Monthly Donations</h2>
               <p style={{ fontSize: "30px", textAlign: "center" }}>
@@ -427,12 +425,12 @@ const AdminDonations = () => {
           </Row>
         </Col>
       </Row>
-      <Row style={{padding: '30px', textAlign: "center"}}>
+      <Row style={{ padding: '30px', textAlign: "center" }}>
         <Col span={24}>
-            <span style={{fontSize: "30px", fontWeight: "bold", textAlign: "center",width: "100%"}}>Donationa Details</span>
+          <span style={{ fontSize: "30px", fontWeight: "bold", textAlign: "center", width: "100%" }}>Donationa Details</span>
         </Col>
       </Row>
-      <Row style={{padding:'20px'}}>
+      <Row style={{ padding: '20px' }}>
         <Col span={24}>
           <Table
             bordered

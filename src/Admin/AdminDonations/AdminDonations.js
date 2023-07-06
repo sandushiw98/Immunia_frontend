@@ -2,19 +2,14 @@ import React from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { Col, Row, Card } from "antd";
 import { Table } from "antd";
-import { PureComponent } from "react";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   ResponsiveContainer,
-  PieChart,
-  Pie,
 } from "recharts";
-import { red } from "@mui/material/colors";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const data = [
   {
@@ -239,6 +234,41 @@ const AdminDonations = () => {
       ellipsis: true,
     },
     {
+      title: "Donor Email",
+      dataIndex: "email",
+      sorter: (a, b) => a.email - b.email,
+      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+        
+    {
+      title: "Donor Conatch Number",
+      dataIndex: "contactnumber",
+      sorter: (a, b) => a.contactnumber - b.contactnumber,
+      sortOrder:
+        sortedInfo.columnKey === "contactnumber" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Donor Location",
+      dataIndex: "location",
+      filters: [
+        {
+          text: "Boralla",
+          value: "Boralla",
+        },
+        {
+          text: "Maradana",
+          value: "Maradana",
+        },
+      ],
+      filteredValue: filteredInfo.location || null,
+      onFilter: (value, record) => record.location.includes(value),
+      sorter: (a, b) => a.location.length - b.location.length,
+      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
       title: "Receiver",
       dataIndex: "receiver",
       filters: [
@@ -255,6 +285,13 @@ const AdminDonations = () => {
       onFilter: (value, record) => record.receiver.includes(value),
       sorter: (a, b) => a.receiver.length - b.receiver.length,
       sortOrder: sortedInfo.columnKey === "receiver" ? sortedInfo.order : null,
+      ellipsis: true,
+    },
+    {
+      title: "Amount Rs.",
+      dataIndex: "amount",
+      sorter: (a, b) => a.amount - b.amount,
+      sortOrder: sortedInfo.columnKey === "amount" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {

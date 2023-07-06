@@ -53,6 +53,7 @@ function App() {
           <Route path="/parentchildaccount" element={<ParentChildAccount />} />
           <Route path="/parentrecordcard" element={<ParentRecordCard />} />
 
+          <Route path="/adminDonations" element={<AdminDonations />} />
 
           
         </Routes>

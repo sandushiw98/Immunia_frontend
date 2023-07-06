@@ -27,6 +27,7 @@ const gridStyle = {
 };
 
 const ParentBooking = () => {
+  const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <>
       <Row>
@@ -65,6 +66,19 @@ const ParentBooking = () => {
             <h1 style={{ fontSize: "30px" }}>Schedule Appointment </h1>
           </Row>
 
+          <Form
+            labelCol={{
+              span: 10,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+            disabled={componentDisabled}
+            style={{
+              maxWidth: 1000,
+            }}
+>
           <div style={{ padding: "20px 160px 10px 40px" }}>
             <Form.Item label="Parent Full Name">
               <Input />
@@ -72,7 +86,7 @@ const ParentBooking = () => {
             
             <Form.Item
               label="Child Full Name"
-              style={{ marginRight: '130px'}}
+              
             >
               <Input />
             </Form.Item>
@@ -101,6 +115,7 @@ const ParentBooking = () => {
               </Radio.Group>
             </Form.Item>
           </div>
+          </Form>
           <Card title="Avialable Time Slots" style={{textAlign: 'center'}}>
   <Row >
     <Col span={4} >
@@ -122,7 +137,7 @@ const ParentBooking = () => {
     <Card.Grid style={{width: '100%',height: '100%'}}>10.15 A.M -10.30 A.M</Card.Grid>
     </Col>
   </Row>
-  <Row >
+  <Row style={{paddingBottom: '20px'}}>
     <Col span={4} >
       <Card.Grid style={{width: '100%',height: '100%'}}>10.30 A.M -10.45 A.M</Card.Grid>
     </Col>

@@ -1,5 +1,5 @@
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
-import { Avatar, Col, Dropdown, Row, Card } from "antd";
+import { Col, Row } from "antd";
 import React from "react";
 import image1 from "../../assets/images/girl.jpg";
 import image2 from "../../assets/images/boy.jpg";
@@ -20,6 +20,7 @@ import {
   Upload,
 } from "antd";
 import "./ParentChildAccount.css";
+import { useState } from 'react';
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -31,6 +32,7 @@ const normFile = (e) => {
 };
 
 const ParentChildAccount = () => {
+  const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <>
       <Row>
@@ -46,67 +48,98 @@ const ParentChildAccount = () => {
         </Col>
         <Col span={14} style={{ paddingTop: "90px", textAlign: "center" }}>
           <h1> Create Your Child Account </h1>
-
-          <Form.Item label="Child Full Name">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Vaccination ID Number">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Province">
-            <Select>
-              <Select.Option value="demo">Demo</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="Date of Birth">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Age">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Gender">
-            <Radio.Group>
-              <Radio value="apple"> Male </Radio>
-              <Radio value="pear"> Female </Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item label="How many children do you have including this child">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Comments">
-            <TextArea rows={4} />
-          </Form.Item>
-          <Form.Item
-            label="Upload Birth Certificate of your Child"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
+          <Form
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+            disabled={componentDisabled}
+            style={{
+              maxWidth: 600,
+            }}
           >
-            <Upload action="/upload.do" listType="picture-card">
-              <div>
-                <PlusOutlined />
-                <div
+            <Form.Item label="Child Full Name">
+              <Input style={{ width: "900px" }} />
+            </Form.Item>
+            <Form.Item label="Vaccination ID Number">
+              <Input style={{ width: "900px" }} />
+            </Form.Item>
+            <Form.Item label="Province">
+              <Select>
+                <Select.Option value="demo">Demo</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item label="Date of Birth">
+              <Input style={{ width: "900px" }} />
+            </Form.Item>
+            <Form.Item label="Age">
+              <Input style={{ width: "900px" }} />
+            </Form.Item>
+            <Form.Item label="Gender">
+              <Radio.Group>
+                <Radio value="apple"> Male </Radio>
+                <Radio value="pear"> Female </Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="How many children do you have including this child">
+            
+            
+              <Input style={{ width: "600px" }} />
+            </Form.Item>
+            <Form.Item label="Comments">
+              <TextArea rows={4} style={{ width: "900px" }} />
+            </Form.Item>
+            <Form.Item
+              label="Upload Birth Certificate ofyour Child"
+              valuePropName="fileList"
+              getValueFromEvent={normFile}
+            >
+              <Upload action="/upload.do" listType="picture-card">
+                <div>
+                  <PlusOutlined />
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
+                  >
+                    Upload
+                  </div>
+                </div>
+              </Upload>
+            </Form.Item>
+          </Form>
+          <Row className="lastbtn" gutter={100}>
+            <Col>
+              <Form.Item>
+                <Button
                   style={{
-                    marginTop: 8,
+                    backgroundColor: "#425df5",
+                    width: "100px",
+                    height: "40px",
+                    fontWeight: "bold",
                   }}
                 >
-                  Upload
-                </div>
-              </div>
-            </Upload>
-          </Form.Item>
-          <Row className="lastbtn" gutter={100}>
-            <Col> 
-            <Form.Item>
-              <Button  style={{backgroundColor: '#425df5', width: '100px', height: '40px', fontWeight: 'bold'}}>Button</Button>
-            </Form.Item>
+                  Button
+                </Button>
+              </Form.Item>
             </Col>
             <Col>
-            <Form.Item>
-              <Button style={{backgroundColor: '#425df5', width: '100px', height: '40px',fontWeight: 'bold'}}>Button</Button>
-            </Form.Item>
+              <Form.Item>
+                <Button
+                  style={{
+                    backgroundColor: "#425df5",
+                    width: "100px",
+                    height: "40px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Button
+                </Button>
+              </Form.Item>
             </Col>
-            
-            
           </Row>
         </Col>
         <Col span={5} style={{ paddingTop: "200px" }}>

@@ -46,14 +46,14 @@ const ParentNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Link to='../../viewCenter'>
+                <Link to='../../ParentBooking'>
                     <Button>
                         APPOINMENTS
                     </Button>
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Link to='../../viewParent'>
+                <Link to='../../ParentChildAccount'>
                     <Button>
                         CHILDREN
                     </Button>
@@ -64,11 +64,18 @@ const ParentNavbar = () => {
                   CENTERS
                 </Button>
             </Col>
+            
             <Col span={2} className='nav-section'>
                 <Button>
                     NOTIFICATIONS
                 </Button>
             </Col>
+           
+            {/* <Col span={2} className='nav-section'>
+                <Button>
+                    RECORDS
+                </Button>
+            </Col> */}
            
             <Col span={9} className='nav-section-name'>
                 <Link to='/adminprofile'>

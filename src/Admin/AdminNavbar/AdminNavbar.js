@@ -60,9 +60,11 @@ const AdminNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
+            <Link to='../../AdminDonations'>
                 <Button>
                     DONATIONS
                 </Button>
+                </Link>
             </Col>
             <Col span={2} className='nav-section'>
                 <Button>

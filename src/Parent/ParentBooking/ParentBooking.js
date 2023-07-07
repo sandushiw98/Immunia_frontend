@@ -3,23 +3,19 @@ import "./ParentBooking.css";
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import { Avatar, Col, Dropdown, Row, Card } from "antd";
 import image1 from "../../assets/images/bookong.webp";
-import { PlusOutlined } from "@ant-design/icons";
 import {
   Button,
-  Cascader,
-  Checkbox,
   DatePicker,
   Form,
   Input,
-  InputNumber,
+  Modal,
+  Space,
   Radio,
   Select,
-  Slider,
-  Switch,
-  TreeSelect,
-  Upload,
 } from "antd";
 import { useState } from "react";
+import { red } from "@material-ui/core/colors";
+
 
 const gridStyle = {
   width: "25%",
@@ -28,6 +24,18 @@ const gridStyle = {
 
 const ParentBooking = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Row>
@@ -35,11 +43,11 @@ const ParentBooking = () => {
       </Row>
 
       <Row style={{ paddingTop: "100px" }}>
-        <Col span={12} >
+        <Col span={12}>
           <img
             src={image1}
             alt="Vaccination Center"
-            style={{ width: "100%", height: "100%",position: 'fix' }}
+            style={{ width: "100%", height: "100%", position: "fix" }}
           />
         </Col>
 
@@ -78,91 +86,198 @@ const ParentBooking = () => {
             style={{
               maxWidth: 1000,
             }}
->
-          <div style={{ padding: "20px 160px 10px 40px" }}>
-            <Form.Item label="Parent Full Name">
-              <Input />
-            </Form.Item>
-            
-            <Form.Item
-              label="Child Full Name"
-              
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item label="Vaccination Card No"  >
-              <Input />
-            </Form.Item>
-            <Form.Item label="Vaccination Type">
-              <Select>
-                <Select.Option value="demo">Demo</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Vaccination Center">
-              <Select>
-                <Select.Option value="demo">Demo</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="Appointment Date">
-              <DatePicker />
-            </Form.Item>
-            <Form.Item label="Select Time Slot">
-              <br />
-              <br />
-              <Radio.Group>
-                <Radio value="apple"> Hall No: 1 </Radio>
-                <Radio value="pear"> Hall No: 2 </Radio>
-              </Radio.Group>
-            </Form.Item>
-          </div>
-          </Form>
-          <Card title="Avialable Time Slots" style={{textAlign: 'center'}}>
-  <Row >
-    <Col span={4} >
-      <Card.Grid style={{width: '100%',height: '100%'}}>9.00 A.M - 9.15 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>9.15 A.M - 9.30 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>9.30 A.M - 9.45 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>9.45 A.M - 10.00 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>10.00 A.M -10.15 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>10.15 A.M -10.30 A.M</Card.Grid>
-    </Col>
-  </Row>
-  <Row style={{paddingBottom: '20px'}}>
-    <Col span={4} >
-      <Card.Grid style={{width: '100%',height: '100%'}}>10.30 A.M -10.45 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>10.45 A.M -11.00 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>11.00 A.M -11.15 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>11.15 A.M -11.30 A.M</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>11.45 A.M -12.00</Card.Grid>
-    </Col>
-    <Col span={4}>
-    <Card.Grid style={{width: '100%',height: '100%'}}>Content</Card.Grid>
-    </Col>
-  </Row>
-  
-  
-  
-  
-</Card>
 
+            className="formfont"
+          >
+            <div style={{ padding: "20px 160px 10px 40px"}}>
+              <Form.Item label="Parent Full Name" >
+                <Input />
+              </Form.Item>
+
+              <Form.Item label="Child Full Name">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Vaccination Card No">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Vaccination Type">
+                <Select>
+                  <Select.Option value="demo">Demo</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Vaccination Center">
+                <Select>
+                  <Select.Option value="demo">Demo</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Appointment Date">
+                <DatePicker />
+              </Form.Item>
+              <Form.Item label="Select Hall Number">
+                <Radio.Group>
+                  <Radio value="apple"> Hall No: 1 </Radio>
+                  <Radio value="pear"> Hall No: 2 </Radio>
+                </Radio.Group>
+              </Form.Item>
+              <Form.Item label="Time Slots">
+                <Row>
+                <Col style={{paddingRight: '50px'}}><Input style={{paddingRight: '90px'}} /></Col>
+                <Col>
+                <Button type="primary" onClick={showModal}>
+                  select time slots
+                </Button>
+                {/* <Input/> */}
+                <Modal
+                  title="Basic Modal"
+                  open={isModalOpen}
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                  width={1200}
+                  height = {1000}
+                >
+                  <Card
+                    title="Avialable Time Slots"
+                    style={{ textAlign: "center" }}
+                  >
+                    <Row style={{ paddingBottom: "60px" }}>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                        <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          9.00 A.M - 9.15 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'red'}}>
+                          9.15 A.M - 9.30 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          9.30 A.M - 9.45 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          9.45 A.M - 10.00 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'red' }}>
+                          10.00 A.M -10.15 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          10.15 A.M -10.30 A.M
+                          </Button>
+                      </Col>
+                    </Row>
+                    <Row style={{ paddingBottom: "60px" }}>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          10.30 A.M -10.45 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          10.45 A.M -11.00 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'red' }}>
+                          11.00 A.M -11.15 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          11.15 A.M -11.30 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'red' }}>
+                          11.45 A.M -12.00 A.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          12.15 A.M - 12.30 A.M
+                          </Button>
+                      </Col>
+                    </Row>
+                    <Row style={{ paddingBottom: "60px" }}>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'red'}}>
+                          12.45 A.M -1.00 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          1.00 P.M - 1.15 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          1.15 P.M - 1.30 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'red' }}>
+                          1.45 P.M - 2.00 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          2.00 P.M - 2.15 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%" ,backgroundColor: 'green' }}>
+                          2.15 P.M - 2.30 P.M
+                          </Button>
+                      </Col>
+                    </Row>
+                    <Row style={{ paddingBottom: "60px" }}>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'red' }}>
+                          2.30 P.M - 2.45 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          2.45 P.M - 3.00 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          3.00 P.M - 3.15 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          3.15 P.M - 3.30 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'red' }}>
+                          3.45 P.M - 4.00 P.M
+                          </Button>
+                      </Col>
+                      <Col span={4} style={{paddingRight: '20px'}}>
+                      <Button type="primary" onClick={showModal} style={{ width: "100%", height: "250%",backgroundColor: 'green'  }}>
+                          4.00 P.M - 4.15 P.M
+                          </Button>
+                      </Col>
+                    </Row>
+                  </Card>
+                </Modal>
+                </Col>
+                </Row>
+              </Form.Item>
+              <Row className="finalbuttons">
+                <Col style={{padding: '40px  60px 40px 240px'}}> <Button style={{backgroundColor: '#036bfc',color: 'white'}}>SUBMIT</Button></Col>
+                <Col><Button style={{backgroundColor: 'red',color: 'white'}}>CANCEL</Button></Col>
+              </Row>
+            </div>
+          </Form>
         </Col>
       </Row>
     </>

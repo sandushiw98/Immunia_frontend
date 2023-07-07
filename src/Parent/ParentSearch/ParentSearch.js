@@ -3,6 +3,7 @@ import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import { Avatar, Button, Col, Dropdown, Row, Card } from "antd";
 import image1 from "../../assets/images/LRH.jpg";
 import { PhoneOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const ParentSearch = () => {
   return (
@@ -53,8 +54,11 @@ const ParentSearch = () => {
             <br />
             <Row>
               <Col span={12}>
-                <p style={{fontSize: '15px'}}> Location : Lady Ridgway Hospital Colombo 8 </p>
-                <p style={{fontSize: '15px'}}> Distance : 1km away </p>
+                <p style={{ fontSize: "15px" }}>
+                  {" "}
+                  Location : Lady Ridgway Hospital Colombo 8{" "}
+                </p>
+                <p style={{ fontSize: "15px" }}> Distance : 1km away </p>
                 <br />
                 <br />
                 <br />
@@ -62,8 +66,8 @@ const ParentSearch = () => {
                 <br />
                 <br />
                 <br />
-                <Row >
-                  <Col span={12} style={{paddingTop: '5px'}}>
+                <Row>
+                  <Col span={12} style={{ paddingTop: "5px" }}>
                     <button className="callnow">Call Now</button>
                   </Col>
                   <Col span={12}>
@@ -102,9 +106,17 @@ const ParentSearch = () => {
                 </div>
               </Col>
             </Row>
-            <Row style={{display: 'flex', justifyContent: 'center', alignItems: 'center',paddingTop: '20px'}}>
-            <button className="appointment"> Make an Appointment
-</button>
+            <Row
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: "20px",
+              }}
+            >
+              <Link  to='../../ParentBooking' underline="none">
+                <button className="appointment"> Make an Appointment</button>
+              </Link>
             </Row>
           </Card>
         </Col>

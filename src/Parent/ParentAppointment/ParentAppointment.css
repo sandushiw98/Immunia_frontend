@@ -1,0 +1,14 @@
+.card-with-shadow {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); /* Adjust the shadow values as per your preferences */
+    text-align: center;
+    font-size: 18px;
+    
+  }
+
+.createbtn{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding-right: 100px;
+}
+  

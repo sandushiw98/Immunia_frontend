@@ -46,7 +46,7 @@ const ParentNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Link to='../../ParentBooking'>
+                <Link to='../../ParentAppointment'>
                     <Button>
                         APPOINMENTS
                     </Button>

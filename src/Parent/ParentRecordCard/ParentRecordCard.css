@@ -18,7 +18,7 @@
 }
 
 .notifications-container {
-    width: 800px;
+    width: 1000px;
     height: auto;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -53,6 +53,7 @@
   .alert-prompt-wrap {
     margin-left: 0.75rem;
     color: rgb(202 138 4);
+    font-size: 20px;
   }
   
   .alert-prompt-link {
@@ -63,6 +64,7 @@
   
   .alert-prompt-link:hover {
     color: rgb(202 138 4);
+
   }
 
   .helthcare-details{
@@ -72,6 +74,8 @@
    
     
   }
+
+ 
 
  .childtable{
   padding-top: 60px;
@@ -108,4 +112,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+ }
+
+ .custom-table-header{
+  color: blue;
+  font-size: larger;
+ }
+
+ .return{
+  color: rgb(74, 178, 98);
+  font-size: 17px;
+ }
+
+ .vaccine_details{
+  font-size: 17px;
  }

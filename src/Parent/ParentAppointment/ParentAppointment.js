@@ -153,6 +153,9 @@ const Appointments = () => {
           />
         </Col>
       </Row>
+      <Row className="createbtn">
+      <Link  to='../../ParentSearch' underline="none"><Button type="primary" >Start scheduling</Button> </Link>
+      </Row>
       <Row >
         <Col span={24}>
           <h1 className="heading"> Appointments</h1>
@@ -171,9 +174,7 @@ const Appointments = () => {
           pagination={false}
         />
       </Row>
-      <Row className="createbtn">
-      <Link  to='../../ParentSearch' underline="none"><Button type="primary" >Start scheduling</Button> </Link>
-      </Row>
+      
     </>
   );
 };

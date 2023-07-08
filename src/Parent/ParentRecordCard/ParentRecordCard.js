@@ -1,6 +1,7 @@
 import React from "react";
 import "./ParentRecordCard.css";
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
+import { Link } from 'react-router-dom';
 import image1 from "../../assets/images/vaccine-record-removebg-preview.png";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import {
@@ -13,60 +14,69 @@ import {
   Divider,
   message,
   Button,
+  Form,
+  Input,
 } from "antd";
+import image2 from "../../assets/images/childprofile3.jpg";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+
+const { Meta } = Card;
 
 const columns = [
+  
   {
-    title: "Order",
-    dataIndex: "english",
-  },
-  {
-    title: "Date",
-    dataIndex: "name",
+    title: "Vaccine Type",
+    dataIndex: "vaccine",
   },
   {
     title: "Dosage",
-    dataIndex: "chinese",
+    dataIndex: "dosage",
   },
-  {
-    title: "Manufacturer",
-    dataIndex: "math",
-  },
+  
   {
     title: "Location",
-    dataIndex: "english",
+    dataIndex: "location",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
   },
 ];
 
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    chinese: 98,
-    math: 60,
-    english: 70,
+    date: "23/3/2022",
+    dosage: "1st dose",
+    vaccine: "Polio",
+    location: "Lady Ridgway",
   },
   {
     key: "2",
-    name: "Jim Green",
-    chinese: 98,
-    math: 66,
-    english: 89,
+    date: "9/4/2022",
+    dosage: "2nd dose",
+    vaccine: "Polio",
+    location: "Lady Ridgway",
   },
-  {
-    key: "3",
-    name: "Joe Black",
-    chinese: 98,
-    math: 90,
-    english: 70,
+
+  { key: "3",
+  date: "3/5/2022",
+  dosage: "3rd dose",
+  vaccine: "Polio",
+  location: "Lady Ridgway",
   },
   {
     key: "4",
-    name: "Jim Red",
-    chinese: 88,
-    math: 99,
-    english: 89,
+    date: "14/7/2022",
+    dosage: "1st dose",
+    vaccine: "Sarampa",
+    location: "National Hospital",
   },
+  
 ];
 
 const handleButtonClick = (e) => {
@@ -79,88 +89,126 @@ const handleMenuClick = (e) => {
   console.log("click", e);
 };
 
-const items = [
-  {
-    label: "1st menu item",
-    key: "1",
-    icon: <UserOutlined />,
-  },
-  {
-    label: "2nd menu item",
-    key: "2",
-    icon: <UserOutlined />,
-  },
-  {
-    label: "3rd menu item",
-    key: "3",
-    icon: <UserOutlined />,
-    danger: true,
-  },
-  {
-    label: "4rd menu item",
-    key: "4",
-    icon: <UserOutlined />,
-    danger: true,
-    disabled: true,
-  },
-];
 
-const columnsreminder = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Chinese Score',
-    dataIndex: 'chinese',
-    sorter: {
-      compare: (a, b) => a.chinese - b.chinese,
-      multiple: 3,
-    },
-  },
-  {
-    title: 'Math Score',
-    dataIndex: 'math',
-    sorter: {
-      compare: (a, b) => a.math - b.math,
-      multiple: 2,
-    },
-  },
-  {
-    title: 'English Score',
-    dataIndex: 'english',
-    sorter: {
-      compare: (a, b) => a.english - b.english,
-      multiple: 1,
-    },
-  },
-];
 const data1 = [
   {
-    key: '1',
-    name: 'John Brown',
+    key: "1",
+    name: "John Brown",
     chinese: 98,
     math: 60,
     english: 70,
   },
-  
 ];
 
-const onChange = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
-
-
 const menuProps = {
-  items,
+  
   onClick: handleMenuClick,
 };
+
+const columnschild = [
+ 
+  {
+    title: 'Vaccine',
+    dataIndex: 'vaccine',
+    key: 'vaccine',
+    width: 80,
+  },
+  {
+    title: 'Dosage',
+    dataIndex: 'Dosage',
+    key: 'Dosage',
+    
+  },
+  {
+    title: 'Return Date',
+    dataIndex: 'Return_Date',
+    key: 'Return_Date',
+    
+  },
+  
+  
+];
+const datachild = [
+  {
+    key: '1',
+    vaccine: 'Sarampa',
+    Dosage: '2nd Dose',
+    Return_Date: '02/08/2022',
+  },
+ 
+];
+
 
 const ParentRecordCard = () => {
   return (
     <div className="cover">
       <Row>
         <ParentNavbar />
+      </Row>
+      <Row style={{paddingTop: '120px', paddingRight: '30px', display: 'flex', justifyContent: 'right', alignItems: 'right'}} >
+      <Link  to='../../ParentSearch' underline="none"><Button type="primary" > Create New + </Button> </Link>
+      </Row>
+      <Row>
+        <Col span={10} style={{ paddingTop: "60px", paddingLeft: "150px" }}>
+          <Card
+            style={{
+              width: 500,
+            }}
+            cover={<img alt="example" src={image2} />}
+            actions={[
+              <SettingOutlined key="setting" />,
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+              title="Amani Wirathma Wimalaweera "
+              //   description="Age  : 1 year"
+            />
+          </Card>
+        </Col>
+        <Col span={14} className="childtable">
+          <Card className="childshadow">
+            <div className="childcontent">
+          <table class="childclass">
+          <tr>
+              <th>Vaccination Card ID:</th>
+              <td>C345</td>
+            </tr>
+            <tr>
+              <th>Age:</th>
+              <td>1 Year</td>
+            </tr>
+            <tr>
+              <th>Weight:</th>
+              <td>5kg 400g</td>
+            </tr>
+            <tr>
+              <th>Date Of Birth:</th>
+              <td> 2022/ 07/ 08</td>
+            </tr>
+            <tr>
+              <th>Address:</th>
+              <td> Sulakshi, Temple Road, Colombo 8</td>
+            </tr>
+            <tr>
+              <th>Gender:</th>
+              <td>Female</td>
+            </tr>
+            <tr>
+              <th>Guardian Name:</th>
+              <td> Lakshmi Jasinghe</td>
+            </tr>
+            <tr>
+              <th>Contact Number:</th>
+              <td> 071-4020626</td>
+            </tr>
+            
+          </table>
+          </div>
+          </Card>
+        </Col>
       </Row>
       <Row
         style={{
@@ -172,79 +220,23 @@ const ParentRecordCard = () => {
       >
         <h1>Child Vaccination Record Card</h1>
       </Row>
-      <Row gutter={16} style={{ padding: "30px" }}>
-        <Col span={8}>
-          <Card title="Name" bordered={false}>
-            Sanduhsi Weraduwa
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Age" bordered={false}>
-            6
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Date of Birth" bordered={false}>
-            2022/2/13
-          </Card>
-        </Col>
-      </Row>
-      <Row gutter={16} style={{ padding: "30px" }}>
-        <Col span={8}>
-          <Card title="Gender" bordered={false}>
-            Female
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Address" bordered={false}>
-            "Sulakshi", Temple Road, Maradana
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Vaccination Card ID" bordered={false}>
-            C12
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <h1 style={{ paddingLeft: "30px" }}>Vaccination Record</h1>
-      </Row>
-      <Row className="drop-down">
-        <Dropdown.Button
-          menu={menuProps}
-          onClick={handleButtonClick}
-          style={{
-            display: "flex",
-            justifyContent: "right",
-            alignItems: "right",
-            paddingRight: "30px",
-          }}
-        >
-          Select Vaccination
-        </Dropdown.Button>
-      </Row>
+
+      
       <Row>
         <Table
           columns={columns}
           dataSource={data}
           style={{ width: 2000, padding: "30px" }}
+          pagination = {false}
         />
       </Row>
-      <Row
-        style={{
-          paddingBottom: "70px",
-          fontSize: "18px",
-          paddingLeft: "100px",
-          paddingRight: "100px",
-        }}
-      >
-        <p>
-          Please keep this record card, it includes the medical information,
-          details and the vaccine you have received. This card will show the
-          next schedule of your vaccine. It is important to show this card to
-          the next vaccination schedule for health officials to verify.
-        </p>
+      <Row>
+        <h2 style={{paddingLeft: '30px'}}>Return Date</h2>
       </Row>
+      <Row className="returndate">
+      <Table columns={columnschild} dataSource={datachild} pagination= {false} style={{width: '100%', paddingLeft: '20px', paddingRight: '20px',color: 'red'}} />;
+      </Row>
+      
       <Row className="reminder">
         <div class="notifications-container">
           <div class="alert">
@@ -267,10 +259,10 @@ const ParentRecordCard = () => {
               <div class="alert-prompt-wrap">
                 <h1>REMINDER</h1>
                 <p class="text-sm text-yellow-700">
-                  Please return to your second vaccination schedule. Please
-                  bring this card for your next schedule of vaccines. Always
-                  check with the health workers and verify all information is
-                  correct so you won’t miss the next dose.
+                Please keep this record card, it includes the medical information,
+          details and the vaccine you have received. This card will show the
+          next schedule of your vaccine. It is important to show this card to
+          the next vaccination schedule for health officials to verify.
                   {/* <a class="alert-prompt-link" href="#">
                     Upgrade To Premium
                   </a> */}
@@ -279,21 +271,9 @@ const ParentRecordCard = () => {
             </div>
           </div>
         </div>
-        
       </Row>
-      <Row className="helthcare-details">
-        <Table columns={columns} dataSource={data1} onChange={onChange} style={{width: 1000}} />;
-        </Row>
-        <Row>
-          <Col span={12}>
-          <img
-            src={image1}
-            alt="Vaccination"
-            style={{ width: "100%", height: "100%",position: 'fix' }}
-          />
-          </Col>
-          <Col span={12}></Col>
-        </Row>
+      
+      
     </div>
   );
 };

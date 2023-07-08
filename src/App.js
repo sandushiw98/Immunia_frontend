@@ -24,7 +24,7 @@ import ParentChildAccount from './Parent/ParentChildAccount/ParentChildAccount';
 import ParentRecordCard from './Parent/ParentRecordCard/ParentRecordCard';
 import ParentCenter from './Parent/ParentCenter/ParentCenter';
 import ParentAppointment from './Parent/ParentAppointment/ParentAppointment';
-
+import ChildProfile from './Parent/ChildProfile/ChildProfile';
 
 function App() {
   return (
@@ -56,9 +56,8 @@ function App() {
           <Route path="/parentrecordcard" element={<ParentRecordCard />} />
           <Route path="/parentcenter" element={<ParentCenter />} />
           <Route path="/parentappointment" element={<ParentAppointment />} />
-
           <Route path="/adminDonations" element={<AdminDonations />} />
-
+          <Route path="/childprofile" element={<ChildProfile />} />
           
         </Routes>
       </BrowserRouter>

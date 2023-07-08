@@ -72,3 +72,40 @@
    
     
   }
+
+ .childtable{
+  padding-top: 60px;
+  /* padding-left: 250px; */
+ }
+
+ .childclass{
+  font-size: 20px;
+ }
+
+ th{
+  padding-right: 40px;
+  padding-bottom: 20px;
+  align-items:start;
+ }
+
+ td{
+  padding-right: 20px;
+  padding-bottom: 20px;
+ }
+
+ .childshadow{
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  width: 1000px;
+ }
+
+ .childcontent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .returndate{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }

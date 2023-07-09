@@ -36,50 +36,6 @@ import {
 
 const { Meta } = Card;
 
-const dataweight = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
 
 const columns = [
   {
@@ -187,6 +143,91 @@ const datachild = [
 const ParentRecordCard = () => {
   const [size, setSize] = useState("large");
 
+  const dataweight = [
+    {
+      name: "January",
+      One_Year: 240,
+      Two_Year: 400,
+      Three_Year: 600,
+    },
+    {
+      name: "February",
+      One_Year: 300,
+      Two_Year: 350,
+      Three_Year: 240,
+    },
+    {
+      name: "March",
+      One_Year: 500,
+      Two_Year: 600,
+      Three_Year: 650,
+    },
+    {
+      name: "April",
+     
+      One_Year: 789,
+      Two_Year: 400,
+      Three_Year: 754,
+    },
+    {
+      name: "May",
+    
+      One_Year: 890,
+      Two_Year: 321,
+      Three_Year: 678,
+    },
+    {
+      name: "June",
+    
+      One_Year: 400,
+      Two_Year: 700,
+      Three_Year: 900,
+    },
+    {
+      name: "July",
+     
+      One_Year: 690,
+      Two_Year: 678,
+      Three_Year: 890,
+    },
+    {
+      name: "August",
+     
+      One_Year: 435,
+      Two_Year: 678,
+      Three_Year: 456,
+    },
+    {
+      name: "September",
+    
+      One_Year: 890,
+      Two_Year: 345,
+      Three_Year: 567,
+    },
+    {
+      name: "October",
+      
+      One_Year: 800,
+      Two_Year: 899,
+      Three_Year: 900,
+    },
+    {
+      name: "November",
+  
+      One_Year: 1000,
+      Two_Year: 289,
+      Three_Year: 678,
+    },
+    {
+      name: "December",
+     
+      One_Year: 800,
+      Two_Year:450,
+      Three_Year: 800,
+    },
+  ];
+  
+
   return (
     <div className="cover">
       <Row>
@@ -270,7 +311,7 @@ const ParentRecordCard = () => {
           justifyContent: "center",
         }}
       >
-        <h1>Child Vaccination Record Card</h1>
+        <h1 style={{color: '#4281f5'}}>Child Vaccination Record Card</h1>
       </Row>
 
       <Row>
@@ -312,6 +353,42 @@ const ParentRecordCard = () => {
         <Button type="primary" icon={<DownloadOutlined />} size={size}>
           Download
         </Button>
+      </Row>
+    <Row style={{display: 'flex', alignContent: 'center', justifyContent: 'center',color: '#4281f5'}}>
+      <h1>Your babies weight according to their first three year</h1>
+    </Row>
+      <Row style={{ paddingTop: "50px" }}>
+        <Col span={24} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        
+          <LineChart
+            width={1800}
+            height={500}
+            data={dataweight}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+
+           
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" label={{ value: 'Month', position: 'insideBottom' }} />
+          <YAxis label={{ value: 'Year', angle: -90, position: 'insideLeft' }} />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="One_Year"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line type="monotone" dataKey="Two_Year" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="Three_Year" stroke="#f5aa42" />
+          </LineChart>
+        
+        </Col>
       </Row>
 
       <Row className="reminder">
@@ -361,34 +438,7 @@ const ParentRecordCard = () => {
         </Col>
       </Row>
 
-      <Row style={{ paddingTop: "50px" }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            width={500}
-            height={300}
-            data={dataweight}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="pv"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-      </Row>
+      
     </div>
   );
 };

@@ -26,6 +26,10 @@ import ParentCenter from './Parent/ParentCenter/ParentCenter';
 import ParentAppointment from './Parent/ParentAppointment/ParentAppointment';
 import ChildProfile from './Parent/ChildProfile/ChildProfile';
 import ParentDashboard from './Parent/ParentDashboard/ParentDashboard';
+import VaccinationNavbar from './VaccinationCenter/VaccinationNavbar/VaccinationNavbar';
+import VaccinationDashboard from './VaccinationCenter/VaccinationDashboard/VaccinationDashboard';
+import VaccinationDonation from './VaccinationCenter/VaccinationDonation/VaccinationDonation';
+
 
 
 function App() {
@@ -61,8 +65,10 @@ function App() {
           <Route path="/parentappointment" element={<ParentAppointment />} />
           <Route path="/adminDonations" element={<AdminDonations />} />
           <Route path="/childprofile" element={<ChildProfile />} />
-          
           <Route path="/parentDashboard" element={<ParentDashboard />} />
+          <Route path="/vaccinationnavbar" element={<VaccinationNavbar />} />
+          <Route path="/vaccinationdashboard" element={<VaccinationDashboard />} />
+          <Route path="/vaccinationdonation" element={<VaccinationDonation />} />
         </Routes>
       </BrowserRouter>
       <Footer />

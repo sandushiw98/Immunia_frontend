@@ -322,47 +322,7 @@ const AdminDonations = () => {
       sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
       ellipsis: true,
     },
-    {
-      title: "Amount Rs.",
-      dataIndex: "amount",
-      sorter: (a, b) => a.amount - b.amount,
-      sortOrder: sortedInfo.columnKey === "amount" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      sorter: (a, b) => a.email - b.email,
-      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Conatch Number",
-      dataIndex: "contactnumber",
-      sorter: (a, b) => a.contactnumber - b.contactnumber,
-      sortOrder:
-        sortedInfo.columnKey === "contactnumber" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Location",
-      dataIndex: "location",
-      filters: [
-        {
-          text: "Boralla",
-          value: "Boralla",
-        },
-        {
-          text: "Maradana",
-          value: "Maradana",
-        },
-      ],
-      filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.location.includes(value),
-      sorter: (a, b) => a.location.length - b.location.length,
-      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
+    
   ];
   return (
     <>
@@ -500,6 +460,9 @@ const AdminDonations = () => {
             pagination={false}
             dataSource={dataSource}
             columns={columns}
+            scroll={{
+              y: 240,
+            }}
           />
         </Col>
       </Row>

@@ -1,6 +1,6 @@
 import React from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import { Col, Row, Card } from "antd";
+import { Col, Row, Card, Space } from "antd";
 import { Table } from "antd";
 import {
   BarChart,
@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useState } from "react";
+import { BankOutlined } from "@ant-design/icons";
+import './AdminDonations.css'
 
 const data = [
   {
@@ -240,7 +242,7 @@ const AdminDonations = () => {
       sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
       ellipsis: true,
     },
-        
+
     {
       title: "Donor Conatch Number",
       dataIndex: "contactnumber",
@@ -381,70 +383,80 @@ const AdminDonations = () => {
           </p>
         </Col>
       </Row>
-      <Row style={{ padding: "50px" }}>
-        <Col span={12}>
-          <Row
-            style={{
-              paddingTop: "40px",
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Card
-              style={{
-                width: 600,
-                height: 200,
-                backgroundColor: "#c4a562",
-              }}
-            >
-              <h2 style={{ textAlign: "center" }}>Monthly Donations</h2>
-              <p style={{ fontSize: "30px", textAlign: "center" }}>
-                Card content
-              </p>
-            </Card>
+
+      <Row style={{ padding: "10px" }}>
+        <Col span={12} style={{padding:'200px 50px 50px 50px'}}>
+          <Row gutter={[48]} style={{paddingBottom:'100px'}}>
+            <Col span={12}>
+              <Card
+                className="donation-cards"
+                bordered={false}
+                style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Space>
+                    <span style={{fontSize:'22px', fontWeight: 'bolder', color:'rgb(69, 63, 199)' }}>Annual Donations</span>
+                  </Space>
+                </div>
+                <Col span={24} style={{ textAlign: 'right'}}>
+                  <span style={{ fontSize: '35px' }}>435</span>
+                </Col>
+              </Card>
+            </Col>
+            
+            <Col span={12}>
+              <Card
+                className="donation-cards"
+                bordered={false}
+                style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Space>
+                    <span style={{fontSize:'22px', fontWeight: 'bolder', color:'rgb(69, 63, 199)'  }}>Annual Amount</span>
+                  </Space>
+                </div>
+                <Col span={24} style={{ textAlign: 'right'}}>
+                  <span style={{ fontSize: '35px' }}>LKR 350 000</span>
+                </Col>
+              </Card>
+            </Col>
           </Row>
-          <Row
-            style={{
-              paddingTop: "40px",
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Card
-              style={{
-                width: 600,
-                height: 200,
-                backgroundColor: "#6297c4",
-              }}
-            >
-              <h2 style={{ textAlign: "center" }}>Annaul Donations</h2>
-              <p style={{ fontSize: "30px", textAlign: "center" }}>
-                Card content
-              </p>
-            </Card>
-          </Row>
-          <Row
-            style={{
-              paddingTop: "40px",
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Card
-              style={{
-                width: 600,
-                height: 200,
-                backgroundColor: "#c462c1",
-              }}
-            >
-              <h2 style={{ textAlign: "center" }}>Donation Today</h2>
-              <p style={{ fontSize: "30px", textAlign: "center" }}>
-                Card content
-              </p>
-            </Card>
+
+
+          <Row gutter={[48]}>
+            <Col span={12}>
+              <Card
+                className="donation-cards"
+                bordered={false}
+                style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Space>
+                    <span style={{ fontSize:'22px', fontWeight: 'bolder', color:'rgb(69, 63, 199)'  }}>Monthly Amount</span>
+                  </Space>
+                </div>
+                <Col span={24} style={{ textAlign: 'right' }}>
+                  <span style={{ fontSize: '35px' }}>LKR 42 000</span>
+                </Col>
+              </Card>
+            </Col>
+
+            <Col span={12}>
+              <Card
+                className="donation-cards"
+                bordered={false}
+                style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Space>
+                    <span style={{fontSize:'22px', fontWeight: 'bolder', color:'rgb(69, 63, 199)'  }}>Monthly Average Amount</span>
+                  </Space>
+                </div>
+                <Col span={24} style={{ textAlign: 'right'}}>
+                  <span style={{ fontSize: '35px', color:'rgb(92, 87, 109)' }}>LKR 36 000</span>
+                </Col>
+              </Card>
+            </Col>
           </Row>
         </Col>
 
@@ -481,7 +493,7 @@ const AdminDonations = () => {
           </span>
         </Col>
       </Row>
-      <Row style={{ padding: "20px" }}>
+      <Row style={{ padding: "20px 50px 80px 50px" }}>
         <Col span={24}>
           <Table
             bordered

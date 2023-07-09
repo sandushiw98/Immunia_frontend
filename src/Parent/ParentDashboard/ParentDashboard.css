@@ -1,0 +1,56 @@
+.card-container-parent {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container-parent1 {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parent-card {
+    width: 80%;
+}
+
+.parent-card-appoinments {
+
+    width: 100%;
+
+    /* Add these styles for scrollable content */
+    max-height: 312px;
+    min-height: 312px;
+    /* Set the maximum height you desire */
+    overflow: auto;
+}
+
+.parent-children {
+    width: 75%;
+
+    /* Add these styles for scrollable content */
+    max-height: 312px;
+    min-height: 312px;
+    /* Set the maximum height you desire */
+    overflow: auto;
+}
+
+.parent-children .ant-card-head {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+    /* Add a higher z-index to keep the title above the scrolling content */
+}
+
+.parent-card-appoinments .ant-card-head {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+    /* Add a higher z-index to keep the title above the scrolling content */
+}

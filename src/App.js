@@ -25,6 +25,8 @@ import ParentRecordCard from './Parent/ParentRecordCard/ParentRecordCard';
 import ParentCenter from './Parent/ParentCenter/ParentCenter';
 import ParentAppointment from './Parent/ParentAppointment/ParentAppointment';
 import ChildProfile from './Parent/ChildProfile/ChildProfile';
+import ParentDashboard from './Parent/ParentDashboard/ParentDashboard';
+
 
 function App() {
   return (
@@ -46,9 +48,10 @@ function App() {
           <Route path="/viewParent" element={<ViewParent />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/adminprofile" element={<AdminProfile />} />
+          <Route path="/adminDonations" element={<AdminDonations />} />
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/adminNavbar" element={<AdminNavbar />} />
-          <Route path="/AdminDonations" element={<AdminDonations />} />
+          <Route path="/adminDonations" element={<AdminDonations />} />
           <Route path="/parentNavbar" element={<ParentNavbar />} />
           <Route path="/parentsearch" element={<ParentSearch />} />
           <Route path="/parentbooking" element={<ParentBooking />} />
@@ -59,6 +62,7 @@ function App() {
           <Route path="/adminDonations" element={<AdminDonations />} />
           <Route path="/childprofile" element={<ChildProfile />} />
           
+          <Route path="/parentDashboard" element={<ParentDashboard />} />
         </Routes>
       </BrowserRouter>
       <Footer />

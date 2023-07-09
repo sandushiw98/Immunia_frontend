@@ -91,31 +91,7 @@ const AdminNavbar = () => {
                 </Link>
 
                 </Col>
-                <Col span={2} className='nav-section'>
-                    <Button>
-                        NOTIFICATIONS
-                    </Button>
-                </Col>
-                <Col span={2} className='nav-section'>
-                    <Link to='../../Appointments'>
-                        <Button>
-                            APPOINMENTS
-                        </Button>
-                    </Link>
-                </Col>
-                <Col span={2} className='nav-section'>
-                    <Link to='../../Reviews'>
-                        <Button>
-                            REVIEWS
-                        </Button>
-                    </Link>
-                </Col>
-                <Col span={5} className='nav-section-name'>
-                    <Link to='/adminprofile'>
-                        <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
-                    </Link>
-
-                </Col>
+                
                 <Col span={1} className='nav-section-img'>
                     <Dropdown
                         menu={{

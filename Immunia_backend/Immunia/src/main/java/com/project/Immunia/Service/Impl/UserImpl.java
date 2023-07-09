@@ -5,6 +5,7 @@ import com.project.Immunia.Entity.UserEntity;
 import com.project.Immunia.Repository.UserRepository;
 import com.project.Immunia.Response.LoginResponse;
 import com.project.Immunia.Service.UserService;
+import com.project.Immunia.Utils.JwtTokenUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,9 @@ import java.util.Optional;
 
 @Service
 public class UserImpl implements UserService {
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -48,7 +52,10 @@ public class UserImpl implements UserService {
             if (isPwdRight){
                 Optional<UserEntity> user = userRepository.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if(user.isPresent()){
-                    return new LoginResponse("Login Success", true);
+                    String token =jwtTokenUtil.generateToken(loginDTO.getEmail());
+//                    return new LoginResponse("Login Success", true);
+                    
+                    return new LoginResponse(token, true);
                 }
                 else{
                     return new LoginResponse("Login failed", false);

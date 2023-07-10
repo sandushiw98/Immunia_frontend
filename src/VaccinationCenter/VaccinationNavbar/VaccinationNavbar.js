@@ -29,7 +29,7 @@ const VaccinationNavbar = () => {
     return (
         <div className="navbar-container">
         <Row gutter={8} className="main-row">
-            <Col span={4} className='nav-section'>
+            <Col span={3} className='nav-section'>
                 <Link to='/'>
                 <img
                     src={logo}
@@ -61,23 +61,25 @@ const VaccinationNavbar = () => {
             </Col>
             <Col span={2} className='nav-section'>
                 <Button>
-                  CENTERS
+                  VACCINES
                 </Button>
             </Col>
             
+            <Col span={2} className='nav-section'>
+                <Button>
+                    DONATIONS
+                </Button>
+            </Col>
+
             <Col span={2} className='nav-section'>
                 <Button>
                     NOTIFICATIONS
                 </Button>
             </Col>
            
-            {/* <Col span={2} className='nav-section'>
-                <Button>
-                    RECORDS
-                </Button>
-            </Col> */}
+          
            
-            <Col span={9} className='nav-section-name'>
+            <Col span={8} className='nav-section-name'>
                 <Link to='/adminprofile'>
                     <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
                 </Link>

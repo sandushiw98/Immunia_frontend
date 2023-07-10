@@ -426,7 +426,8 @@ const VaccinationDashboard = () => {
             onCancel={handleCancel}
             width={1000}
             okText="Add" 
-            cancelText="Close" 
+            cancelText="Cancel" 
+            cancelButtonProps={{ className: 'custom-cancel-button' }}
           >
             <Row>
               <h2>Morning</h2>

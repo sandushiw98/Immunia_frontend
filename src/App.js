@@ -29,6 +29,11 @@ import ParentDashboard from './Parent/ParentDashboard/ParentDashboard';
 import VaccinationNavbar from './VaccinationCenter/VaccinationNavbar/VaccinationNavbar';
 import VaccinationDashboard from './VaccinationCenter/VaccinationDashboard/VaccinationDashboard';
 import VaccinationDonation from './VaccinationCenter/VaccinationDonation/VaccinationDonation';
+import VaccinationAppointments from './VaccinationCenter/VaccinationAppointments/VaccinationAppointments';
+import VaccinationChildren from './VaccinationCenter/VaccinationChildren/VaccinationChildren';
+import VaccinationUpdate from './VaccinationCenter/VaccinationUpdate/VaccinationUpdate';
+
+
 
 
 
@@ -69,6 +74,12 @@ function App() {
           <Route path="/vaccinationnavbar" element={<VaccinationNavbar />} />
           <Route path="/vaccinationdashboard" element={<VaccinationDashboard />} />
           <Route path="/vaccinationdonation" element={<VaccinationDonation />} />
+          <Route path="/vaccinationappointments" element={<VaccinationAppointments />} />
+         <Route path="/vaccinationchildren" element={<VaccinationChildren />} /> 
+         <Route path="/vaccinationupdate" element={<VaccinationUpdate />} />
+          
+          
+          
         </Routes>
       </BrowserRouter>
       <Footer />

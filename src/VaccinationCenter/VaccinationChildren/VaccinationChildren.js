@@ -1,4 +1,4 @@
-import ParentNavbar from "../ParentNavbar/ParentNavbar";
+import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
 import { Col, Row } from "antd";
 import React from "react";
 import image1 from "../../assets/images/girl.jpg";
@@ -14,7 +14,7 @@ import {
   message,
   Upload,
 } from "antd";
-import "./ParentChildAccount.css";
+import "./VaccinationChildren.css";
 import { useState } from 'react';
 
 const { RangePicker } = DatePicker;
@@ -44,12 +44,12 @@ const props = {
   },
 };
 
-const ParentChildAccount = () => {
+const VaccinationChildren = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <>
       <Row>
-        <ParentNavbar />
+        <VaccinationNavbar />
       </Row>
       <Row>
         <Col span={5} style={{ paddingTop: "150px", paddingBottom:'150px' }}>
@@ -142,4 +142,4 @@ const ParentChildAccount = () => {
   );
 };
 
-export default ParentChildAccount;
+export default VaccinationChildren;

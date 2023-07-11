@@ -39,7 +39,7 @@ const ParentNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Link to='/adminDashboard'>
+                <Link to='/ParentDashboard'>
                     <Button>
                         DASHBOARD
                     </Button>
@@ -53,16 +53,18 @@ const ParentNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Link to='../../ParentChildAccount'>
+                <Link to='../../ParentRecordCard'>
                     <Button>
                         CHILDREN
                     </Button>
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
+            <Link to='../../ParentCenter'>
                 <Button>
                   CENTERS
                 </Button>
+                </Link>
             </Col>
             
             <Col span={2} className='nav-section'>

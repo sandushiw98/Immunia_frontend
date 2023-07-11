@@ -1,0 +1,26 @@
+.lastbtn {
+    padding-bottom: 70px;
+    color: white;
+    font-weight: bolder;
+}
+
+label {
+    font-size: 150px;
+}
+
+
+.label-text {
+    text-align: right;
+    padding-right: 10px;
+    /* optional: add padding for spacing */
+    width: 200px;
+    /* optional: set a fixed width for the labels */
+}
+
+.ant-upload-list {
+    display: flex !important;
+}
+
+.ant-form-item-control-input-content{
+    display: flex;
+}

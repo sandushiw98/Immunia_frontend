@@ -121,7 +121,7 @@ const ParentBooking = () => {
               </Form.Item>
               <Form.Item label="Time Slots">
                 <Row>
-                <Col style={{paddingRight: '50px'}}><Input style={{paddingRight: '90px'}} /></Col>
+                <Col style={{paddingRight: '50px'}}><Input style={{paddingRight: '80px'}} /></Col>
                 <Col>
                 <Button type="primary" onClick={showModal}>
                   select time slots

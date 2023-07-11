@@ -288,7 +288,7 @@ button:hover .button-text {
   color: #fff;
 }
 
-.btn {
+.btn1 {
   position: relative;
   outline: 0;
   border: 1px solid transparent;
@@ -311,7 +311,7 @@ button:hover .button-text {
   margin-left: 160px;
 }
 
-.btn span {
+.btn1 span {
   height: 100%;
   width: 100%;
   display: flex;
@@ -326,31 +326,31 @@ button svg {
   height: 1.00rem;
 }
 
-.btn span:nth-child(2),
-.btn span:nth-child(3) {
+.btn1 span:nth-child(2),
+.btn1 span:nth-child(3) {
   position: absolute;
   top: 40px;
   color: #fff;
 }
 
-.btn span:nth-child(2) {
+.btn1 span:nth-child(2) {
   background-color: #488aec;
 }
 
-.btn span:nth-child(3) {
+.btn1 span:nth-child(3) {
   background-color: #488aec;
 }
 
-.btn:hover {
+.btn1:hover {
   box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
-.btn:hover span:nth-child(2),
-.btn:focus span:nth-child(3) {
+.btn1:hover span:nth-child(2),
+.btn1:focus span:nth-child(3) {
   top: 0;
 }
 
-.btn:focus {
+.btn1:focus {
   box-shadow: none;
 }
 
@@ -415,7 +415,7 @@ button svg {
     margin-left: 5%;
   }
 
-  .btn{
+  .btn1{
     margin-left: 60px !important;
   }
 

@@ -23,52 +23,47 @@ import image13 from "../../assets/images/donation.jpg";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 
-
-
 const Home = () => {
-
-
   const sliderImages = [
     {
       url: image5,
-      caption: 'SCHEDULE VACCINATION FOR YOUR CHILD\n Experience hassle-free online booking for child vaccinations\n available to all parents!\n Secure your child\'s health with a few clicks.\n Book now!',
-
-
+      caption:
+        "SCHEDULE VACCINATION FOR YOUR CHILD\n Experience hassle-free online booking for child vaccinations\n available to all parents!\n Secure your child's health with a few clicks.\n Book now!",
     },
     {
       url: image2,
-      caption: 'image 2 caption',
+      caption: "image 2 caption",
     },
     {
       url: image3,
-      caption: 'image 1 caption',
+      caption: "image 1 caption",
     },
     {
       url: image4,
-      caption: 'image 1 caption',
+      caption: "image 1 caption",
     },
     {
       url: image1,
-      caption: 'image 1 caption',
+      caption: "image 1 caption",
     },
   ];
 
   sliderImages.forEach((image) => {
-    const lines = image.caption.split('\n');
+    const lines = image.caption.split("\n");
     const title = lines[0];
-    const content = lines.slice(1).join(' ');
+    const content = lines.slice(1).join(" ");
 
-    console.log('Title:', title);
-    console.log('Content:', content);
+    console.log("Title:", title);
+    console.log("Content:", content);
   });
 
   const renderSliderItem = (item) => (
-    <div >
-      <img src={item.url} alt={item.caption} className='slideshow' />
+    <div>
+      <img src={item.url} alt={item.caption} className="slideshow" />
     </div>
   );
 
-  const splitCaption = (caption) => caption.split('\n');
+  const splitCaption = (caption) => caption.split("\n");
 
   const layout = {
     labelCol: {
@@ -82,7 +77,6 @@ const Home = () => {
   const onFinish = (values) => {
     console.log(values);
   };
-
 
   return (
     <>
@@ -205,8 +199,6 @@ const Home = () => {
                 <span class="button-text">4 Months</span>
               </button>
             </Link>
-
-
           </Row>
           <Row style={{ paddingLeft: "8%", paddingTop: "50px" }}>
             <Link to="/sixmonth">
@@ -307,7 +299,7 @@ const Home = () => {
         </Col>
       </Row>
       {/* service page */}
-      <Row style={{ backgroundColor: "#b2cdeb" }} >
+      <Row style={{ backgroundColor: "#b2cdeb" }}>
         <Row style={{ width: "100%" }} id="service">
           <h3 style={{ fontSize: "48px", width: "100%", textAlign: "center" }}>
             Our Services
@@ -315,7 +307,10 @@ const Home = () => {
         </Row>
         <Row className="horizontal-line-donate"></Row>
         <Row style={{ width: "100%" }}></Row>
-        <Col span={6} style={{ width: "100%", paddingTop: "40px", paddingLeft: "2px" }}>
+        <Col
+          span={6}
+          style={{ width: "100%", paddingTop: "40px", paddingLeft: "2px" }}
+        >
           <Row style={{ padding: "10px 50px 10px 50px" }}>
             <img
               src={image6}
@@ -328,9 +323,11 @@ const Home = () => {
               Online Vaccination Booking System
             </h2>
           </Row>
-
         </Col>
-        <Col span={6} style={{ width: "100%", paddingTop: "40px", paddingBottom: "40px" }}>
+        <Col
+          span={6}
+          style={{ width: "100%", paddingTop: "40px", paddingBottom: "40px" }}
+        >
           <Row style={{ padding: "10px 50px 10px 50px" }}>
             <img
               src={image9}
@@ -343,9 +340,11 @@ const Home = () => {
               Sreamlined Vaccines Tracking
             </h2>
           </Row>
-
         </Col>
-        <Col span={6} style={{ width: "100%", paddingTop: "40px", paddingBottom: "40px" }}>
+        <Col
+          span={6}
+          style={{ width: "100%", paddingTop: "40px", paddingBottom: "40px" }}
+        >
           <Row style={{ padding: "10px 50px 10px 50px" }}>
             <img
               src={image10}
@@ -358,7 +357,6 @@ const Home = () => {
               Health Tips and Meal Plans
             </h2>
           </Row>
-
         </Col>
         <Col span={6} style={{ width: "100%", paddingTop: "40px" }}>
           <Row style={{ padding: "10px 50px 10px 50px" }}>
@@ -373,9 +371,7 @@ const Home = () => {
               Data Analytics and Reporting
             </h2>
           </Row>
-
         </Col>
-
       </Row>
 
       {/* Donate page */}
@@ -550,7 +546,7 @@ const Home = () => {
                   offset: 8,
                 }}
               >
-                <button class="btn">
+                <button class="btn1">
                   <span>
                     Submit
                     <svg
@@ -621,7 +617,6 @@ const Home = () => {
               />
             </Row>
             <Row>
-
               <span
                 style={{
                   marginLeft: "22px",

@@ -8,17 +8,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Row, Col } from "antd";
-import './Donations.css';
+import "./Donations.css";
 import { Select, MenuItem, InputLabel } from "@mui/material";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
-
 const defaultTheme = createTheme();
 
 const Donation = () => {
-
-  const [selectedOption, setSelectedOption] = React.useState('');
+  const [selectedOption, setSelectedOption] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,16 +31,16 @@ const Donation = () => {
     setSelectedOption(event.target.value);
   };
 
-
   return (
     <>
       <Navbar />
-      <Row className="container">
-        <Col span={12} style={{ padding: '60px' }}>
+      <Row className="container1">
+        <Col span={12} style={{ padding: "60px" }}>
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
-              <Box style={{ marginTop: '10px' }}
+              <Box
+                style={{ marginTop: "10px" }}
                 sx={{
                   marginTop: 8,
                   display: "flex",
@@ -50,7 +48,6 @@ const Donation = () => {
                   alignItems: "center",
                 }}
               >
-
                 <Typography component="h1" variant="h5">
                   Donation
                 </Typography>
@@ -61,7 +58,7 @@ const Donation = () => {
                   sx={{ mt: 3 }}
                 >
                   <Grid container spacing={2}>
-                    <Grid item xs={12} >
+                    <Grid item xs={12}>
                       <TextField
                         autoComplete="given-name"
                         name="fullName"
@@ -71,7 +68,6 @@ const Donation = () => {
                         label="Full Name"
                         autoFocus
                         className="fulltextfield"
-
                       />
                     </Grid>
 
@@ -124,16 +120,15 @@ const Donation = () => {
                         value={selectedOption}
                         onChange={handleOptionChange}
                         fullWidth
-
                       >
                         <MenuItem value="option1">Vaccination Centre</MenuItem>
                         <MenuItem value="option2">MOH</MenuItem>
-
                       </Select>
                     </Grid>
 
                     <Grid item xs={12}>
-                      <TextField className="comment"
+                      <TextField
+                        className="comment"
                         required
                         fullWidth
                         name="comment"
@@ -145,9 +140,9 @@ const Donation = () => {
                         rows={3}
                       />
                     </Grid>
-
                   </Grid>
-                  <Button style={{ height: '40px' }}
+                  <Button
+                    style={{ height: "40px" }}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -155,10 +150,8 @@ const Donation = () => {
                   >
                     Donate
                   </Button>
-
                 </Box>
               </Box>
-
             </Container>
           </ThemeProvider>
         </Col>
@@ -171,12 +164,9 @@ const Donation = () => {
             paddingLeft: "5%",
             paddingTop: "3%",
           }}
-        >
-        </Col>
-        <Footer />
+        ></Col>
       </Row>
     </>
   );
-
-}
+};
 export default Donation;

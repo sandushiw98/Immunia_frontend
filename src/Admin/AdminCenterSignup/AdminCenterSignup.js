@@ -1,8 +1,9 @@
-import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { Col, Row } from "antd";
 import React from "react";
-import image1 from "../../assets/images/girl.jpg";
-import image2 from "../../assets/images/boy.jpg";
+import image1 from "../../assets/images/cartoon1.jpg";
+import image2 from "../../assets/images/cartoon2.jpg";
+import image3 from "../../assets/images/10_Vaccine.jpg"
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -14,8 +15,9 @@ import {
   message,
   Upload,
 } from "antd";
-import "./VaccinationChildren.css";
+import "./AdminCentersignup.css";
 import { useState } from 'react';
+
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -44,29 +46,31 @@ const props = {
   },
 };
 
-const VaccinationChildren = () => {
+const AdminCenterSignup = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <>
       <Row>
-        <VaccinationNavbar />
+        <AdminNavbar />
       </Row>
       <Row>
-        <Col span={5} style={{ paddingTop: "150px", paddingBottom:'150px' }}>
+        <Col span={5} style={{ paddingTop: "180px", paddingBottom:'20px',paddingLeft:'40px' }}>
           <img
             src={image1}
             alt="girl"
-            style={{ width: "100%", height: "100%", position: "fix" }}
+            style={{ width: "60%", height: "70%", position: "fix" }}
           />
         </Col>
-        <Col span={14} style={{ paddingTop: "90px", textAlign: "center" }}>
-          <h1> Create Your Child Account </h1>
+        <Col span={14} style={{ paddingTop: "90px", textAlign: "center"  }}>
+          <h1> Create Vaccination Account </h1>
           <Form
             layout="horizontal"
             disabled={componentDisabled}
             labelAlign="right"
             style={{border: '1px solid black' ,padding: '20px', borderRadius: '0.7px'}}
+          
           >
+        
             <Form.Item label="Upload Child Photo" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Upload action="/upload.do" listType="picture-card">
                 <div>
@@ -77,30 +81,37 @@ const VaccinationChildren = () => {
                 </div>
               </Upload>
             </Form.Item>
-            <Form.Item label="Child Full Name" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
+            <Form.Item label="Vaccination Center Name" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Input />
             </Form.Item>
-            <Form.Item label="Vaccination ID Number" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
+            <Form.Item label="Vaccination Center ID Number" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Input />
             </Form.Item>
             <Form.Item label="Province" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Select>
-                <Select.Option value="demo">Demo</Select.Option>
+                <Select.Option value="demo">Central</Select.Option>
+                <Select.Option value="demo">North Central</Select.Option>
+                <Select.Option value="demo">Nothern</Select.Option>
+                <Select.Option value="demo">Eastern</Select.Option>
+                <Select.Option value="demo">North Western</Select.Option>
+                <Select.Option value="demo">Southern</Select.Option>
+                <Select.Option value="demo">Uva</Select.Option>
+                <Select.Option value="demo">Sabaragamuwa</Select.Option>
+                <Select.Option value="demo">Western</Select.Option>
               </Select>
+              
             </Form.Item>
-            <Form.Item label="Date of Birth" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
-              <Input />
+            <Form.Item label="Vaccination Center Type" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
+              <Radio.Group>
+                <Radio value="apple"> Hospital </Radio>
+                <Radio value="pear"> MOH </Radio>
+              </Radio.Group>
             </Form.Item>
             <Form.Item label="Age" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Input />
             </Form.Item>
-            <Form.Item label="Gender" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
-              <Radio.Group>
-                <Radio value="apple"> Male </Radio>
-                <Radio value="pear"> Female </Radio>
-              </Radio.Group>
-            </Form.Item>
-            <Form.Item label="How many children do you have including this child" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
+            
+            <Form.Item label="Contact Number" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Input />
             </Form.Item>
             <Form.Item label="Comments" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
@@ -130,11 +141,11 @@ const VaccinationChildren = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={5} style={{ paddingTop: "150px", paddingBottom:'150px' }}>
+        <Col span={5} style={{ paddingTop: "150px", paddingBottom:'20px',paddingLeft: '30px' }}>
           <img
             src={image2}
             alt="boy"
-            style={{ width: "100%", height: "100%", position: "fix" }}
+            style={{ width: "80%", height: "80%", position: "fix" }}
           />
         </Col>
       </Row>
@@ -142,4 +153,4 @@ const VaccinationChildren = () => {
   );
 };
 
-export default VaccinationChildren;
+export default AdminCenterSignup;

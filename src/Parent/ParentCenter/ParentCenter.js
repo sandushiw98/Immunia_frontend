@@ -153,7 +153,7 @@ const ViewCenter = () => {
           </div>
         </Col>
       </Row>
-      <Row style={{ padding:'20px' }} >
+      <Row style={{ padding:'20px 20px 105px 20px' }} >
         <Col  span={24}>
 
           <Table

@@ -17,7 +17,8 @@ const data = [
     parentname: "Dushani Kodithuwakku",
     vaccinationName: "National Hospital Colombo",
     vaccinationType: "Hepatitiease",
-    Status: "Completed",
+    Status: "Confirm",
+    Vaccinated: "Yes",
   },
   {
     appointments: "A23",
@@ -27,7 +28,8 @@ const data = [
     parentname: "Dushani Kodithuwakku",
     vaccinationName: "National Hospital Colombo",
     vaccinationType: "Hepatitiease",
-    Status: "Upcomming",
+    Status: "Pending",
+    Vaccinated: "No",
   },
   {
     appointments: "A23",
@@ -37,7 +39,8 @@ const data = [
     parentname: "Dushani Kodithuwakku",
     vaccinationName: "National Hospital Colombo",
     vaccinationType: "Hepatitiease",
-    Status: "Upcomming",
+    Status: "Pending",
+    Vaccinated: "No",
   },
   {
     appointments: "A23",
@@ -47,7 +50,8 @@ const data = [
     parentname: "Dushani Kodithuwakku",
     vaccinationName: "National Hospital Colombo",
     vaccinationType: "Hepatitiease",
-    Status: "Upcomming",
+    Status: "Confirm",
+    Vaccinated: "Yes",
   },
 ];
 
@@ -110,20 +114,28 @@ const Appointments = () => {
       dataIndex: "Status",
       key: "Status",
     },
+    {
+      title: "Vaccinated",
+      dataIndex: "Vaccinated",
+      key: "Vaccinated",
+    },
   ];
 
   return (
     <>
       <ParentNavbar />
+      <Row className="createbtn" style={{  paddingTop: "100px" }}>
+      <Link  to='../../ParentSearch' underline="none"><Button type="primary" size="large" >Start scheduling</Button> </Link>
+      </Row>
       <Row >
-        <Col span={4} style={{ paddingLeft: "50px",  paddingTop: "100px" }}>
+        <Col span={4} style={{ paddingLeft: "50px",  paddingTop: "50px" }}>
           <img
             src={image1}
             alt="girl"
             style={{ width: "100%", height: "100%", position: "fix" }}
           />
         </Col>
-        <Col span={16} style={{ padding: "120px 40px 40px 40px" }}>
+        <Col span={16} style={{ padding: "50px 40px 40px 40px" }}>
           <div className="site-card-wrapper">
             <Card
               title="We always give priority for your appointment"
@@ -145,7 +157,7 @@ const Appointments = () => {
             </Card>
           </div>
         </Col>
-        <Col span={4} style={{ paddingRight: "50px", paddingTop: '100px' }}>
+        <Col span={4} style={{ paddingRight: "50px", paddingTop: '50px' }}>
           <img
             src={image2}
             alt="girl"
@@ -153,9 +165,7 @@ const Appointments = () => {
           />
         </Col>
       </Row>
-      <Row className="createbtn">
-      <Link  to='../../ParentSearch' underline="none"><Button type="primary" >Start scheduling</Button> </Link>
-      </Row>
+      
       <Row >
         <Col span={24}>
           <h1 className="heading"> Appointments</h1>

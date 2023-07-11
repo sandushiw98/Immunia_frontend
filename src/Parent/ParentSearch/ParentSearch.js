@@ -1,9 +1,9 @@
 import React from "react";
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
-import { Avatar, Button, Col, Dropdown, Row, Card } from "antd";
+import {Col, Row, Card } from "antd";
 import image1 from "../../assets/images/LRH.jpg";
-import { PhoneOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+
 
 const ParentSearch = () => {
   return (
@@ -120,7 +120,9 @@ const ParentSearch = () => {
             </Row>
           </Card>
         </Col>
-        <Col span={12}></Col>
+        <Col span={12}>
+             
+        </Col>
       </Row>
     </>
   );

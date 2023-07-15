@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1/user") 
 
 public class UserController {
     @Autowired
@@ -19,7 +19,7 @@ public class UserController {
     @PostMapping("/parent")
     public ResponseEntity<String> saveParentUser(@RequestBody UserDTO userDTO) {
         userDTO.setUserRole("parent"); // Set user role as "parent"
-        String id = userService.addUser(userDTO);
+        String id = userService.addUser(userDTO); 
         return ResponseEntity.ok(id);
     }
 

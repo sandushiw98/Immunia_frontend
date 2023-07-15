@@ -62,12 +62,12 @@ const AdminCenterSignup = () => {
           />
         </Col>
         <Col span={14} style={{ paddingTop: "90px", textAlign: "center"  }}>
-          <h1> Create Vaccination Account </h1>
+          <h1> Vaccination Center SignUp </h1>
           <Form
             layout="horizontal"
             disabled={componentDisabled}
             labelAlign="right"
-            style={{border: '1px solid black' ,padding: '20px', borderRadius: '0.7px'}}
+            style={{border: '1px solid black' ,padding: '30px', borderRadius: '0.7px'}}
           
           >
         
@@ -107,10 +107,6 @@ const AdminCenterSignup = () => {
                 <Radio value="pear"> MOH </Radio>
               </Radio.Group>
             </Form.Item>
-            <Form.Item label="Age" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
-              <Input />
-            </Form.Item>
-            
             <Form.Item label="Contact Number" labelAlign="right" labelCol={{ span: 9 }} wrapperCol={{ span: 17 }}>
               <Input />
             </Form.Item>
@@ -145,7 +141,7 @@ const AdminCenterSignup = () => {
           <img
             src={image2}
             alt="boy"
-            style={{ width: "80%", height: "80%", position: "fix" }}
+            style={{ width: "80%", height: "70%", position: "fix" }}
           />
         </Col>
       </Row>

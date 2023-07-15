@@ -243,21 +243,9 @@ const VaccinationUpdate = () => {
       <Row>
         <VaccinationNavbar />
       </Row>
-      <Row
-        style={{
-          paddingTop: "120px",
-          paddingRight: "30px",
-          display: "flex",
-          justifyContent: "right",
-          alignItems: "right",
-        }}
-      >
-        <Link to="../../ParentChildAccount" underline="none">
-          <Button type="primary"> Create New + </Button>{" "}
-        </Link>
-      </Row>
-      <Row>
-        <Col span={10} style={{ paddingTop: "60px", paddingLeft: "150px" }}>
+      
+      <Row >
+        <Col span={10} style={{ paddingTop: "100px", paddingLeft: "150px" }}>
           <Card
             style={{
               width: 400,
@@ -272,7 +260,7 @@ const VaccinationUpdate = () => {
             />
           </Card>
         </Col>
-        <Col span={14} className="childtable">
+        <Col span={14} className="childtable"  style={{ paddingTop: "100px"}}>
           <Card className="childshadow">
             <div className="childcontent">
               <table class="childclass">
@@ -413,13 +401,25 @@ const VaccinationUpdate = () => {
         <Button type="primary" onClick={showModal}>
         Update Details
       </Button>
-      <Modal title="Child's Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Update" 
-            cancelText="Cancel" cancelButtonProps={{ className: 'custom-cancel-button' }}>
+      <Modal title={<h1 style={{ fontSize: '40px' ,textAlign: 'center'}}>Updating Vaccination Details</h1>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Update" 
+            cancelText="Cancel" cancelButtonProps={{ className: 'custom-cancel-button' }} width={1000} >
         <div>
+        <h3>Update Details of Child Vaccination Record Card</h3>
+        <Input placeholder="Vaccine Type" />;
+        <Input placeholder="Dosage" />;
+        <Input placeholder="Location" />;
+        <Input placeholder="Date" />;
+        </div>
+        <div>
+        <h3>Return Date Details</h3>
         <Input placeholder="Vaccine Type" />;
         <Input placeholder="Dosage" />;
         <Input placeholder="Return Date" />;
+        </div>
+        <div>
+        <h3>Child's Weight Details</h3>
         <Input placeholder="Child's Weight" />;
+        <Input placeholder="Month" />;
         </div>
       </Modal>
         </Col>

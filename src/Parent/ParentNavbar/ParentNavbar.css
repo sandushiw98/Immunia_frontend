@@ -17,6 +17,12 @@
     align-items: center;
 }
 
+.center-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-section Button{
     border: none;
     font-weight: 700;

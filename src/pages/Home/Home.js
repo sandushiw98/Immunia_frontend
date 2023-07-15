@@ -405,7 +405,7 @@ const Home = () => {
           </Col>
           <Col span={12} style={{ width: "100%", padding: "90px 100px" }}>
             <Card
-              sx={{ minWidth: 275 }}
+              sx={{ minWidth: 800 }}
               style={{
                 display: "flex",
                 flexDirection: "column",

@@ -42,7 +42,7 @@ const ParentBooking = () => {
         <ParentNavbar />
       </Row>
 
-      <Row style={{ paddingTop: "100px" }}>
+      <Row style={{ paddingTop: "180px" }}>
         <Col span={12}>
           <img
             src={image1}
@@ -59,7 +59,7 @@ const ParentBooking = () => {
               alignContent: "center",
             }}
           >
-            <p style={{ fontSize: "15px" }}>
+            <p style={{ fontSize: "20px" }}>
               Hi lakshmi ! Let's make an appointment with Lady Ridgway Hospital,
               Colombo 8{" "}
             </p>

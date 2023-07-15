@@ -601,7 +601,7 @@ const VaccinationDashboard = () => {
         >
           <Row>
             <Col span={24}>
-              <h1 style={{ textAlign: "center" }}>Iassued Vaccines</h1>
+              <h1 style={{ textAlign: "center" }}>Issued Vaccines</h1>
             </Col>
           </Row>
           <Row>

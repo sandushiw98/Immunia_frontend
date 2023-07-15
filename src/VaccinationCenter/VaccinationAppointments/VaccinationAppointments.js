@@ -412,7 +412,7 @@ const VaccinationAppointments = () => {
         placement="bottom"
         arrow
       >
-        <Button style={{background: '#036ffc', color: 'white', width: '200px'}}>{selectedItem ? selectedItem.label : 'bottom'}</Button>
+        <Button style={{background: '#036ffc', color: 'white', width: '200px'}}>{selectedItem ? selectedItem.label : 'All'}</Button>
       </Dropdown>
       
       </Row>

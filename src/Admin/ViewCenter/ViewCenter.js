@@ -4,6 +4,7 @@ import { Button, Popconfirm, Table } from "antd";
 import React, { useState } from "react";
 import {PlusOutlined} from "@ant-design/icons"
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import { Link } from "react-router-dom";
 
 
 const ViewCenter = () => {
@@ -174,7 +175,7 @@ const ViewCenter = () => {
              
             }}
           >
-             <span style={{fontSize: '15px', fontWeight: 'bolder'}}> <PlusOutlined />Add Center </span>
+             <Link to="/admincentersginup" underline="none"><span style={{fontSize: '15px', fontWeight: 'bolder'}}> <PlusOutlined />Add Center </span></Link>
           </Button>
         </Col>
         <Col span={12} className="center-searchbar">

@@ -32,6 +32,9 @@ import VaccinationDashboard from "./VaccinationCenter/VaccinationDashboard/Vacci
 import VaccinationDonation from "./VaccinationCenter/VaccinationDonation/VaccinationDonation";
 import VaccinationAppointments from "./VaccinationCenter/VaccinationAppointments/VaccinationAppointments";
 import VaccinationUpdate from "./VaccinationCenter/VaccinationUpdate/VaccinationUpdate";
+import VaccinationSchool from "./VaccinationCenter/VaccinationSchool/VaccinationSchool";
+import VaccinationVaccines from "./VaccinationCenter/VaccinationVaccines/VaccinationVaccines";
+import ParentNotification from "./Parent/ParentNotification/ParentNotification";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
@@ -73,6 +76,9 @@ function App() {
           <Route path="/vaccinationappointments" element={<VaccinationAppointments />}/>
           <Route path="/vaccinationupdate" element={<VaccinationUpdate />} />
           <Route path="/admincentersginup" element={<AdminCenterSignup/>} />
+          <Route path="/vaccinationschool" element={<VaccinationSchool/>} />
+          <Route path="/vaccinationvaccines" element ={<VaccinationVaccines/>} />
+          <Route path="/parentnotification" element ={<ParentNotification/>} />
         </Routes>
       </BrowserRouter>
       <Footer />

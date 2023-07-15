@@ -470,7 +470,7 @@ const Dashbaord = () => {
         <Col span={12} style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', border: '2px solid grey' }}>
           <Row>
             <Col span={24}>
-              <h1 style={{ textAlign: "center" }}>Iassued Vaccines</h1>
+              <h1 style={{ textAlign: "center" }}>Issued Vaccines</h1>
             </Col>
           </Row>
           <Row>

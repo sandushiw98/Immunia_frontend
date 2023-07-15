@@ -52,7 +52,7 @@
   
   .alert-prompt-wrap {
     margin-left: 0.75rem;
-    color: rgb(202 138 4);
+    color: rgb(191, 150, 61);
     font-size: 20px;
   }
   
@@ -122,6 +122,7 @@
  .return{
   color: rgb(74, 178, 98);
   font-size: 17px;
+  width: 400px;
  }
 
  .vaccine_details{

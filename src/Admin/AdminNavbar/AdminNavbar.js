@@ -99,7 +99,7 @@ const AdminNavbar = () => {
                         }}
                         placement="bottomRight"
                     >
-                        <Avatar size={48} icon={<UserOutlined />} />
+                        <Avatar size={48} icon={<UserOutlined />} className='center-avatar'/>
                     </Dropdown>
                 </Col>
             </Row>

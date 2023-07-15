@@ -119,16 +119,24 @@ const columnschild = [
     title: <span class="vaccine_details">Vaccine</span>,
     dataIndex: "vaccine",
     key: "vaccine",
+    width: 600,
   },
   {
     title: <span class="vaccine_details">Dosage</span>,
     dataIndex: "Dosage",
     key: "Dosage",
+    width: 600,
   },
   {
     title: <span class="vaccine_details">Return Date</span>,
     dataIndex: "Return_Date",
     key: "Return_Date",
+    width: 400,
+  },
+  {
+    title: <span class="vaccine_details"></span>,
+    dataIndex: "appointment",
+    key: "appointment",
   },
 ];
 const datachild = [
@@ -137,6 +145,9 @@ const datachild = [
     vaccine: <span class="return">Sarampa</span>,
     Dosage: <span class="return">2nd Dose</span>,
     Return_Date: <span class="return">02/08/2022</span>,
+    appointment : <Link to = "/parentsearch" ><Button style={{background: 'red', color: 'white'}}>Make Appointment</Button></Link>
+   
+
   },
 ];
 

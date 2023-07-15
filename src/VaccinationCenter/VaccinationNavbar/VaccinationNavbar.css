@@ -9,13 +9,23 @@
     display: flex;
     justify-content: right;
     align-items: center;
+    
 }
 
 .nav-section-img{
     display: flex;
     justify-content: left;
     align-items: center;
+  
 }
+
+.center-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 .nav-section Button{
     border: none;
@@ -24,6 +34,13 @@
     color: #28465c;
     box-shadow: none;
 }
+
+.centered-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .main-row{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -213,6 +230,9 @@
     transform: scale(0.9);
   }
   
-  
-  
+  /* .center-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
   

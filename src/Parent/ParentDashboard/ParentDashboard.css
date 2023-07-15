@@ -54,3 +54,9 @@
     z-index: 1;
     /* Add a higher z-index to keep the title above the scrolling content */
 }
+
+.custom-cancel-button {
+    background-color: red;
+    border-color: red;
+    color: white;
+  }

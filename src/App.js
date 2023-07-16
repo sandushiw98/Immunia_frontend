@@ -35,6 +35,7 @@ import VaccinationUpdate from "./VaccinationCenter/VaccinationUpdate/Vaccination
 import VaccinationSchool from "./VaccinationCenter/VaccinationSchool/VaccinationSchool";
 import VaccinationVaccines from "./VaccinationCenter/VaccinationVaccines/VaccinationVaccines";
 import ParentNotification from "./Parent/ParentNotification/ParentNotification";
+import DownloadPDFButton from "./components/DownloadPDFButton/DownloadPDFButton";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
           <Route path="/vaccinationschool" element={<VaccinationSchool/>} />
           <Route path="/vaccinationvaccines" element ={<VaccinationVaccines/>} />
           <Route path="/parentnotification" element ={<ParentNotification/>} />
+          <Route path="/downloadpdfbutton" element ={<DownloadPDFButton/>} />
         </Routes>
       </BrowserRouter>
       <Footer />

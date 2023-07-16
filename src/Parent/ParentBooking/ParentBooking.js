@@ -59,7 +59,7 @@ const ParentBooking = () => {
               alignContent: "center",
             }}
           >
-            <p style={{ fontSize: "20px" }}>
+            <p style={{ fontSize: "20px" ,paddingBottom: '20px'}}>
               Hi lakshmi ! Let's make an appointment with Lady Ridgway Hospital,
               Colombo 8{" "}
             </p>

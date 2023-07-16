@@ -357,7 +357,7 @@ const VaccinationAppointments = () => {
   return (
     <>
       <VaccinationNavbar />
-      <Row style={{ padding: "90px 0px 30px 1600px" }}>
+      <Row style={{ padding: "110px 0px 30px 1600px" }}>
         <Search
           placeholder="input search text"
           onSearch={onSearch}
@@ -365,7 +365,7 @@ const VaccinationAppointments = () => {
           style={{ width: "250px" }}
         />
       </Row>
-      <Row
+      {/* <Row
         style={{
           display: "flex",
           justifyContent: "center",
@@ -393,7 +393,7 @@ const VaccinationAppointments = () => {
             y: 200,
           }}
         />
-      </Row>
+      </Row> */}
       <Row style={{
           display: "flex",
           justifyContent: "center",

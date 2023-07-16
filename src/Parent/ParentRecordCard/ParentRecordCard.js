@@ -33,6 +33,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import DownloadPDFButton from "../../components/DownloadPDFButton/DownloadPDFButton";
 
 const { Meta } = Card;
 
@@ -364,6 +365,7 @@ const ParentRecordCard = () => {
         <Button type="primary" icon={<DownloadOutlined />} size={size}>
           Download
         </Button>
+        {/* <DownloadPDFButton/> */}
       </Row>
     <Row style={{display: 'flex', alignContent: 'center', justifyContent: 'center',color: '#4281f5'}}>
       <h1>Your babies weight according to their first three year</h1>

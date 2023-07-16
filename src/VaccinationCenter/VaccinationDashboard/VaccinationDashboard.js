@@ -549,7 +549,7 @@ const VaccinationDashboard = () => {
           <div style={style}>col-6</div>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col
           span={24}
           style={{ padding: "50px 40px 30px 40px", width: "100%" }}
@@ -575,8 +575,8 @@ const VaccinationDashboard = () => {
             </div>
           </Card>
         </Col>
-      </Row>
-      <Row style={{ padding: "20px 40px 30px 40px" }}>
+      </Row> */}
+      <Row style={{ padding: "20px 40px 30px 70px" }}>
         <h1>Donation Details</h1>
       </Row>
       <Row style={{ paddingBottom: "30px" }}>

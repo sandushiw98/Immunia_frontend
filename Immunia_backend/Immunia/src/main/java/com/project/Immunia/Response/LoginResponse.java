@@ -1,15 +1,33 @@
 package com.project.Immunia.Response;
 
 public class LoginResponse {
-    String message;
-    Boolean status;
+    private String message;
+    private boolean status;
+    private String userRole;
 
-    public LoginResponse(String message, Boolean status) {
+    public LoginResponse(String message, Boolean status, String userRole) {
         this.message = message;
         this.status = status;
+        this.userRole = userRole;
     }
 
     public LoginResponse() {
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public String getMessage() {

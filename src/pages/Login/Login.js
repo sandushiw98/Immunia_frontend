@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Button from "@mui/material/Button";
@@ -16,64 +16,69 @@ import { Row, Col } from "antd";
 import login1 from "../../assets/images/login.jpg";
 import { IconButton } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Immunia
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     >
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://mui.com/">
+//         Immunia
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const defaultTheme = createTheme();
 
 export default function Login() {
+
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-    const login = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:8080/api/v1/user", {
-                email: email,
-                password: password,
-            });
-
-            const data = response.data;
-            if (data.message === "Email not exists") {
-                alert("Email does not exist");
-            } else if (data.message === "Login Success") {
-                navigate('/');
-            } else {
-                alert("Incorrect email or password");
-            }
-        } catch (error) {
-            console.error(error);
-            alert("An error occurred during login");
-        }
+  const handleLogin2 = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    let userData = {
+      email: data.get("email"),
+      password: data.get("password"),
     };
 
-     
+    console.log(userData);
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/user/login',  userData );
+      const loginResponse = response.data;
+
+      if (loginResponse.status) {
+        // Login success
+        if (loginResponse.userRole === 'parent') {
+          navigate('/parentdashboard'); // Navigate to parent dashboard
+        } else if (loginResponse.userRole === 'vaccination center') {
+          navigate('/vaccinationdashboard'); // Navigate to vaccination center dashboard
+        } else {
+          // Handle other user roles or default case
+        }
+      } else {
+        // Login failed, display error message or handle accordingly
+      }
+    } catch (error) {
+      // Handle error
+    }
+  }
 
   return (
     <>
@@ -123,7 +128,7 @@ export default function Login() {
                 <Typography component="h1" variant="h5">
                   <h2>Login</h2>
                 </Typography>
-                <Box component="form" noValidate sx={{ mt: 1 }}>
+                <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleLogin2}>
                   <TextField
                     margin="normal"
                     required
@@ -164,7 +169,7 @@ export default function Login() {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    onClick={login}
+                    // onClick={() => handleLogin(email, password)}
                   >
                     Login
                   </Button>
@@ -190,7 +195,7 @@ export default function Login() {
                   </Grid>
                 </Box>
               </Box>
-              <Copyright sx={{ mt: 8, mb: 4 }} />
+              {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
             </Container>
           </ThemeProvider>
         </Col>

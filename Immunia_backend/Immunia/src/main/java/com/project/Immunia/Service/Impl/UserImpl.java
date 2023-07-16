@@ -1,6 +1,4 @@
 package com.project.Immunia.Service.Impl;
-import com.project.Immunia.Dto.LoginDTO;
-import com.project.Immunia.Dto.UserDTO;
 import com.project.Immunia.Entity.UserEntity;
 import com.project.Immunia.Repository.UserRepository;
 import com.project.Immunia.Response.LoginResponse;
@@ -24,49 +22,49 @@ public class UserImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//    @Override
+//    public String addUser(UserEntity userEntity) {
+//        String userRole = determineUserRole(); // Determine user role based on the request endpoint
+//
+//        userEntity.setUsername(userEntity.getUsername());
+//        userEntity.setEmail(userEntity.getEmail());
+//        userEntity.setPhoneNumber(userEntity.getPhoneNumber());
+//        userEntity.setUserRole(userRole);
+//        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+//
+//        userRepository.save(userEntity);
+//
+//        return userEntity.getUsername();
+//    }
+
     @Override
-    public String addUser(UserDTO userDTO) {
-        String userRole = determineUserRole(); // Determine user role based on the request endpoint
-
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(userDTO.getUsername());
-        userEntity.setEmail(userDTO.getEmail());
-        userEntity.setPhoneNumber(userDTO.getPhoneNumber());
-        userEntity.setUserRole(userRole);
-        userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-
-        userRepository.save(userEntity);
-
-        return userEntity.getUsername();
-    }
-
-    @Override
-    public LoginResponse loginUser(LoginDTO loginDTO) {
+    public LoginResponse loginUser(UserEntity userEntity) {
         String msg = "";
-        UserEntity user1 = userRepository.findByEmail(loginDTO.getEmail());
+        UserEntity user1 = userRepository.findByEmail(userEntity.getEmail());
         if(user1 != null) {
-            String password = loginDTO.getPassword();
+            String password = userEntity.getPassword();
             String encodedPassword = user1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
 
             if (isPwdRight){
-                Optional<UserEntity> user = userRepository.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+                Optional<UserEntity> user = userRepository.findOneByEmailAndPassword(userEntity.getEmail(), encodedPassword);
                 if(user.isPresent()){
-                    String token =jwtTokenUtil.generateToken(loginDTO.getEmail());
-//                    return new LoginResponse("Login Success", true);
+//                    String token =jwtTokenUtil.generateToken(loginDTO.getEmail());
+                    String userRole = user.get().getUserRole();
+                    return new LoginResponse("Login Success", true, userRole);
                     
-                    return new LoginResponse(token, true);
+//                    return new LoginResponse(token, true);
                 }
                 else{
-                    return new LoginResponse("Login failed", false);
+                    return new LoginResponse("Login failed", false, null);
                 }
             }
             else{
-                return new LoginResponse("Invalid Credentials", false);
+                return new LoginResponse("Invalid Credentials", false, null);
             }
         }
         else{
-            return new LoginResponse("Invalid Credentials", false);
+            return new LoginResponse("Invalid Credentials", false, null);
         }
     }
 

@@ -3,9 +3,9 @@ package com.project.Immunia.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public abstract class UserEntity {
+public class UserEntity {
     @Id
     @Column(name = "userId", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)

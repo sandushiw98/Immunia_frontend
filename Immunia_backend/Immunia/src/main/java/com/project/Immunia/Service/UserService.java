@@ -4,6 +4,6 @@ import com.project.Immunia.Entity.UserEntity;
 import com.project.Immunia.Response.LoginResponse;
 
 public interface UserService {
-//    String addUser(UserEntity userEntity);
+    String addUser(UserEntity userEntity);
     LoginResponse loginUser(UserEntity userEntity);
 }

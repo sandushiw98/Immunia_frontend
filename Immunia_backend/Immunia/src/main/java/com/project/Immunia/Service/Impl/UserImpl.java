@@ -22,20 +22,19 @@ public class UserImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @Override
-//    public String addUser(UserEntity userEntity) {
-//        String userRole = determineUserRole(); // Determine user role based on the request endpoint
-//
-//        userEntity.setUsername(userEntity.getUsername());
-//        userEntity.setEmail(userEntity.getEmail());
-//        userEntity.setPhoneNumber(userEntity.getPhoneNumber());
-//        userEntity.setUserRole(userRole);
-//        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-//
-//        userRepository.save(userEntity);
-//
-//        return userEntity.getUsername();
-//    }
+    @Override
+    public String addUser(UserEntity userEntity) {
+        String userRole = determineUserRole(); // Determine user role based on the request endpoint
+
+        userEntity.setEmail(userEntity.getEmail());
+        userEntity.setPhoneNumber(userEntity.getPhoneNumber());
+        userEntity.setUserRole(userRole);
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+
+        userRepository.save(userEntity);
+
+        return userEntity.getEmail();
+    }
 
     @Override
     public LoginResponse loginUser(UserEntity userEntity) {

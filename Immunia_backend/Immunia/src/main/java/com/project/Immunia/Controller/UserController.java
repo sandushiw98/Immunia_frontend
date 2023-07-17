@@ -15,20 +15,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @PostMapping("/parent")
-//    public ResponseEntity<String> saveParentUser(@RequestBody UserEntity userEntity) {
-//        userEntity.setUserRole("parent"); // Set user role as "parent"
-//        String id = userService.addUser(userEntity);
-//        return ResponseEntity.ok(id);
-//    }
-//
-//    @PostMapping("/vaccination-center")
-//    public ResponseEntity<String> saveVaccinationCenterUser(@RequestBody UserEntity userEntity) {
-//        userEntity.setUserRole("vaccination center"); // Set user role as "vaccination center"
-////        System.out.println(userDTO);
-//        String id = userService.addUser(userEntity);
-//        return ResponseEntity.ok(id);
-//    }
+    @PostMapping("/parent")
+    public ResponseEntity<String> saveParentUser(@RequestBody UserEntity userEntity) {
+        userEntity.setUserRole("parent"); // Set user role as "parent"
+        String id = userService.addUser(userEntity);
+        return ResponseEntity.ok(id);
+    }
+
+    @PostMapping("/vaccination-center")
+    public ResponseEntity<String> saveVaccinationCenterUser(@RequestBody UserEntity userEntity) {
+        userEntity.setUserRole("vaccination center"); // Set user role as "vaccination center"
+//        System.out.println(userDTO);
+        String id = userService.addUser(userEntity);
+        return ResponseEntity.ok(id);
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> LoginUser(@RequestBody UserEntity userEntity){

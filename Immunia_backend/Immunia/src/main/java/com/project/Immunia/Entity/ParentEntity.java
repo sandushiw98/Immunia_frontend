@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "parent")
-public class ParentEntity extends UserEntity {
+public class ParentEntity {
     @Id
     @Column(name = "parentId", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)

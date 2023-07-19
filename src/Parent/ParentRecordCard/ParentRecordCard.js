@@ -42,7 +42,7 @@ const columns = [
   {
     title: "Vaccine Type",
     dataIndex: "vaccine",
-  
+
   },
   {
     title: "Dosage",
@@ -146,8 +146,8 @@ const datachild = [
     vaccine: <span class="return">Sarampa</span>,
     Dosage: <span class="return">2nd Dose</span>,
     Return_Date: <span class="return">02/08/2022</span>,
-    appointment : <Link to = "/parentsearch" ><Button style={{background: 'red', color: 'white'}}>Make Appointment</Button></Link>
-   
+    appointment: <Link to="/parentsearch" ><Button style={{ background: 'red', color: 'white' }}>Make Appointment</Button></Link>
+
 
   },
 ];
@@ -176,69 +176,69 @@ const ParentRecordCard = () => {
     },
     {
       name: "April",
-     
+
       One_Year: 789,
       Two_Year: 400,
       Three_Year: 754,
     },
     {
       name: "May",
-    
+
       One_Year: 890,
       Two_Year: 321,
       Three_Year: 678,
     },
     {
       name: "June",
-    
+
       One_Year: 400,
       Two_Year: 700,
       Three_Year: 900,
     },
     {
       name: "July",
-     
+
       One_Year: 690,
       Two_Year: 678,
       Three_Year: 890,
     },
     {
       name: "August",
-     
+
       One_Year: 435,
       Two_Year: 678,
       Three_Year: 456,
     },
     {
       name: "September",
-    
+
       One_Year: 890,
       Two_Year: 345,
       Three_Year: 567,
     },
     {
       name: "October",
-      
+
       One_Year: 800,
       Two_Year: 899,
       Three_Year: 900,
     },
     {
       name: "November",
-  
+
       One_Year: 1000,
       Two_Year: 289,
       Three_Year: 678,
     },
     {
       name: "December",
-     
+
       One_Year: 800,
-      Two_Year:450,
+      Two_Year: 450,
       Three_Year: 800,
     },
   ];
-  
+
 
   return (
     <div className="cover">
@@ -323,7 +323,7 @@ const ParentRecordCard = () => {
           justifyContent: "center",
         }}
       >
-        <h1 style={{color: '#4281f5'}}>Child Vaccination Record Card</h1>
+        <h1 style={{ color: '#4281f5' }}>Child Vaccination Record Card</h1>
       </Row>
 
       <Row>
@@ -332,7 +332,7 @@ const ParentRecordCard = () => {
           dataSource={data}
           style={{ width: 2000, padding: "30px" }}
           pagination={false}
-         
+
         />
       </Row>
       <Row>
@@ -367,12 +367,12 @@ const ParentRecordCard = () => {
         </Button>
         {/* <DownloadPDFButton/> */}
       </Row>
-    <Row style={{display: 'flex', alignContent: 'center', justifyContent: 'center',color: '#4281f5'}}>
-      <h1>Your babies weight according to their first three year</h1>
-    </Row>
+      <Row style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', color: '#4281f5' }}>
+        <h1>Your babies weight according to their first three year</h1>
+      </Row>
       <Row style={{ paddingTop: "50px" }}>
-        <Col span={24} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        
+        <Col span={24} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
           <LineChart
             width={1800}
             height={500}
@@ -384,11 +384,11 @@ const ParentRecordCard = () => {
               bottom: 5,
             }}
 
-           
+
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" label={{ value: 'Month', position: 'insideBottom' }} />
-          <YAxis label={{ value: 'Year', angle: -90, position: 'insideLeft' }} />
+            <YAxis label={{ value: 'Year', angle: -90, position: 'insideLeft' }} />
             <Tooltip />
             <Legend />
             <Line
@@ -400,7 +400,7 @@ const ParentRecordCard = () => {
             <Line type="monotone" dataKey="Two_Year" stroke="#82ca9d" />
             <Line type="monotone" dataKey="Three_Year" stroke="#f5aa42" />
           </LineChart>
-        
+
         </Col>
       </Row>
 
@@ -451,7 +451,7 @@ const ParentRecordCard = () => {
         </Col>
       </Row>
 
-      
+
     </div>
   );
 };

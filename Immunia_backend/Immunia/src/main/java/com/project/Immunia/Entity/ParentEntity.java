@@ -24,8 +24,6 @@ public class ParentEntity {
     @Column(name = "emergencyNumber", length = 255)
     private String emergencyNumber;
 
-//    @OneToMany(mappedBy = "parentEntity")
-//    private List<ChildEntity> children;
     @Column(name = "imageUrl", length = 255)
     private String imageUrl;
 

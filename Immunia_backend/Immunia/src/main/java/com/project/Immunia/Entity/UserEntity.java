@@ -3,7 +3,6 @@ package com.project.Immunia.Entity;
 import jakarta.persistence.*;
 
 @Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public class UserEntity {
     @Id

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./ParentRecordCard.css";
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import { Link } from "react-router-dom";
 import { DownloadOutlined } from "@ant-design/icons";
 import image1 from "../../assets/images/reminder.jpg";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import DownloadPDFButton from "../../components/DownloadPDFButton/DownloadPDFButton";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import { useState } from "react";
 
@@ -33,16 +36,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import DownloadPDFButton from "../../components/DownloadPDFButton/DownloadPDFButton";
 
 const { Meta } = Card;
-
 
 const columns = [
   {
     title: "Vaccine Type",
     dataIndex: "vaccine",
-
   },
   {
     title: "Dosage",
@@ -146,13 +146,19 @@ const datachild = [
     vaccine: <span class="return">Sarampa</span>,
     Dosage: <span class="return">2nd Dose</span>,
     Return_Date: <span class="return">02/08/2022</span>,
-    appointment: <Link to="/parentsearch" ><Button style={{ background: 'red', color: 'white' }}>Make Appointment</Button></Link>
-
-
+    appointment: (
+      <Link to="/parentsearch">
+        <Button style={{ background: "red", color: "white" }}>
+          Make Appointment
+        </Button>
+      </Link>
+    ),
   },
 ];
 
 const ParentRecordCard = () => {
+  const cardRef = useRef(null); // Create a ref to the card element
+
   const [size, setSize] = useState("large");
 
   const dataweight = [
@@ -239,9 +245,9 @@ const ParentRecordCard = () => {
     },
   ];
 
-
   return (
     <div className="cover">
+      <div ref={cardRef}>
       <Row>
         <ParentNavbar />
       </Row>
@@ -254,6 +260,9 @@ const ParentRecordCard = () => {
           alignItems: "right",
         }}
       >
+        {/* <DownloadPDFButton/> */}
+     
+          
         <Link to="../../ParentChildAccount" underline="none">
           <Button type="primary"> Create New + </Button>{" "}
         </Link>
@@ -323,7 +332,7 @@ const ParentRecordCard = () => {
           justifyContent: "center",
         }}
       >
-        <h1 style={{ color: '#4281f5' }}>Child Vaccination Record Card</h1>
+        <h1 style={{ color: "#4281f5" }}>Child Vaccination Record Card</h1>
       </Row>
 
       <Row>
@@ -332,7 +341,6 @@ const ParentRecordCard = () => {
           dataSource={data}
           style={{ width: 2000, padding: "30px" }}
           pagination={false}
-
         />
       </Row>
       <Row>
@@ -362,17 +370,27 @@ const ParentRecordCard = () => {
           paddingBottom: "30px",
         }}
       >
-        <Button type="primary" icon={<DownloadOutlined />} size={size}>
-          Download
-        </Button>
-        {/* <DownloadPDFButton/> */}
+        <Button type="primary" icon={<DownloadOutlined />} size={size}><DownloadPDFButton cardRef={cardRef} /></Button>
       </Row>
-      <Row style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', color: '#4281f5' }}>
+      <Row
+        style={{
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "center",
+          color: "#4281f5",
+        }}
+      >
         <h1>Your babies weight according to their first three year</h1>
       </Row>
       <Row style={{ paddingTop: "50px" }}>
-        <Col span={24} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
+        <Col
+          span={24}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <LineChart
             width={1800}
             height={500}
@@ -383,12 +401,15 @@ const ParentRecordCard = () => {
               left: 20,
               bottom: 5,
             }}
-
-
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" label={{ value: 'Month', position: 'insideBottom' }} />
-            <YAxis label={{ value: 'Year', angle: -90, position: 'insideLeft' }} />
+            <XAxis
+              dataKey="name"
+              label={{ value: "Month", position: "insideBottom" }}
+            />
+            <YAxis
+              label={{ value: "Year", angle: -90, position: "insideLeft" }}
+            />
             <Tooltip />
             <Legend />
             <Line
@@ -400,7 +421,6 @@ const ParentRecordCard = () => {
             <Line type="monotone" dataKey="Two_Year" stroke="#82ca9d" />
             <Line type="monotone" dataKey="Three_Year" stroke="#f5aa42" />
           </LineChart>
-
         </Col>
       </Row>
 
@@ -450,8 +470,7 @@ const ParentRecordCard = () => {
           </div>
         </Col>
       </Row>
-
-
+      </div>
     </div>
   );
 };

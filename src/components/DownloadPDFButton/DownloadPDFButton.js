@@ -1,109 +1,70 @@
 // import React from "react";
-// import { saveAs } from 'file-saver';
-// import pdfMake from 'pdfmake/build/pdfmake';
-// import pdfFonts from 'pdfmake/build/vfs_fonts';
-// import { Button } from "@mui/material";
-// import DownloadIcon from '@mui/icons-material/Download';
-// import { color } from "@mui/system";
-// import { imageUrl } from "./PDFContent/Image";
+// import { Button } from "antd";
+// import { DownloadOutlined } from "@ant-design/icons";
+// import jsPDF from "jspdf";
+// import "jspdf-autotable"; // Import the jspdf-autotable plugin
+// import * as html2pdf from "html2pdf.js";
 
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// const DownloadPDFButton = () => {
+//   const handleDownload = () => {
+//     const element = document.querySelector(".cover");
 
-// const generatePDF = (values) => {
-//   const docDefinition = {
-//     pageMargins: [30, 0, 30, 20],
-//     content: [
-      
-//       {
-//         image: imageUrl,
-//         width: 650,
-//         alignment: 'center',
-//         margin: [0, 0, 0, 20],
+//     const pdfOptions = {
+//       filename: "view.pdf",
+//       jsPDF: {
+//         unit: "px",
+//         format: "a2",
+//         orientation: "portrait",
+//         compress: true,
 //       },
-//       { text: 'Personal Details', style: 'header' },
-//       {
-//         style: 'table',
-//         table: {
-//           widths: ['', ''],
-//           body: [
-//             ['Title', values.salutation],
-//             ['NIC', values.nic2],
-//             ['Name', values.fullname],
-//             ['Gender', values.gender] ,
-//             ['Date of Birth', values.dob],
-//             ['Civil Status', values.civilstatus] ,
-//             ['Sri Lanka Citizenship',values.citizenship ],
-//           ].filter(Boolean),
-//         },
-//       },
-//       { text: 'Contact Information', style: 'header' },
-//       {
-//         style: 'table',
-//         table: {
-//           widths: ['', ''],
-//           body: [
-//             ['Mobile Number', values.contactnumber],
-//             values.contactnumber2 ? ['Resident Number', values.contactnumber2] : null,
-//             ['Email', values.email],
-//           ].filter(Boolean),
-//         },
-//       },
-//       { text: 'Address', style: 'header' },
-//       {
-//         style: 'table',
-//         table: {
-//           widths: ['*'],
-//           body: [
-//             [values.addressline1],
-//             [values.addressline2],
-//             values.addressline3 ? [values.addressline3]: null,
-//             values.province && values.districtsecretariat ? [`${values.province}, ${values.districtsecretariat}`] : null,
-//             [values.gramaniladaridivision],
-//           ].filter(Boolean),
-//         },
-//       },
-//       { text: 'Education Qualifications', style: 'header' },
- 
+//     };
+    
    
-
-
-//     ],
-//     styles: {
-//       header: {
-//         fontSize: 18,
-//         bold: true,
-     
-//       },
-//       table: {
-//         margin: [0, 0, 0, 20],
-//       },
-     
-//     },
-//     defaultStyle: {
-//       font: 'Roboto',
-
-//     },
-//   };
-
-//   const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-//   pdfDocGenerator.getBuffer((buffer) => {
-//     const blob = new Blob([buffer], { type: 'application/pdf' });
-//     saveAs(blob, 'form.pdf');
-//   });
-// };
-
-// const DownloadPDFButton = ({ values }) => {
-//   const handleClick = () => {
-//     generatePDF(values);
+//     html2pdf().set( pdfOptions ).from(element).save();
 //   };
 
 //   return (
-//     <div style={{ marginTop: "10px" }}>
-//       <Button variant="contained" startIcon={<DownloadIcon />} color="success" onClick={handleClick}>
-//         Download PDF
-//       </Button>
-//     </div>
+//     <Button type="primary" icon={<DownloadOutlined />} onClick={handleDownload}>
+//       Download PDF
+//     </Button>
 //   );
 // };
 
 // export default DownloadPDFButton;
+
+import React from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
+const DownloadPDFButton = ({ cardRef }) => {
+  const handleDownloadPDF = async () => {
+    const cardElement = cardRef.current;
+    const cardHeight = cardElement.clientHeight;
+
+    // Calculate the number of pages required based on A3 page height (420mm)
+    const a3PageHeight = 1190; // Set a fixed A3 page height in pixels
+    const totalPages = Math.ceil(cardHeight / a3PageHeight);
+
+    const pdf = new jsPDF("p", "px", "a3"); // Set the page size to A3
+
+    // Loop through each page and capture the content as an image
+    for (let i = 0; i < totalPages; i++) {
+      const yOffset = -a3PageHeight * i; // Adjust the yOffset for each page
+      const canvas = await html2canvas(cardElement, {
+        y: yOffset,
+        scale: 1,
+      });
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      if (i > 0) {
+        pdf.addPage();
+      }
+      pdf.addImage(imgData, "JPEG", 0, 0, pdf.internal.pageSize.getWidth(), a3PageHeight);
+    }
+
+    pdf.save("child_record_card.pdf");
+  };
+
+  return <button onClick={handleDownloadPDF}>Download PDF</button>;
+};
+
+export default DownloadPDFButton;

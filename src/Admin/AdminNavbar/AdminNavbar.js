@@ -67,9 +67,11 @@ const AdminNavbar = () => {
                 </Link>
             </Col>
             <Col span={2} className='nav-section'>
-                <Button>
-                    NOTIFICATIONS
-                </Button>
+                <Link to='../../Reviews'>
+                    <Button>
+                        REVIEWS
+                    </Button>
+                </Link>
             </Col>
             <Col span={2} className='nav-section'>
                 <Link to='../../Appointments'>
@@ -78,14 +80,8 @@ const AdminNavbar = () => {
                     </Button>
                 </Link>
             </Col>
-            <Col span={2} className='nav-section'>
-                <Link to='../../Reviews'>
-                    <Button>
-                        REVIEWS
-                    </Button>
-                </Link>
-            </Col>
-            <Col span={5} className='nav-section-name'>
+            
+            <Col span={7} className='nav-section-name'>
                 <Link to='/adminprofile'>
                     <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
                 </Link>

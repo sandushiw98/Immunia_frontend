@@ -30,9 +30,9 @@ public class ChildEntity {
     private String vaccination_card_number;
     @Column(name = "gender", length = 255)
     private String gender;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentId")
-    private ParentEntity parentEntity;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "parentId")
+//    private ParentEntity parentEntity;
 
     @ElementCollection
     @Column(name = "comment", length = 255)
@@ -41,7 +41,7 @@ public class ChildEntity {
     @Column(name = "birth_certificate", length = 255)
     private String birth_certificate;
 
-    public ChildEntity(Long childId, String firstName, String lastName, String imageUrl, Date dateOfBirth, String vaccination_card_number, String gender, ParentEntity parentEntity, List<String> comment, String birth_certificate) {
+    public ChildEntity(Long childId, String firstName, String lastName, String imageUrl, Date dateOfBirth, String vaccination_card_number, String gender, List<String> comment, String birth_certificate) {
         this.childId = childId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +49,6 @@ public class ChildEntity {
         this.dateOfBirth = dateOfBirth;
         this.vaccination_card_number = vaccination_card_number;
         this.gender = gender;
-        this.parentEntity = parentEntity;
         this.comment = comment;
         this.birth_certificate = birth_certificate;
     }
@@ -113,13 +112,8 @@ public class ChildEntity {
         this.gender = gender;
     }
 
-    public ParentEntity getParentEntity() {
-        return parentEntity;
-    }
 
-    public void setParentEntity(ParentEntity parentEntity) {
-        this.parentEntity = parentEntity;
-    }
+
 
     public List<String> getComment() {
         return comment;
@@ -147,7 +141,6 @@ public class ChildEntity {
                 ", dateOfBirth=" + dateOfBirth +
                 ", vaccination_card_number='" + vaccination_card_number + '\'' +
                 ", gender='" + gender + '\'' +
-                ", parentEntity=" + parentEntity +
                 ", comment=" + comment +
                 ", birth_certificate='" + birth_certificate + '\'' +
                 '}';

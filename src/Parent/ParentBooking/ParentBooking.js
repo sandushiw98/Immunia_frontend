@@ -309,6 +309,8 @@ import {
 } from "antd";
 import { red } from "@material-ui/core/colors";
 
+
+
 const gridStyle = {
   width: "25%",
   textAlign: "center",
@@ -318,18 +320,28 @@ const ParentBooking = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+
+  
+
+ 
 
   const showModal = (timeSlot) => {
     setIsModalOpen(true);
     setSelectedTimeSlot(timeSlot);
   };
+  
   const handleOk = () => {
     setIsModalOpen(false);
   };
+  
+
   const handleCancel = () => {
     setIsModalOpen(false);
+    setSelectedTimeSlot('');
   };
+  
 
   return (
     <>
@@ -421,13 +433,15 @@ const ParentBooking = () => {
               <Form.Item label="Time Slots">
                 <Row>
                   <Col style={{ paddingRight: "50px" }}>
+                  
                   <Input value={selectedTimeSlot} style={{ paddingRight: '80px' }} readOnly />
+                 
                   </Col>
                   <Col>
                     <Button type="primary" onClick={showModal}>
                       select time slots
                     </Button>
-                    {/* <Input/> */}
+                   
                     <Modal
                       title="Basic Modal"
                       visible={isModalOpen}

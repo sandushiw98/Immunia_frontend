@@ -4,6 +4,7 @@ import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
 import { AudioOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
+
 const { Search } = Input;
 const suffix = (
   <AudioOutlined
@@ -118,7 +119,7 @@ const columns = [
     dataIndex: "tags",
     render: (_, record) => (
       <Button type="primary" style={{ background: "green" }}>
-        + Add Vaccines
+        + Add 
       </Button>
     ),
   },
@@ -128,10 +129,22 @@ const columns = [
     dataIndex: "remove",
     render: (_, record) => (
       <Button type="primary" style={{ background: "red" }}>
-        - Remove Vaccines
+         -Remove 
       </Button>
     ),
   },
+  {
+    title: "Update",
+    key: "update",
+    dataIndex: "update",
+    render: (_, record) => (
+      <Button type="primary" style={{ background: "blue" }}>
+         Update Vaccines
+      </Button>
+    ),
+  },
+
+  
 ];
 const data = [
   {
@@ -159,7 +172,9 @@ const data = [
 const onSearch = (value) => console.log(value);
 
 const VaccinationVaccines = () => {
+
   const [open, setOpen] = useState(false);
+  
 
   return (
     <>
@@ -184,7 +199,7 @@ const VaccinationVaccines = () => {
           </Button>
 
           <Modal
-            title="Add New Vaccine Batch"
+            title={<span style={{ fontSize: "24px", paddingLeft: "10px" }}>Add New Vaccine Batch <br/><br/></span>}
             centered
             open={open}
             onOk={() => setOpen(false)}
@@ -193,17 +208,18 @@ const VaccinationVaccines = () => {
             okText="Add"
             cancelText="Cancel"
             cancelButtonProps={{ className: "custom-cancel-button" }}
+           
   
           >
-            <div style={{padding: '30px'}}>
+            
             <Input placeholder="Batch ID" style={{padding: '10px'}}/>; <br/><br/>
-            <Input placeholder="Vaccine Name" />;
-            <Input placeholder="Manufacturer" />;
-            <Input placeholder="Manufacturing Date" />;
-            <Input placeholder="Expiary Date" />;
-            <Input placeholder="Qunatity" />;
-            <Input placeholder="Details" />;
-            </div>
+            <Input placeholder="Vaccine Name" style={{padding: '10px'}}/>; <br/><br/>
+            <Input placeholder="Manufacturer"style={{padding: '10px'}}/>; <br/><br/> 
+            <Input placeholder="Manufacturing Date" style={{padding: '10px'}}/>; <br/><br/>
+            <Input placeholder="Expiary Date" style={{padding: '10px'}} />;<br/><br/>
+            <Input placeholder="Qunatity"  style={{padding: '10px'}}/>;<br/><br/>
+            <Input placeholder="Details" style={{padding: '10px'}}/>;<br/><br/>
+         
           </Modal>
         </Col>
       </Row>

@@ -1,11 +1,20 @@
 import React from "react";
 import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
 import "./VaccinationDashboard.css";
-import { Col, Row } from "antd";
-import { Avatar, Button, Card, Space, Table, Modal,TimePicker, Input } from "antd";
+import { Col, Row, Dropdown, Divider, Tag } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  Space,
+  Table,
+  Modal,
+  TimePicker,
+  Input,
+} from "antd";
 import { useState } from "react";
-import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
+import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -20,10 +29,49 @@ import {
   FileTextOutlined,
   SolutionOutlined,
   DollarOutlined,
-  CoffeeOutlined
+  CoffeeOutlined,
 } from "@ant-design/icons";
 import { PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+
+const items = [
+  {
+    key: "1",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.antgroup.com"
+      >
+        1st menu item
+      </a>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.aliyun.com"
+      >
+        2nd menu item
+      </a>
+    ),
+  },
+  {
+    key: "3",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.luohanacademy.com"
+      >
+        3rd menu item
+      </a>
+    ),
+  },
+];
 
 const data2 = [
   {
@@ -185,7 +233,6 @@ const columns = [
     filterMode: "tree",
     filterSearch: true,
     onFilter: (value, record) => record.name.includes(value),
-
   },
   {
     title: "Donor Name",
@@ -207,7 +254,6 @@ const columns = [
     ],
     onFilter: (value, record) => record.address.startsWith(value),
     filterSearch: true,
-    
   },
   {
     title: "Donor Contact Number",
@@ -224,7 +270,6 @@ const columns = [
     ],
     onFilter: (value, record) => record.address.startsWith(value),
     filterSearch: true,
-    
   },
   {
     title: "Donor Address",
@@ -241,7 +286,6 @@ const columns = [
     ],
     onFilter: (value, record) => record.address.startsWith(value),
     filterSearch: true,
-    
   },
 ];
 const data = [
@@ -251,7 +295,7 @@ const data = [
     donorname: "Navod Shehan",
     amount: "200,000",
     mobile: "0773294197",
-    address: "sulakshi, Temple Road, Colombo 8"
+    address: "sulakshi, Temple Road, Colombo 8",
   },
   {
     key: "2",
@@ -259,7 +303,7 @@ const data = [
     donorname: "Navod Shehan",
     amount: "200,000",
     mobile: "0773294197",
-    address: "sulakshi, Temple Road, Colombo 8"
+    address: "sulakshi, Temple Road, Colombo 8",
   },
   {
     key: "3",
@@ -267,7 +311,7 @@ const data = [
     donorname: "Navod Shehan",
     amount: "200,000",
     mobile: "0773294197",
-    address: "sulakshi, Temple Road, Colombo 8"
+    address: "sulakshi, Temple Road, Colombo 8",
   },
   {
     key: "4",
@@ -275,7 +319,7 @@ const data = [
     donorname: "Navod Shehan",
     amount: "200,000",
     mobile: "0773294197",
-    address: "sulakshi, Temple Road, Colombo 8"
+    address: "sulakshi, Temple Road, Colombo 8",
   },
 ];
 const onChange = (pagination, filters, sorter, extra) => {
@@ -283,6 +327,93 @@ const onChange = (pagination, filters, sorter, extra) => {
 };
 
 const VaccinationDashboard = () => {
+  const [inputs, setInputs] = useState([{ id: 1, value: "" }]);
+  const [inputs2, setInputs2] = useState([{ id: 1, value: "" }]);
+  const [inputs3, setInputs3] = useState([{ id: 1, value: "" }]);
+  const [inputs4, setInputs4] = useState([{ id: 1, value: "" }]);
+  const [inputs5, setInputs5] = useState([{ id: 1, value: "" }]);
+  const [inputs6, setInputs6] = useState([{ id: 1, value: "" }]);
+  const [inputs7, setInputs7] = useState([{ id: 1, value: "" }]);
+
+
+  const handleDeleteInput1 = (id) => {
+    const updatedInputs = inputs.filter((input) => input.id !== id);
+    setInputs(updatedInputs);
+  };
+  const handleAddInput1 = () => {
+    const newId = inputs.length > 0 ? inputs[inputs.length - 1].id + 1 : 1;
+    setInputs([...inputs, { id: newId, value: "" }]);
+  };
+  const handleDeleteInput2 = (id) => {
+    const updatedInputs = inputs2.filter((input) => input.id !== id);
+    setInputs2(updatedInputs);
+  };
+  const handleAddInput2 = () => {
+    const newId = inputs2.length > 0 ? inputs2[inputs2.length - 1].id + 1 : 1;
+    setInputs2([...inputs2, { id: newId, value: "" }]);
+  };
+
+  const handleDeleteInput3 = (id) => {
+    const updatedInputs = inputs3.filter((input) => input.id !== id);
+    setInputs3(updatedInputs);
+  };
+  const handleAddInput3 = () => {
+    const newId = inputs3.length > 0 ? inputs3[inputs3.length - 1].id + 1 : 1;
+    setInputs3([...inputs3, { id: newId, value: "" }]);
+  };
+
+  const handleDeleteInput4 = (id) => {
+    const updatedInputs = inputs4.filter((input) => input.id !== id);
+    setInputs4(updatedInputs);
+  };
+  const handleAddInput4= () => {
+    const newId = inputs4.length > 0 ? inputs4[inputs4.length - 1].id + 1 : 1;
+    setInputs4([...inputs4, { id: newId, value: "" }]);
+  };
+  const handleDeleteInput5 = (id) => {
+    const updatedInputs = inputs5.filter((input) => input.id !== id);
+    setInputs5(updatedInputs);
+  };
+  const handleAddInput5= () => {
+    const newId = inputs5.length > 0 ? inputs5[inputs5.length - 1].id + 1 : 1;
+    setInputs5([...inputs5, { id: newId, value: "" }]);
+  };
+  const handleDeleteInput6 = (id) => {
+    const updatedInputs = inputs6.filter((input) => input.id !== id);
+    setInputs6(updatedInputs);
+  };
+  const handleAddInput6= () => {
+    const newId = inputs6.length > 0 ? inputs6[inputs6.length - 1].id + 1 : 1;
+    setInputs6([...inputs6, { id: newId, value: "" }]);
+  };
+
+  const handleDeleteInput7 = (id) => {
+    const updatedInputs = inputs7.filter((input) => input.id !== id);
+    setInputs7(updatedInputs);
+  };
+  const handleAddInput7= () => {
+    const newId = inputs7.length > 0 ? inputs7[inputs7.length - 1].id + 1 : 1;
+    setInputs7([...inputs7, { id: newId, value: "" }]);
+  };
+
+
+
+
+
+
+  const handleChange = (id, value) => {
+    const updatedInputs = inputs.map((input) =>
+      input.id === id ? { ...input, value } : input
+    );
+    setInputs(updatedInputs);
+  };
+
+  const [numInputs, setNumInputs] = useState(1);
+
+  // const handleAddInput = () => {
+  //   setNumInputs((prevNum) => prevNum + 1);
+  // };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -420,51 +551,441 @@ const VaccinationDashboard = () => {
             Customize Schedule
           </Button>
           <Modal
-            title={<span style={{ fontSize: '24px', color: 'green' , textAlign:'center'}}>Customize Your Vaccinationa Center Schedule</span>}
+            title={
+              <span
+                style={{
+                  fontSize: "24px",
+                  color: "green",
+                  textAlign: "center",
+                }}
+              >
+                Customize Your Vaccinationa Center Schedule
+              </span>
+            }
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
             width={1000}
-            okText="Add" 
-            cancelText="Cancel" 
-            cancelButtonProps={{ className: 'custom-cancel-button' }}
+            okText="Add"
+            cancelText="Cancel"
+            cancelButtonProps={{ className: "custom-cancel-button" }}
           >
             <Row>
               <h2>Morning</h2>
             </Row>
             <Row>
-              <Col style = {{paddingRight: '60px'}}>
-              <TimePicker defaultValue={dayjs('12:08:23', 'HH:mm:ss')} size="large" placeholder="Starting time" />
+              <Col style={{ paddingRight: "60px" }}>
+                <TimePicker
+                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  size="large"
+                  placeholder="Starting time"
+                />
               </Col>
-              <Col style = {{paddingRight: '180px'}}>
-              <TimePicker defaultValue={dayjs('12:08:23', 'HH:mm:ss')} size="large" placeholder="Ending time"/>
+              <Col style={{ paddingRight: "180px" }}>
+                <TimePicker
+                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  size="large"
+                  placeholder="Ending time"
+                />
               </Col>
               <Col>
-              <Input  style={{width: '360px', height: '40px'}}  placeholder="Time gap that you wish to allocate for one child (Min)" />;
+                <Input
+                  style={{ width: "360px", height: "40px" }}
+                  placeholder="Time gap that you wish to allocate for one child (Min)"
+                />
+                ;
               </Col>
-              
             </Row>
-            <Row style={{display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-              <h2>Lunch Break</h2> <span style={{paddingLeft:'10px',fontSize: '24px'}}><CoffeeOutlined /></span>
+            <Row
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h2>Lunch Break</h2>{" "}
+              <span style={{ paddingLeft: "10px", fontSize: "24px" }}>
+                <CoffeeOutlined />
+              </span>
             </Row>
             <Row>
               <h2>Evening</h2>
             </Row>
-            <Row style={{paddingBottom:'20px'}}>
-              <Col style = {{paddingRight: '60px'}}>
-              <TimePicker defaultValue={dayjs('12:08:23', 'HH:mm:ss')} size="large" placeholder="Starting time" />
+            <Row style={{ paddingBottom: "20px" }}>
+              <Col style={{ paddingRight: "60px" }}>
+                <TimePicker
+                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  size="large"
+                  placeholder="Starting time"
+                />
               </Col>
-              <Col style = {{paddingRight: '180px'}}>
-              <TimePicker defaultValue={dayjs('12:08:23', 'HH:mm:ss')} size="large" placeholder="Ending time"/>
+              <Col style={{ paddingRight: "180px" }}>
+                <TimePicker
+                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  size="large"
+                  placeholder="Ending time"
+                />
               </Col>
               <Col>
-              <Input  style={{width: '360px', height: '40px'}}  placeholder="Time gap that you wish to allocate for one child (Min)" />;
+                <Input
+                  style={{ width: "360px", height: "40px" }}
+                  placeholder="Time gap that you wish to allocate for one child (Min)"
+                />
+                ;
               </Col>
-              
             </Row>
+
+            <Row>
+              <h3>Select Vaccination Date</h3>
+              <p>
+                You can schedule your vaccination days. Fill the vaccination
+                name accroding to your relevant vaccinations days.
+              </p>
+              <br />
+            </Row>
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="green"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Monday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput1(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput1}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="red"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Tuesday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs2.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput2(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput2}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row> 
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="magenta"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Wednesday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs3.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput3(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput3}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="purple"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Thursday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs4.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput4(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput4}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="blue"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Friday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs5.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput5(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput5}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="volcano"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Saturday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs6.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput6(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput6}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {" "}
+                <Space size={[0, 8]} wrap>
+                  <Tag
+                    color="gold"
+                    style={{
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      width: "120px",
+                    }}
+                  >
+                    Sunday
+                  </Tag>
+                </Space>
+              </Col>
+              <Col>
+                {inputs7.map((input) => (
+                  <div
+                    key={input.id}
+                    style={{ marginBottom: "8px", paddingRight: "10px" }}
+                  >
+                    <Input
+                      value={input.value}
+                      placeholder={`Vaccine ${input.id}`}
+                      style={{ width: "100px", marginRight: "8px" }}
+                      onChange={(e) => handleChange(input.id, e.target.value)}
+                    />
+                    <Button
+                      type="primary"
+                      danger
+                      onClick={() => handleDeleteInput7(input.id)}
+                      style={{ height: "35px" }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                ))}
+              </Col>
+              <Col>
+                <Button type="primary" onClick={handleAddInput7}>
+                  Add Input
+                </Button>
+              </Col>
+            </Row>
+       
+       
           </Modal>
         </div>
       </Row>
+      
       <Row>
         <h1 style={{ paddingLeft: "60px" }}>Schedule</h1>
       </Row>
@@ -589,7 +1110,9 @@ const VaccinationDashboard = () => {
         />
       </Row>
       <Row style={{ paddingBottom: "30px", paddingLeft: "1700px" }}>
-        <Link to='../VaccinationDonation' ><Button type="primary">See More Donations</Button></Link>
+        <Link to="../VaccinationDonation">
+          <Button type="primary">See More Donations</Button>
+        </Link>
       </Row>
       <Row style={{ paddingBottom: "60px" }}>
         <Col

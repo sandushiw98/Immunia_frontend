@@ -49,36 +49,36 @@ export default function Login() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleLogin2 = async (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    let userData = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
+  // const handleLogin2 = async (e) => {
+  //   e.preventDefault();
+  //   const data = new FormData(e.currentTarget);
+  //   let userData = {
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   };
 
-    console.log(userData);
+  //   console.log(userData);
 
-    try {
-      const response = await axios.post('http://localhost:8080/api/v1/user/login',  userData );
-      const loginResponse = response.data;
+  //   try {
+  //     const response = await axios.post('http://localhost:8080/api/v1/user/login',  userData );
+  //     const loginResponse = response.data;
 
-      if (loginResponse.status) {
-        // Login success
-        if (loginResponse.userRole === 'parent') {
-          navigate('/parentdashboard'); // Navigate to parent dashboard
-        } else if (loginResponse.userRole === 'vaccination center') {
-          navigate('/vaccinationdashboard'); // Navigate to vaccination center dashboard
-        } else {
-          // Handle other user roles or default case
-        }
-      } else {
-        // Login failed, display error message or handle accordingly
-      }
-    } catch (error) {
-      // Handle error
-    }
-  }
+  //     if (loginResponse.status) {
+  //       // Login success
+  //       if (loginResponse.userRole === 'parent') {
+  //         navigate('/parentdashboard'); // Navigate to parent dashboard
+  //       } else if (loginResponse.userRole === 'vaccination center') {
+  //         navigate('/vaccinationdashboard'); // Navigate to vaccination center dashboard
+  //       } else {
+  //         // Handle other user roles or default case
+  //       }
+  //     } else {
+  //       // Login failed, display error message or handle accordingly
+  //     }
+  //   } catch (error) {
+  //     // Handle error
+  //   }
+  // }
 
   return (
     <>
@@ -128,7 +128,9 @@ export default function Login() {
                 <Typography component="h1" variant="h5">
                   <h2>Login</h2>
                 </Typography>
-                <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleLogin2}>
+                <Box component="form" noValidate sx={{ mt: 1 }} 
+                // onSubmit={handleLogin2}
+                >
                   <TextField
                     margin="normal"
                     required

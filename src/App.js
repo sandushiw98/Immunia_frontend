@@ -36,9 +36,11 @@ import VaccinationSchool from "./VaccinationCenter/VaccinationSchool/Vaccination
 import VaccinationVaccines from "./VaccinationCenter/VaccinationVaccines/VaccinationVaccines";
 import ParentNotification from "./Parent/ParentNotification/ParentNotification";
 import DownloadPDFButton from "./components/DownloadPDFButton/DownloadPDFButton";
+import Map from "./components/Map/Map";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -81,6 +83,7 @@ function App() {
           <Route path="/vaccinationvaccines" element ={<VaccinationVaccines/>} />
           <Route path="/parentnotification" element ={<ParentNotification/>} />
           <Route path="/downloadpdfbutton" element ={<DownloadPDFButton/>} />
+          <Route path="/map" element ={<Map/>} />
         </Routes>
       </BrowserRouter>
       <Footer />

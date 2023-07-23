@@ -3,6 +3,8 @@ import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import {Col, Row, Card } from "antd";
 import image1 from "../../assets/images/LRH.jpg";
 import { Link } from "react-router-dom";
+import Map from "../../components/Map/Map";
+
 
 
 const ParentSearch = () => {
@@ -12,21 +14,7 @@ const ParentSearch = () => {
         <ParentNavbar />
       </Row>
       <Row style={{ paddingTop: "120px" }}>
-        <Col span={12}></Col>
-        <Col span={12} className="searchbar">
-          <div class="group">
-            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
-              <g>
-                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-              </g>
-            </svg>
-            <input
-              placeholder="Enter your current location"
-              type="search"
-              class="input"
-            />
-          </div>
-        </Col>
+       
       </Row>
       <Row style={{ padding: "60px" }}>
         <Col span={12}>
@@ -70,7 +58,7 @@ const ParentSearch = () => {
                   <Col span={12} style={{ paddingTop: "5px" }}>
                     <button className="callnow">Call Now</button>
                   </Col>
-                  <Col span={12}>
+                  {/* <Col span={12}>
                     <button class="contacticon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +78,7 @@ const ParentSearch = () => {
                         ></path>
                       </svg>
                     </button>
-                  </Col>
+                  </Col> */}
                 </Row>
               </Col>
               <Col span={12}>
@@ -121,7 +109,7 @@ const ParentSearch = () => {
           </Card>
         </Col>
         <Col span={12}>
-             
+             <Map/>
         </Col>
       </Row>
     </>

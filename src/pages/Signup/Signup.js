@@ -1,43 +1,39 @@
-import * as React from 'react';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import {Link} from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-import { Copyright } from '@mui/icons-material';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { IconButton } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Row, Col } from 'antd';
-import signup from '../../assets/images/signup.jpg';
-import './Signup.css';
-
-
+import * as React from "react";
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import { Copyright } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { IconButton } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Row, Col } from "antd";
+import signup from "../../assets/images/signup.jpg";
+import "./Signup.css";
+import { signUpParent } from "../../services/auth";
 
 function validateFirstName(firstName) {
-  
-  const minLength = 2; 
+  const minLength = 2;
   const lettersOnlyRegex = /^[A-Za-z']+$/;
   if (firstName.length < minLength) {
     return false;
   }
   if (!lettersOnlyRegex.test(firstName)) {
-  
     return false;
   }
   return true;
 }
 
 function validateLastName(lastName) {
-
-  const minLength = 2; 
+  const minLength = 2;
   const lettersOnlyRegex = /^[A-Za-z']+$/;
   if (lastName.length < minLength) {
     return false;
@@ -47,7 +43,6 @@ function validateLastName(lastName) {
   }
   return true;
 }
-
 
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
@@ -76,6 +71,7 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -86,52 +82,52 @@ export default function Signup() {
     const data = new FormData(event.currentTarget);
 
     // Validate inputs
-    const firstName = data.get('firstName');
-    const lastName = data.get('lastName');
-    const email = data.get('email');
-    const password = data.get('password');
-    const confirmPassword = data.get('confirmpassword');
-    const mobile = data.get('mobile');
-    const emergency = data.get('emergency');
-    const nic = data.get('nic');
-    const address = data.get('address');
-    
+    const firstName = data.get("firstName");
+    const lastName = data.get("lastName");
+    const email = data.get("email");
+    const password = data.get("password");
+    const confirmPassword = data.get("confirmpassword");
+    const mobile = data.get("mobile");
+    const emergency = data.get("emergency");
+    const nic = data.get("nic");
+    const address = data.get("address");
+
     const newErrors = {};
     if (!validateFirstName(firstName)) {
-      newErrors.firstName = 'Invalid First Name';
+      newErrors.firstName = "Invalid First Name";
     }
 
     if (!validateLastName(lastName)) {
-      newErrors.lastName = 'Invalid Last Name';
+      newErrors.lastName = "Invalid Last Name";
     }
 
     if (!validateEmail(email)) {
-      newErrors.email = 'Invalid email address';
+      newErrors.email = "Invalid email address";
     }
 
     if (!validatePassword(password)) {
-      newErrors.password = 'Password must be at least 6 characters long';
+      newErrors.password = "Password must be at least 6 characters long";
     }
 
     if (password !== confirmPassword) {
-      newErrors.confirmpassword = 'Passwords do not match';
+      newErrors.confirmpassword = "Passwords do not match";
     }
 
     if (!validateContactNumber(mobile)) {
-      newErrors.mobile = 'Invalid contact number';
+      newErrors.mobile = "Invalid contact number";
     }
 
     if (!validateEmergencyNumber(emergency)) {
-      newErrors.emergency = 'Invalid contact number';
+      newErrors.emergency = "Invalid contact number";
     }
 
     if (!validateNIC(nic)) {
-      newErrors.nic = 'Invalid NIC number';
+      newErrors.nic = "Invalid NIC number";
     }
 
-    if (!address) {  
-         newErrors.address = 'Address is required';    
-     }
+    if (!address) {
+      newErrors.address = "Address is required";
+    }
 
     if (Object.keys(newErrors).length === 0) {
       console.log({
@@ -145,15 +141,28 @@ export default function Signup() {
       setErrors(newErrors);
       setPasswordMatch(false);
     }
+    const res = signUpParent({
+      password: password.valueOf(),
+      email: email.valueOf(),
+      contactNumber: mobile.valueOf(),
+      firstName: firstName.valueOf(),
+      lastName: lastName.valueOf(),
+      address: address.valueOf(),
+      nicnumber: nic.valueOf(),
+      emergencyContactNumber: emergency.valueOf(),
+    });
+    if (res) {
+      navigate("/login");
+    }
   };
 
   return (
     <>
-    <Row>
-    
-    <Link className='back-btn' to="/" underline="none"><button className='backbtn'>Back to Home </button></Link>
-   
-</Row>
+      <Row>
+        <Link className="back-btn" to="/" underline="none">
+          <button className="backbtn">Back to Home </button>
+        </Link>
+      </Row>
       <Row>
         <Col span={12}>
           <Row>
@@ -163,20 +172,25 @@ export default function Signup() {
                 <Box
                   sx={{
                     marginTop: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
                   <Typography component="h1" variant="h5">
                     <h2>Signup</h2>
                   </Typography>
-                  <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                  <Box
+                    component="form"
+                    noValidate
+                    onSubmit={handleSubmit}
+                    sx={{ mt: 3 }}
+                  >
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
-                        error={!!errors.firstName}
-                        helperText={errors.firstName}
+                          error={!!errors.firstName}
+                          helperText={errors.firstName}
                           autoComplete="given-name"
                           name="firstName"
                           required
@@ -188,8 +202,8 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <TextField
-                        error={!!errors.lastName}
-                        helperText={errors.lastName}
+                          error={!!errors.lastName}
+                          helperText={errors.lastName}
                           required
                           fullWidth
                           id="lastName"
@@ -224,8 +238,8 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
-                        error={!!errors.mobile}
-                        helperText={errors.mobile}
+                          error={!!errors.mobile}
+                          helperText={errors.mobile}
                           required
                           fullWidth
                           id="emergency"
@@ -236,8 +250,8 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
-                        error={!!errors.address}
-                        helperText={errors.address}
+                          error={!!errors.address}
+                          helperText={errors.address}
                           required
                           fullWidth
                           id="address"
@@ -267,7 +281,7 @@ export default function Signup() {
                           fullWidth
                           id="password"
                           label="Password"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           InputProps={{
                             endAdornment: (
                               <IconButton
@@ -275,7 +289,11 @@ export default function Signup() {
                                 edge="end"
                                 aria-label="toggle password visibility"
                               >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                {showPassword ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
                               </IconButton>
                             ),
                           }}
@@ -290,9 +308,13 @@ export default function Signup() {
                           id="confirmpassword"
                           label="Confirm Password"
                           name="confirmpassword"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           error={!passwordMatch || !!errors.confirmpassword}
-                          helperText={!passwordMatch ? 'Passwords do not match' : errors.confirmpassword}
+                          helperText={
+                            !passwordMatch
+                              ? "Passwords do not match"
+                              : errors.confirmpassword
+                          }
                           InputProps={{
                             endAdornment: (
                               <IconButton
@@ -300,7 +322,11 @@ export default function Signup() {
                                 edge="end"
                                 aria-label="toggle password visibility"
                               >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                {showPassword ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
                               </IconButton>
                             ),
                           }}
@@ -308,7 +334,12 @@ export default function Signup() {
                       </Grid>
                       <Grid item xs={12}>
                         <FormControlLabel
-                          control={<Checkbox value="allowExtraEmails" color="primary" />}
+                          control={
+                            <Checkbox
+                              value="allowExtraEmails"
+                              color="primary"
+                            />
+                          }
                           label="I want to receive inspiration, marketing promotions and updates via email."
                         />
                       </Grid>
@@ -323,20 +354,27 @@ export default function Signup() {
                     </Button>
                     <Grid container justifyContent="flex-end">
                       <Grid item>
-                        <Link to="/login" variant="body2" style={{ textDecoration: 'none' }}>
+                        <Link
+                          to="/login"
+                          variant="body2"
+                          style={{ textDecoration: "none" }}
+                        >
                           Already have an account? Login
                         </Link>
                       </Grid>
                     </Grid>
                   </Box>
                 </Box>
-              
               </Container>
             </ThemeProvider>
           </Row>
         </Col>
-        <Col span={12} style={{ paddingTop: '120px' }}>
-          <img src={signup} alt="signup" style={{ width: '80%', height: '80%', marginTop:'70px'}} />
+        <Col span={12} style={{ paddingTop: "120px" }}>
+          <img
+            src={signup}
+            alt="signup"
+            style={{ width: "80%", height: "80%", marginTop: "70px" }}
+          />
         </Col>
       </Row>
     </>

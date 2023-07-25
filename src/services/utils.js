@@ -1,0 +1,38 @@
+import { BASE_URL } from "./config";
+
+export const fetchWithHeader = async (path, method, body) => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const access_token = window.localStorage.getItem("access_token");
+  if (access_token) {
+    myHeaders.append("Authorization", `Bearer ${access_token}`);
+  }
+
+  var requestOptions = {
+    method: method,
+    headers: myHeaders,
+    body: body ? JSON.stringify(body) : undefined,
+  };
+
+  return fetch(`${BASE_URL}${path}`, requestOptions)
+    .then((response) => response.json())
+    .catch((error) => console.log("error", error));
+};
+
+export function calculateAge(birthday) {
+  const birthDate = new Date(birthday);
+  const currentDate = new Date();
+
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  const birthMonth = birthDate.getMonth();
+  const currentMonth = currentDate.getMonth();
+
+  if (
+    currentMonth < birthMonth ||
+    (currentMonth === birthMonth && currentDate.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}

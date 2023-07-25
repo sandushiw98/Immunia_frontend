@@ -38,53 +38,76 @@ import ParentNotification from "./Parent/ParentNotification/ParentNotification";
 import DownloadPDFButton from "./components/DownloadPDFButton/DownloadPDFButton";
 import Map from "./components/Map/Map";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import AuthProvider from "./providers/AuthProvider";
 
 function App() {
-  
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/newborn" element={<NewBorn />} />
-          <Route path="/onemonth" element={<OneMonth />} />
-          <Route path="/fourmonth" element={<FourMonth />} />
-          <Route path="/sixmonth" element={<SixMonth />} />
-          <Route path="/sevenmonth" element={<SevenMonth />} />
-          <Route path="/donations" element={<Donations />} />
-          <Route path="/adminDashboard" element={<Dashboard />} />
-          <Route path="/viewCenter" element={<ViewCenter />} />
-          <Route path="/viewParent" element={<ViewParent />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/adminprofile" element={<AdminProfile />} />
-          <Route path="/adminDonations" element={<AdminDonations />} />
-          <Route path="/Reviews" element={<Reviews />} />
-          <Route path="/adminNavbar" element={<AdminNavbar />} />
-          <Route path="/adminDonations" element={<AdminDonations />} />
-          <Route path="/parentNavbar" element={<ParentNavbar />} />
-          <Route path="/parentsearch" element={<ParentSearch />} />
-          <Route path="/parentbooking" element={<ParentBooking />} />
-          <Route path="/parentchildaccount" element={<ParentChildAccount />} />
-          <Route path="/parentrecordcard" element={<ParentRecordCard />} />
-          <Route path="/parentcenter" element={<ParentCenter />} />
-          <Route path="/parentappointment" element={<ParentAppointment />} />
-          <Route path="/adminDonations" element={<AdminDonations />} />
-          <Route path="/childprofile" element={<ChildProfile />} />
-          <Route path="/parentDashboard" element={<ParentDashboard />} />
-          <Route path="/vaccinationnavbar" element={<VaccinationNavbar />} />
-          <Route path="/vaccinationdashboard" element={<VaccinationDashboard />}/>
-          <Route path="/vaccinationdonation" element={<VaccinationDonation />}/>
-          <Route path="/vaccinationappointments" element={<VaccinationAppointments />}/>
-          <Route path="/vaccinationupdate" element={<VaccinationUpdate />} />
-          <Route path="/admincentersginup" element={<AdminCenterSignup/>} />
-          <Route path="/vaccinationschool" element={<VaccinationSchool/>} />
-          <Route path="/vaccinationvaccines" element ={<VaccinationVaccines/>} />
-          <Route path="/parentnotification" element ={<ParentNotification/>} />
-          <Route path="/downloadpdfbutton" element ={<DownloadPDFButton/>} />
-          <Route path="/map" element ={<Map/>} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/newborn" element={<NewBorn />} />
+            <Route path="/onemonth" element={<OneMonth />} />
+            <Route path="/fourmonth" element={<FourMonth />} />
+            <Route path="/sixmonth" element={<SixMonth />} />
+            <Route path="/sevenmonth" element={<SevenMonth />} />
+            <Route path="/donations" element={<Donations />} />
+            <Route path="/adminDashboard" element={<Dashboard />} />
+            <Route path="/viewCenter" element={<ViewCenter />} />
+            <Route path="/viewParent" element={<ViewParent />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/adminprofile" element={<AdminProfile />} />
+            <Route path="/adminDonations" element={<AdminDonations />} />
+            <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/adminNavbar" element={<AdminNavbar />} />
+            <Route path="/adminDonations" element={<AdminDonations />} />
+            <Route path="/parentNavbar" element={<ParentNavbar />} />
+            <Route path="/parentsearch" element={<ParentSearch />} />
+            <Route path="/parentbooking" element={<ParentBooking />} />
+            <Route
+              path="/parentchildaccount"
+              element={<ParentChildAccount />}
+            />
+            <Route
+              path="/parentrecordcard/:id"
+              element={<ParentRecordCard />}
+            />
+            <Route path="/parentcenter" element={<ParentCenter />} />
+            <Route path="/parentappointment" element={<ParentAppointment />} />
+            <Route path="/adminDonations" element={<AdminDonations />} />
+            <Route path="/childprofile" element={<ChildProfile />} />
+            <Route path="/parentDashboard" element={<ParentDashboard />} />
+            <Route path="/vaccinationnavbar" element={<VaccinationNavbar />} />
+            <Route
+              path="/vaccinationdashboard"
+              element={<VaccinationDashboard />}
+            />
+            <Route
+              path="/vaccinationdonation"
+              element={<VaccinationDonation />}
+            />
+            <Route
+              path="/vaccinationappointments"
+              element={<VaccinationAppointments />}
+            />
+            <Route path="/vaccinationupdate" element={<VaccinationUpdate />} />
+            <Route path="/admincentersginup" element={<AdminCenterSignup />} />
+            <Route path="/vaccinationschool" element={<VaccinationSchool />} />
+            <Route
+              path="/vaccinationvaccines"
+              element={<VaccinationVaccines />}
+            />
+            <Route
+              path="/parentnotification"
+              element={<ParentNotification />}
+            />
+            <Route path="/downloadpdfbutton" element={<DownloadPDFButton />} />
+            <Route path="/map" element={<Map />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
       <Footer />
     </div>

@@ -2,31 +2,13 @@ import { Col, Row } from "antd";
 import "./ViewCenter.css";
 import { Button, Popconfirm, Table } from "antd";
 import React, { useState } from "react";
-import {PlusOutlined} from "@ant-design/icons"
+import { PlusOutlined } from "@ant-design/icons";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { Link } from "react-router-dom";
-
+import { getVaccinationCenters } from "../../services/vaccination-center";
 
 const ViewCenter = () => {
-  const [dataSource, setDataSource] = useState([
-    {
-      id: "0",
-      name: "Edward King 0",
-      mobile: "32",
-      location: "London, Park Lane no. 0",
-      name0fDirector : "R.J.Perera",
-      type : "MOH"
-
-    },
-    {
-      id: "1",
-      name: "Edward King 1",
-      mobile: "32",
-      location: "London, Park Lane no. 1",
-      name0fDirector : "R.J.Perera",
-      type : "MOH"
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(2);
   const handleDelete = (key) => {
     const newData = dataSource.filter((item) => item.key !== key);
@@ -58,7 +40,7 @@ const ViewCenter = () => {
     {
       title: "Center ID",
       dataIndex: "id",
-       filters: [
+      filters: [
         {
           text: "1",
           value: "1",
@@ -73,20 +55,19 @@ const ViewCenter = () => {
       sorter: (a, b) => a.id.length - b.id.length,
       sortOrder: sortedInfo.columnKey === "id" ? sortedInfo.order : null,
       ellipsis: true,
-     
     },
     {
-      title: "name",
-      dataIndex: "name",
+      title: "centerName",
+      dataIndex: "centerName",
       width: "30%",
-      sorter: (a, b) => a.name - b.name,
-      sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
+      sorter: (a, b) => a.centerName - b.centerName,
+      sortOrder:
+        sortedInfo.columnKey === "centerName" ? sortedInfo.order : null,
       ellipsis: true,
-      
     },
     {
       title: "Location",
-      dataIndex: "location",
+      dataIndex: "centerAddress",
       filters: [
         {
           text: "Boralla",
@@ -97,33 +78,31 @@ const ViewCenter = () => {
           value: "Maradana",
         },
       ],
-      filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.location.includes(value),
-      sorter: (a, b) => a.location.length - b.location.length,
-      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.centerAddress || null,
+      onFilter: (value, record) => record.centerAddress.includes(value),
+      sorter: (a, b) => a.centerAddress.length - b.centerAddress.length,
+      sortOrder:
+        sortedInfo.columnKey === "centerAddress" ? sortedInfo.order : null,
       ellipsis: true,
-     
-      
     },
     {
       title: "Contact Numner",
-      dataIndex: "mobile",
-      orter: (a, b) => a.mobile - b.mobile,
-      sortOrder: sortedInfo.columnKey === "mobile" ? sortedInfo.order : null,
+      dataIndex: "contactNumber",
+      orter: (a, b) => a.contactNumber - b.contactNumber,
+      sortOrder:
+        sortedInfo.columnKey === "contactNumber" ? sortedInfo.order : null,
       ellipsis: true,
-      
     },
     {
       title: "Director's Name",
-      dataIndex: "name0fDirector",
-      orter: (a, b) => a.name0fDirector - b.name0fDirector,
-      sortOrder: sortedInfo.columnKey === "name0fDirector" ? sortedInfo.order : null,
+      dataIndex: "email",
+      orter: (a, b) => a.email - b.email,
+      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
       ellipsis: true,
-      
     },
     {
       title: "Center Type",
-      dataIndex: "type",
+      dataIndex: "centerType",
       filters: [
         {
           text: "MOH",
@@ -134,12 +113,12 @@ const ViewCenter = () => {
           value: "Hospital",
         },
       ],
-      filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.type.includes(value),
-      sorter: (a, b) => a.type.length - b.type.length,
-      sortOrder: sortedInfo.columnKey === "type" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.centerAddress || null,
+      onFilter: (value, record) => record.centerType.includes(value),
+      sorter: (a, b) => a.centerType.length - b.centerType.length,
+      sortOrder:
+        sortedInfo.columnKey === "centerType" ? sortedInfo.order : null,
       ellipsis: true,
-      
     },
     {
       title: "operation",
@@ -156,26 +135,38 @@ const ViewCenter = () => {
     },
   ];
 
-  
+  React.useEffect(() => {
+    getVaccinationCenters().then((centers) => {
+      setDataSource(centers);
+      console.log(centers);
+    });
+
+    return () => {};
+  }, []);
+
   return (
     <>
       <AdminNavbar />
-      <Row style={{paddingTop:'100px'}}>
+      <Row style={{ paddingTop: "100px" }}>
         <Col span={24}>
           <h1 className="heading"> Vaccination Centers</h1>
         </Col>
       </Row>
-      <Row style={{ padding:'20px' }}>
+      <Row style={{ padding: "20px" }}>
         <Col span={12}>
           <Button
-         
             type="primary"
             style={{
-              height: '40px'
-             
+              height: "40px",
             }}
           >
-             <Link to="/admincentersginup" underline="none"><span style={{fontSize: '15px', fontWeight: 'bolder'}}> <PlusOutlined />Add Center </span></Link>
+            <Link to="/admincentersginup" underline="none">
+              <span style={{ fontSize: "15px", fontWeight: "bolder" }}>
+                {" "}
+                <PlusOutlined />
+                Add Center{" "}
+              </span>
+            </Link>
           </Button>
         </Col>
         <Col span={12} className="center-searchbar">
@@ -189,14 +180,11 @@ const ViewCenter = () => {
           </div>
         </Col>
       </Row>
-      <Row style={{ padding:'20px' }} >
-        <Col  span={24}>
-
+      <Row style={{ padding: "20px" }}>
+        <Col span={24}>
           <Table
-            
-            
-            bordered 
-            pagination = {false}
+            bordered
+            pagination={false}
             dataSource={dataSource}
             columns={columns}
           />

@@ -1,0 +1,1 @@
+export const BASE_URL = " https://spring-navod-test-1edd91a41cc1.herokuapp.com/api"

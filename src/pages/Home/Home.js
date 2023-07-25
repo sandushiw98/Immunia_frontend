@@ -22,8 +22,13 @@ import image12 from "../../assets/images/vaccines_spot.png";
 import image13 from "../../assets/images/donation.jpg";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { getAllUsers } from "../../services/auth";
 
 const Home = () => {
+  React.useEffect(() => {
+    getAllUsers().then((v) => console.log(v));
+  }, []);
+
   const sliderImages = [
     {
       url: image5,

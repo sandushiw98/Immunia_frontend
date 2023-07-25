@@ -1,13 +1,13 @@
 import { fetchWithHeader } from "./utils";
 
 export const signUpParent = (userData) => {
-  return fetchWithHeader("/parent/save", "POST", userData);
+  return fetchWithHeader("/parent/save/", "POST", userData);
 };
 export const signUpAdmin = (userData) => {
-  return fetchWithHeader("/admin/save", "POST", userData);
+  return fetchWithHeader("/admin/save/", "POST", userData);
 };
 export const signUpUser = (userData) => {
-  return fetchWithHeader("/user/save", "POST", userData);
+  return fetchWithHeader("/user/save/", "POST", userData);
 };
 export const signInUser = async (userData) => {
   const res = await fetchWithHeader("/login", "POST", userData);
@@ -20,5 +20,5 @@ export const signInUser = async (userData) => {
 };
 
 export const getAllUsers = () => {
-  return fetchWithHeader("/user", "GET");
+  return fetchWithHeader("/user/", "GET");
 };

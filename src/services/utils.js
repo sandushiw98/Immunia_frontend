@@ -4,8 +4,8 @@ export const fetchWithHeader = async (path, method, body) => {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const access_token = window.localStorage.getItem("access_token");
-  if(access_token){
-    myHeaders.append("Authorization", access_token);
+  if (access_token) {
+    myHeaders.append("Authorization", `Bearer ${access_token}`);
   }
 
   var requestOptions = {

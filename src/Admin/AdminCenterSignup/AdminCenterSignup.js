@@ -28,7 +28,7 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
-const props = {
+export const uploadProps = {
   name: "file",
   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
   headers: {
@@ -45,6 +45,31 @@ const props = {
       message.error(`${info.file.name} file upload failed.`);
     }
   },
+  customRequest: async (req) => {
+    console.log(req.file);
+    var formdata = new FormData();
+    formdata.append("file", req.file, req.filename);
+    formdata.append("upload_preset", "pivdduzw");
+    formdata.append("api_key", "448574453683149");
+
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "manual",
+    };
+
+    return fetch(
+      "https://api.cloudinary.com/v1_1/dpf5wav8h/image/upload",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((res) => {
+        req.onSuccess(res);
+        return res;
+      })
+      .catch((error) => console.log("error", error));
+  },
+  maxCount: 1,
 };
 
 const AdminCenterSignup = () => {
@@ -109,35 +134,7 @@ const AdminCenterSignup = () => {
               wrapperCol={{ span: 17 }}
               getValueFromEvent={normFile}
             >
-              <Upload
-                {...props}
-                customRequest={(req) => {
-                  console.log(req.file);
-                  var formdata = new FormData();
-                  formdata.append("file", req.file, req.filename);
-                  formdata.append("upload_preset", "pivdduzw");
-                  formdata.append("api_key", "448574453683149");
-
-                  var requestOptions = {
-                    method: "POST",
-                    body: formdata,
-                    redirect: "manual",
-                  };
-
-                  return fetch(
-                    "https://api.cloudinary.com/v1_1/dpf5wav8h/image/upload",
-                    requestOptions
-                  )
-                    .then((response) => response.json())
-                    .then((res) => {
-                      req.onSuccess(res);
-                      return res;
-                    })
-                    .catch((error) => console.log("error", error));
-                }}
-                maxCount={1}
-                listType="picture-card"
-              >
+              <Upload {...uploadProps} listType="picture-card">
                 <div>
                   <PlusOutlined />
                   <div>Upload</div>

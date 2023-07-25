@@ -1,16 +1,16 @@
 import { fetchWithHeader } from "./utils";
 
 export const saveAppointment = (userData) => {
-  return fetchWithHeader("/appointment/save", "POST", userData);
+  return fetchWithHeader("/appointment/save/", "POST", userData);
 };
 export const getAppointmentById = (id) => {
-  return fetchWithHeader(`/appointment/${id}`, "GET");
+  return fetchWithHeader(`/appointment/${id}/`, "GET");
 };
 
 export const deleteAppointmentById = (id) => {
-  return fetchWithHeader(`/appointment/delete/${id}`, "DELETE");
+  return fetchWithHeader(`/appointment/delete/${id}/`, "DELETE");
 };
 
 export const getAppointments = () => {
-  return fetchWithHeader(`/appointment`, "GET");
+  return fetchWithHeader(`/appointment/`, "GET");
 };

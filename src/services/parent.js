@@ -1,6 +1,6 @@
 import { fetchWithHeader } from "./utils";
 export const getAllParents = () => {
-  return fetchWithHeader("/parent", "GET");
+  return fetchWithHeader("/parent/", "GET");
 };
 export const getParentById = (id) => {
   return fetchWithHeader(`/parent/${id}`, "GET");

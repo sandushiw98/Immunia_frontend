@@ -17,6 +17,7 @@ import {
 } from "antd";
 import "./AdminCentersignup.css";
 import { useState } from "react";
+import { saveVaccinationCenter } from "../../services/vaccination-center";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -38,6 +39,7 @@ const props = {
       console.log(info.file, info.fileList);
     }
     if (info.file.status === "done") {
+      console.log(info);
       message.success(`${info.file.name} file uploaded successfully`);
     } else if (info.file.status === "error") {
       message.error(`${info.file.name} file upload failed.`);
@@ -83,20 +85,82 @@ const AdminCenterSignup = () => {
             }}
             onFinish={(values) => {
               console.log(values);
+              saveVaccinationCenter({
+                password: values.password,
+                email: values.email,
+                contactNumber: values.contactNumber,
+                centerType: values.centerType,
+                centerName: values.centerName,
+                centerAddress: values.centerAddress,
+                province: values.province,
+              }).then((v) => {
+                if (v) {
+                  // TODO : Navigate to success page
+                }
+              });
             }}
           >
             <Form.Item
+              name="photo"
+              valuePropName="fileList"
               label="Upload Child Photo"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              getValueFromEvent={normFile}
             >
-              <Upload {...props} listType="picture-card">
+              <Upload
+                {...props}
+                customRequest={(req) => {
+                  console.log(req.file);
+                  var formdata = new FormData();
+                  formdata.append("file", req.file, req.filename);
+                  formdata.append("upload_preset", "pivdduzw");
+                  formdata.append("api_key", "448574453683149");
+
+                  var requestOptions = {
+                    method: "POST",
+                    body: formdata,
+                    redirect: "manual",
+                  };
+
+                  return fetch(
+                    "https://api.cloudinary.com/v1_1/dpf5wav8h/image/upload",
+                    requestOptions
+                  )
+                    .then((response) => response.json())
+                    .then((res) => {
+                      req.onSuccess(res);
+                      return res;
+                    })
+                    .catch((error) => console.log("error", error));
+                }}
+                maxCount={1}
+                listType="picture-card"
+              >
                 <div>
                   <PlusOutlined />
                   <div>Upload</div>
                 </div>
               </Upload>
+            </Form.Item>
+            <Form.Item
+              name="email"
+              label="Email"
+              labelAlign="right"
+              labelCol={{ span: 9 }}
+              wrapperCol={{ span: 17 }}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              labelAlign="right"
+              labelCol={{ span: 9 }}
+              wrapperCol={{ span: 17 }}
+            >
+              <Input />
             </Form.Item>
             <Form.Item
               name="centerName"
@@ -107,8 +171,18 @@ const AdminCenterSignup = () => {
             >
               <Input />
             </Form.Item>
+
             <Form.Item
-             name="centerId"
+              name="centerAddress"
+              label="Vaccination Center Address"
+              labelAlign="right"
+              labelCol={{ span: 9 }}
+              wrapperCol={{ span: 17 }}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="centerId"
               label="Vaccination Center ID Number"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -117,38 +191,42 @@ const AdminCenterSignup = () => {
               <Input />
             </Form.Item>
             <Form.Item
-             name="province"
+              name="province"
               label="Province"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
             >
               <Select>
-                <Select.Option value="demo">Central</Select.Option>
-                <Select.Option value="demo">North Central</Select.Option>
-                <Select.Option value="demo">Nothern</Select.Option>
-                <Select.Option value="demo">Eastern</Select.Option>
-                <Select.Option value="demo">North Western</Select.Option>
-                <Select.Option value="demo">Southern</Select.Option>
-                <Select.Option value="demo">Uva</Select.Option>
-                <Select.Option value="demo">Sabaragamuwa</Select.Option>
-                <Select.Option value="demo">Western</Select.Option>
+                <Select.Option value="Central">Central</Select.Option>
+                <Select.Option value="North Central">
+                  North Central
+                </Select.Option>
+                <Select.Option value="Nothern">Nothern</Select.Option>
+                <Select.Option value="Eastern">Eastern</Select.Option>
+                <Select.Option value="North Western">
+                  North Western
+                </Select.Option>
+                <Select.Option value="Southern">Southern</Select.Option>
+                <Select.Option value="Uva">Uva</Select.Option>
+                <Select.Option value="Sabaragamuwa">Sabaragamuwa</Select.Option>
+                <Select.Option value="Western">Western</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item
-             name="centerType"
+              name="centerType"
               label="Vaccination Center Type"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
             >
               <Radio.Group>
-                <Radio value="apple"> Hospital </Radio>
-                <Radio value="pear"> MOH </Radio>
+                <Radio value="Hospital"> Hospital </Radio>
+                <Radio value="MOH"> MOH </Radio>
               </Radio.Group>
             </Form.Item>
             <Form.Item
-             name="contactNumber"
+              name="contactNumber"
               label="Contact Number"
               labelAlign="right"
               labelCol={{ span: 9 }}

@@ -20,6 +20,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { signInUser } from "../../services/auth";
+import useAuthContext from "../../hooks/useAuthContext";
+import { useEffect } from "react";
 
 // function Copyright(props) {
 //   return (
@@ -43,6 +45,7 @@ const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
+  const context = useAuthContext();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleTogglePassword = () => {
@@ -59,9 +62,10 @@ export default function Login() {
 
     console.log(userData);
     const res = await signInUser(userData);
-    console.log(res);
+    context.setUser(res.user);
+    navigate("/parentDashboard");
+    console.log(res.user);
   };
-
   return (
     <>
       <Row>

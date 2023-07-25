@@ -77,7 +77,7 @@ export default function Signup() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -141,7 +141,7 @@ export default function Signup() {
       setErrors(newErrors);
       setPasswordMatch(false);
     }
-    const res = signUpParent({
+    const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),
       contactNumber: mobile.valueOf(),
@@ -151,9 +151,10 @@ export default function Signup() {
       nicnumber: nic.valueOf(),
       emergencyContactNumber: emergency.valueOf(),
     });
-    if (res) {
-      navigate("/login");
-    }
+    // if (res) {
+    //   navigate("/login");
+    // }
+    console.log(res);
   };
 
   return (

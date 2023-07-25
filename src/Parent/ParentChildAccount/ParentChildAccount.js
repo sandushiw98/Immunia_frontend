@@ -1,6 +1,6 @@
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import { Col, Row } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import image1 from "../../assets/images/girl.jpg";
 import image2 from "../../assets/images/boy.jpg";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
@@ -17,6 +17,9 @@ import {
 import "./ParentChildAccount.css";
 import { useState } from "react";
 import { uploadProps } from "../../Admin/AdminCenterSignup/AdminCenterSignup";
+import { saveChild } from "../../services/child";
+import useAuthContext from "../../hooks/useAuthContext";
+import useUser from "../../hooks/useUser";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -47,6 +50,7 @@ const normFile = (e) => {
 
 const ParentChildAccount = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
+  const user = useUser();
   return (
     <>
       <Row>
@@ -71,8 +75,13 @@ const ParentChildAccount = () => {
               padding: "20px",
               borderRadius: "0.7px",
             }}
+            onFinish={(values) => {
+              console.log(values);
+              saveChild({});
+            }}
           >
             <Form.Item
+              name="photo"
               label="Upload Child Photo"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -86,6 +95,7 @@ const ParentChildAccount = () => {
               </Upload>
             </Form.Item>
             <Form.Item
+              name={"fullName"}
               label="Child Full Name"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -94,6 +104,7 @@ const ParentChildAccount = () => {
               <Input />
             </Form.Item>
             <Form.Item
+              name="vaccinationCardNumber"
               label="Vaccination ID Number"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -102,25 +113,8 @@ const ParentChildAccount = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Province"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Select>
-                <Select.Option value="demo">Demo</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
+              name="dateOfBirth"
               label="Date of Birth"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Age"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
@@ -134,8 +128,8 @@ const ParentChildAccount = () => {
               wrapperCol={{ span: 17 }}
             >
               <Radio.Group>
-                <Radio value="apple"> Male </Radio>
-                <Radio value="pear"> Female </Radio>
+                <Radio value="Male"> Male </Radio>
+                <Radio value="Female"> Female </Radio>
               </Radio.Group>
             </Form.Item>
             <Form.Item
@@ -147,6 +141,7 @@ const ParentChildAccount = () => {
               <Input />
             </Form.Item>
             <Form.Item
+              name="comments"
               label="Comments"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -155,6 +150,7 @@ const ParentChildAccount = () => {
               <TextArea rows={4} />
             </Form.Item>
             <Form.Item
+              name="birthCertificate"
               label="Upload Birth Certificate of your Child"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -164,49 +160,49 @@ const ParentChildAccount = () => {
                 <Button icon={<UploadOutlined />}>Click to Upload</Button>
               </Upload>
             </Form.Item>
+            <Row className="lastbtn" gutter={48} style={{ paddingTop: "20px" }}>
+              <Col span={18}></Col>
+              <Col
+                span={3}
+                style={{
+                  display: "flex",
+                  alignItems: "right",
+                  justifyContent: "right",
+                }}
+              >
+                <Button
+                  size="large"
+                  style={{
+                    backgroundColor: "rgb(238, 53, 53)",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Col>
+              <Col
+                span={3}
+                style={{
+                  display: "flex",
+                  alignItems: "right",
+                  justifyContent: "right",
+                }}
+              >
+                <Button
+                  htmlType="submit"
+                  size="large"
+                  style={{
+                    backgroundColor: "rgb(105, 105, 226)",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Create
+                </Button>
+              </Col>
+            </Row>
           </Form>
-
-          <Row className="lastbtn" gutter={48} style={{ paddingTop: "20px" }}>
-            <Col span={18}></Col>
-            <Col
-              span={3}
-              style={{
-                display: "flex",
-                alignItems: "right",
-                justifyContent: "right",
-              }}
-            >
-              <Button
-                size="large"
-                style={{
-                  backgroundColor: "rgb(238, 53, 53)",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                Cancel
-              </Button>
-            </Col>
-            <Col
-              span={3}
-              style={{
-                display: "flex",
-                alignItems: "right",
-                justifyContent: "right",
-              }}
-            >
-              <Button
-                size="large"
-                style={{
-                  backgroundColor: "rgb(105, 105, 226)",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                Create
-              </Button>
-            </Col>
-          </Row>
         </Col>
         <Col span={5} style={{ paddingTop: "150px", paddingBottom: "150px" }}>
           <img

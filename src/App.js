@@ -42,9 +42,9 @@ import AuthProvider from "./providers/AuthProvider";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="App">
-        <BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <AuthProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -104,10 +104,10 @@ function App() {
             <Route path="/downloadpdfbutton" element={<DownloadPDFButton />} />
             <Route path="/map" element={<Map />} />
           </Routes>
-        </BrowserRouter>
-        <Footer />
-      </div>
-    </AuthProvider>
+        </AuthProvider>
+      </BrowserRouter>
+      <Footer />
+    </div>
   );
 }
 

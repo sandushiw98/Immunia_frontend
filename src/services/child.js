@@ -14,3 +14,9 @@ export const deleteChildById = (id) => {
 export const getChildren = () => {
   return fetchWithHeader(`/child/`, "GET");
 };
+
+export const getChildrenByParentId = (id) => {
+  return getChildren().then((children) =>
+    children.filter((child) => child.parent.id === id)
+  );
+};

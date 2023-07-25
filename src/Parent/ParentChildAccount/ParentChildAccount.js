@@ -75,9 +75,19 @@ const ParentChildAccount = () => {
               padding: "20px",
               borderRadius: "0.7px",
             }}
-            onFinish={(values) => {
+            onFinish={async (values) => {
               console.log(values);
-              saveChild({});
+              let data = { ...values };
+              data.birthCertificate = undefined;
+              data.photo = undefined;
+              data.firstName = values.fullName.split(" ")[0];
+              data.lastName = values.fullName.split(" ")[1];
+              data.birthCertificateURL =
+                values.birthCertificate.file.response.url;
+              data.photoURL = values.photo.file.response.url;
+              data.parent = { id: user.id };
+              const res = await saveChild(data);
+              console.log(res);
             }}
           >
             <Form.Item
@@ -122,6 +132,7 @@ const ParentChildAccount = () => {
               <Input />
             </Form.Item>
             <Form.Item
+              name="gender"
               label="Gender"
               labelAlign="right"
               labelCol={{ span: 9 }}
@@ -131,14 +142,6 @@ const ParentChildAccount = () => {
                 <Radio value="Male"> Male </Radio>
                 <Radio value="Female"> Female </Radio>
               </Radio.Group>
-            </Form.Item>
-            <Form.Item
-              label="How many children do you have including this child"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Input />
             </Form.Item>
             <Form.Item
               name="comments"

@@ -71,7 +71,10 @@ function App() {
               path="/parentchildaccount"
               element={<ParentChildAccount />}
             />
-            <Route path="/parentrecordcard" element={<ParentRecordCard />} />
+            <Route
+              path="/parentrecordcard/:id"
+              element={<ParentRecordCard />}
+            />
             <Route path="/parentcenter" element={<ParentCenter />} />
             <Route path="/parentappointment" element={<ParentAppointment />} />
             <Route path="/adminDonations" element={<AdminDonations />} />

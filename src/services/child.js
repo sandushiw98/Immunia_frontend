@@ -17,6 +17,8 @@ export const getChildren = () => {
 
 export const getChildrenByParentId = (id) => {
   return getChildren().then((children) =>
-    children.filter((child) => child.parent.id === id)
+    children
+      ? children.filter((child) => child.parent && child.parent.id === id)
+      : []
   );
 };

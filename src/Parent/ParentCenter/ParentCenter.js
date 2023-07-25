@@ -4,25 +4,26 @@ import { Button, Popconfirm, Table } from "antd";
 import React, { useState } from "react";
 import {PlusOutlined} from "@ant-design/icons"
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
+import { getVaccinationCenters } from "../../services/vaccination-center";
 
 
 const ViewCenter = () => {
   const [dataSource, setDataSource] = useState([
-    {
-      id: "0",
-      mobile: "32",
-      location: "London, Park Lane no. 0",
-      name0fDirector : "R.J.Perera",
-      type : "MOH"
+    // {
+    //   id: "0",
+    //   mobile: "32",
+    //   location: "London, Park Lane no. 0",
+    //   name0fDirector : "R.J.Perera",
+    //   type : "MOH"
 
-    },
-    {
-      id: "1",
-      mobile: "32",
-      location: "London, Park Lane no. 1",
-      name0fDirector : "R.J.Perera",
-      type : "MOH"
-    },
+    // },
+    // {
+    //   id: "1",
+    //   mobile: "32",
+    //   location: "London, Park Lane no. 1",
+    //   name0fDirector : "R.J.Perera",
+    //   type : "MOH"
+    // },
   ]);
   const [count, setCount] = useState(2);
   const handleDelete = (key) => {
@@ -74,7 +75,7 @@ const ViewCenter = () => {
     },
     {
       title: "Location",
-      dataIndex: "location",
+      dataIndex: "centerAddress",
       filters: [
         {
           text: "Boralla",
@@ -85,33 +86,33 @@ const ViewCenter = () => {
           value: "Maradana",
         },
       ],
-      filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.location.includes(value),
-      sorter: (a, b) => a.location.length - b.location.length,
-      sortOrder: sortedInfo.columnKey === "location" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.centerAddress || null,
+      onFilter: (value, record) => record.centerAddress.includes(value),
+      sorter: (a, b) => a.centerAddress.length - b.centerAddress.length,
+      sortOrder: sortedInfo.columnKey === "centerAddress" ? sortedInfo.order : null,
       ellipsis: true,
      
       
     },
     {
       title: "Contact Numner",
-      dataIndex: "mobile",
-      orter: (a, b) => a.mobile - b.mobile,
-      sortOrder: sortedInfo.columnKey === "mobile" ? sortedInfo.order : null,
+      dataIndex: "contactNumber",
+      orter: (a, b) => a.contactNumber - b.contactNumber,
+      sortOrder: sortedInfo.columnKey === "contactNumber" ? sortedInfo.order : null,
       ellipsis: true,
       
     },
     {
       title: "Director's Name",
-      dataIndex: "name0fDirector",
-      orter: (a, b) => a.name0fDirector - b.name0fDirector,
-      sortOrder: sortedInfo.columnKey === "name0fDirector" ? sortedInfo.order : null,
+      dataIndex: "email",
+      orter: (a, b) => a.email - b.email,
+      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
       ellipsis: true,
       
     },
     {
       title: "Center Type",
-      dataIndex: "type",
+      dataIndex: "centerType",
       filters: [
         {
           text: "MOH",
@@ -123,15 +124,22 @@ const ViewCenter = () => {
         },
       ],
       filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.type.includes(value),
-      sorter: (a, b) => a.type.length - b.type.length,
-      sortOrder: sortedInfo.columnKey === "type" ? sortedInfo.order : null,
+      onFilter: (value, record) => record.centerType.includes(value),
+      sorter: (a, b) => a.centerType.length - b.centerType.length,
+      sortOrder: sortedInfo.columnKey === "centerType" ? sortedInfo.order : null,
       ellipsis: true,
       
     },
     
   ];
+  React.useEffect(() => {
+    getVaccinationCenters().then((centers) => {
+      setDataSource(centers);
+      console.log(centers);
+    });
 
+    return () => {};
+  }, []);
   
   return (
     <>

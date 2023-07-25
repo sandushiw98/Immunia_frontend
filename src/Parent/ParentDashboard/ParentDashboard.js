@@ -11,11 +11,13 @@ import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import image13 from "../../assets/images/donation.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import useParent from "../../hooks/useParent";
 
 const { TextArea } = Input;
 
 const ParentDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [kiddos] = useParent();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -62,7 +64,7 @@ const ParentDashboard = () => {
                       style={{ textAlign: "right", fontWeight: "bolder" }}
                     >
                       <span style={{ fontSize: "35px", color: "yellowgreen" }}>
-                        2
+                        {kiddos.length}
                       </span>
                     </Col>
                   </Card>
@@ -226,31 +228,35 @@ const ParentDashboard = () => {
                 bordered={false}
                 style={{ boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)" }}
               >
-                <Row>
-                  <Col span={24} style={{ padding: "3px 0px" }}>
-                    <Card bordered={true}>
-                      <Row
-                        style={{
-                          textAlign: "center",
-                          fontWeight: "bold",
-                          color: "rgb(153, 153, 235)",
-                        }}
-                      >
-                        <Col span={2}>
-                          <Avatar icon={<UserOutlined />} />
-                        </Col>
+                {kiddos.map((kid) => {
+                  return (
+                    <Row>
+                      <Col span={24} style={{ padding: "3px 0px" }}>
+                        <Card bordered={true}>
+                          <Row
+                            style={{
+                              textAlign: "center",
+                              fontWeight: "bold",
+                              color: "rgb(153, 153, 235)",
+                            }}
+                          >
+                            <Col span={2}>
+                              <Avatar icon={<UserOutlined />} />
+                            </Col>
 
-                        <Col span={16}>
-                          <span>Sandushi Weraduwa</span>
-                        </Col>
-                        <Col span={6}>
-                          <span>2021-05-13</span>
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
+                            <Col span={16}>
+                              <span>{`${kid.firstName} ${kid.lastName}`}</span>
+                            </Col>
+                            <Col span={6}>
+                              <span>{`${kid.dateOfBirth}`}</span>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                  );
+                })}
+                {/* <Row>
                   <Col span={24} style={{ padding: "3px 0px" }}>
                     <Card bordered={true}>
                       <Row
@@ -273,7 +279,7 @@ const ParentDashboard = () => {
                       </Row>
                     </Card>
                   </Col>
-                </Row>
+                </Row> */}
               </Card>
             </Col>
             <Col
@@ -398,10 +404,9 @@ const ParentDashboard = () => {
                   cancelText="Cancel"
                   cancelButtonProps={{ className: "custom-cancel-button" }}
                   width={800} // Set the desired width value here
-                  style={{ height: '400px' }} // Set the desired height value here
-                 
+                  style={{ height: "400px" }} // Set the desired height value here
                 >
-                  <Row  style={{border: '1px solid grey', padding: '30px'}}>
+                  <Row style={{ border: "1px solid grey", padding: "30px" }}>
                     <Input placeholder="Enter Your Name" />;
                     <TextArea
                       rows={4}

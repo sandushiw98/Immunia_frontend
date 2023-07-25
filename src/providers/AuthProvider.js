@@ -3,8 +3,9 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = React.createContext({
-  globalState: {},
+  globalState: { children: [] },
   setUser: undefined,
+  setChildren: undefined,
 });
 function AuthProvider({ children }) {
   const [globalState, setglobalState] = React.useState({});
@@ -12,6 +13,11 @@ function AuthProvider({ children }) {
   const setUser = useCallback((user) => {
     setglobalState((s) => {
       return { ...s, user };
+    });
+  }, []);
+  const setChildren = useCallback((children) => {
+    setglobalState((s) => {
+      return { ...s, children };
     });
   }, []);
 
@@ -36,7 +42,7 @@ function AuthProvider({ children }) {
   }, [globalState.user, navigate]);
 
   return (
-    <AuthContext.Provider value={{ globalState, setUser }}>
+    <AuthContext.Provider value={{ globalState, setUser, setChildren }}>
       {children}
     </AuthContext.Provider>
   );

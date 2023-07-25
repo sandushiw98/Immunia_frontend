@@ -1,27 +1,31 @@
 import { Col, Row } from "antd";
 import "./ViewParent.css";
-import { Button,Popconfirm, Table } from "antd";
+import { Button, Popconfirm, Table } from "antd";
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import { getAllParents } from "../../services/parent";
 
 const ViewCenter = () => {
   const [dataSource, setDataSource] = useState([
     {
-      id: "0",
-      name: "Edward King 0",
-      mobile: "32",
-      location: "London, Park Lane no. 0",
-      name0fDirector: "R.J.Perera",
-      type: "MOH",
+      id: 2,
+      userRole: "parent",
+      password: "$2a$10$0dTu5L3buj37Gu1tNF18TOnyH635ZJZWQMCl3b8JEQZhxCbRK7eoi",
+      email: "navod98@gmail.com",
+      contactNumber: "456",
+      isActivate: true,
+      firstName: "Navodh",
+      lastName: "shehan",
+      address: "160/A/1",
+      emergencyContactNumber: "123",
+      nicnumber: "984343",
     },
     {
       id: "1",
       name: "Edward King 1",
-      mobile: "32",
-      location: "London, Park Lane no. 1",
-      name0fDirector: "R.J.Perera",
-      type: "MOH",
+      contactNumber: "32",
+      address: "London, Park Lane no. 1",
     },
   ]);
   const [count, setCount] = useState(2);
@@ -52,7 +56,7 @@ const ViewCenter = () => {
   const columns = [
     {
       title: "Parent ID",
-      dataIndex: "ID",
+      dataIndex: "id",
       filters: [
         {
           text: "1",
@@ -63,10 +67,10 @@ const ViewCenter = () => {
           value: "2",
         },
       ],
-      filteredValue: filteredInfo.name || null,
-      onFilter: (value, record) => record.name.includes(value),
-      sorter: (a, b) => a.name.length - b.name.length,
-      sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
+      filteredValue: filteredInfo.id || null,
+      onFilter: (value, record) => record.id.includes(value),
+      sorter: (a, b) => a.id.length - b.id.length,
+      sortOrder: sortedInfo.columnKey === "id" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
@@ -79,15 +83,16 @@ const ViewCenter = () => {
     },
     {
       title: "Contact Number",
-      dataIndex: "monbile",
+      dataIndex: "contactNumber",
 
-      sorter: (a, b) => a.mobile - b.mobile,
-      sortOrder: sortedInfo.columnKey === "mobile" ? sortedInfo.order : null,
+      sorter: (a, b) => a.contactNumber - b.contactNumber,
+      sortOrder:
+        sortedInfo.columnKey === "contactNumber" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
       title: "Location",
-      dataIndex: "Location",
+      dataIndex: "address",
       editable: true,
 
       filters: [
@@ -100,9 +105,9 @@ const ViewCenter = () => {
           value: "Maradana",
         },
       ],
-      filteredValue: filteredInfo.Location || null,
-      onFilter: (value, record) => record.Location.includes(value),
-      sorter: (a, b) => a.Location.length - b.Location.length,
+      filteredValue: filteredInfo.address || null,
+      onFilter: (value, record) => record.address.includes(value),
+      sorter: (a, b) => a.address.length - b.address.length,
       sortOrder: sortedInfo.columnKey === "Location" ? sortedInfo.order : null,
       ellipsis: true,
     },
@@ -121,10 +126,20 @@ const ViewCenter = () => {
     },
   ];
 
+  React.useEffect(() => {
+    getAllParents().then((v) => {
+      setDataSource(
+        v.map((parent) => {
+          return { ...parent, name: `${parent.firstName} ${parent.lastName}` };
+        })
+      );
+    });
+  }, []);
+
   return (
     <>
       <AdminNavbar />
-      <Row style={{paddingTop:'100px'}}>
+      <Row style={{ paddingTop: "100px" }}>
         <Col span={24}>
           <h1 className="heading"> Parent</h1>
         </Col>

@@ -1,6 +1,7 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { getAppointments } from "../../services/appointment";
 import { Button, Space, Table } from "antd";
-import { useState } from "react";
 import { Col, Row, Card} from "antd";
 import { Link } from 'react-router-dom';
 import "./ParentAppointment.css";
@@ -8,54 +9,22 @@ import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import image1 from "../../assets/images/appointment1234. girl jpg.jpg";
 import image2 from "../../assets/images/appointment1234 boy.jpg";
 
-const data = [
-  {
-    appointments: "A23",
-    date: "23/05/2023",
-    time: "3.15 P.M",
-    childname: " Nehani Suranimala",
-    parentname: "Dushani Kodithuwakku",
-    vaccinationName: "National Hospital Colombo",
-    vaccinationType: "Hepatitiease",
-    Status: "Confirm",
-    Vaccinated: "Yes",
-  },
-  {
-    appointments: "A23",
-    date: "23/05/2023",
-    time: "3.15 P.M",
-    childname: " Nehani Suranimala",
-    parentname: "Dushani Kodithuwakku",
-    vaccinationName: "National Hospital Colombo",
-    vaccinationType: "Hepatitiease",
-    Status: "Pending",
-    Vaccinated: "No",
-  },
-  {
-    appointments: "A23",
-    date: "23/05/2023",
-    time: "3.15 P.M",
-    childname: " Nehani Suranimala",
-    parentname: "Dushani Kodithuwakku",
-    vaccinationName: "National Hospital Colombo",
-    vaccinationType: "Hepatitiease",
-    Status: "Pending",
-    Vaccinated: "No",
-  },
-  {
-    appointments: "A23",
-    date: "23/05/2023",
-    time: "3.15 P.M",
-    childname: " Nehani Suranimala",
-    parentname: "Dushani Kodithuwakku",
-    vaccinationName: "National Hospital Colombo",
-    vaccinationType: "Hepatitiease",
-    Status: "Confirm",
-    Vaccinated: "Yes",
-  },
-];
 
 const Appointments = () => {
+  const [appointmentData, setAppointments] = useState([]);
+  useEffect(() => {
+    // Call the getAppointments function to fetch the data
+    getAppointments()
+      .then(data => {
+        // Update the state with the fetched appointments data
+        setAppointments(data);
+      })
+      .catch(error => {
+        // Handle error if needed
+        console.log("Error fetching appointments:", error);
+      });
+  }, []);
+  console.log(appointmentData)
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const handleChange = (pagination, filters, sorter) => {
@@ -63,64 +32,6 @@ const Appointments = () => {
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
-
-  const columns = [
-    {
-      title: "Appointment ID",
-      dataIndex: "appointments",
-      key: "appointments",
-    },
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      sorter: (a, b) => a.date - b.date,
-      sortOrder: sortedInfo.columnKey === "date" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Time",
-      dataIndex: "time",
-      key: "time",
-      sorter: (a, b) => a.time - b.time,
-      sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Child Name",
-      dataIndex: "childname",
-      key: "childname",
-      sorter: (a, b) => a.childname - b.childname,
-      sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Parent Name",
-      dataIndex: "parentname",
-      key: "parentname",
-    },
-    {
-      title: "Vaccination Center Name",
-      dataIndex: "vaccinationName",
-      key: "vaccinationName",
-    },
-    {
-      title: "Vaccination Type",
-      dataIndex: "vaccinationType",
-      key: "vaccinationType",
-    },
-    {
-      title: "Status",
-      dataIndex: "Status",
-      key: "Status",
-    },
-    {
-      title: "Vaccinated",
-      dataIndex: "Vaccinated",
-      key: "Vaccinated",
-    },
-  ];
-
   return (
     <>
       <ParentNavbar />
@@ -170,19 +81,6 @@ const Appointments = () => {
         <Col span={24}>
           <h1 className="heading"> Appointments</h1>
         </Col>
-      </Row>
-      <Row style={{ padding: "20px" }}>
-        <Space
-          style={{
-            marginBottom: 16,
-          }}
-        ></Space>
-        <Table
-          columns={columns}
-          dataSource={data}
-          onChange={handleChange}
-          pagination={false}
-        />
       </Row>
       
     </>

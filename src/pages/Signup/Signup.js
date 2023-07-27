@@ -86,7 +86,7 @@ export default function Signup() {
     const lastName = data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
-    const confirmPassword = data.get("confirmpassword");
+    const confirmPassword = data.get("confirmpassword"); // Updated to "confirmpassword" to match the input field name
     const mobile = data.get("mobile");
     const emergency = data.get("emergency");
     const nic = data.get("nic");

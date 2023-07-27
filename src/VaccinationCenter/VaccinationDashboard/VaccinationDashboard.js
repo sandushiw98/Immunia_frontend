@@ -6,7 +6,6 @@ import {
   Avatar,
   Button,
   Card,
-  Space,
   Table,
   Modal,
   TimePicker,
@@ -159,6 +158,10 @@ const renderCustomizedLabel = ({
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
 
   return (
     <text
@@ -507,6 +510,12 @@ const VaccinationDashboard = () => {
             cancelText="Cancel"
             cancelButtonProps={{ className: "custom-cancel-button" }}
           >
+                     <Row>
+            <Space direction="vertical">
+    <DatePicker onChange={onChange} />
+    
+  </Space>
+            </Row>
             <Row>
               <DatePicker
                 value={scheduleData.date}
@@ -521,6 +530,7 @@ const VaccinationDashboard = () => {
             <Row>
               <h2>Morning</h2>
             </Row>
+   
             <Row>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker
@@ -691,6 +701,7 @@ const VaccinationDashboard = () => {
           </Card>
         </Col>
       </Row> */}
+
       <Row style={{ padding: "20px 40px 30px 70px" }}>
         <h1>Donation Details</h1>
       </Row>

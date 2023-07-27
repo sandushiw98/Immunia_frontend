@@ -225,7 +225,20 @@ const VaccinationUpdate = () => {
     },
   ];
 
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+
+  const showModal1 = () => {
+    setIsModalOpen1(true);
+  };
+  const handleOk1 = () => {
+    setIsModalOpen1(false);
+  };
+  const handleCancel1 = () => {
+    setIsModalOpen1(false);
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -236,6 +249,7 @@ const VaccinationUpdate = () => {
     setIsModalOpen(false);
   };
 
+  
   return (
     <div className="cover">
       <Row>
@@ -397,7 +411,7 @@ const VaccinationUpdate = () => {
           />
         </Col> */}
         <Col span={4} style={{ paddingLeft: "100px" }}>
-          <Button type="primary" onClick={showModal}>
+          <Button type="primary" onClick={showModal1}>
             Update Details
           </Button>
 
@@ -407,9 +421,9 @@ const VaccinationUpdate = () => {
                 Updating Vaccination Details
               </h1>
             }
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
+            open={isModalOpen1}
+            onOk={handleOk1}
+            onCancel={handleCancel1}
             okText="Update"
             cancelText="Cancel"
             cancelButtonProps={{ className: "custom-cancel-button" }}

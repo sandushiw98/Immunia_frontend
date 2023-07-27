@@ -6,7 +6,6 @@ import {
   Avatar,
   Button,
   Card,
-  Space,
   Table,
   Modal,
   TimePicker,
@@ -33,6 +32,9 @@ import {
 } from "@ant-design/icons";
 import { PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import { DatePicker, Space } from 'antd';
+
+
 
 const items = [
   {
@@ -170,6 +172,10 @@ const renderCustomizedLabel = ({
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
 
   return (
     <text
@@ -397,10 +403,6 @@ const VaccinationDashboard = () => {
   };
 
 
-
-
-
-
   const handleChange = (id, value) => {
     const updatedInputs = inputs.map((input) =>
       input.id === id ? { ...input, value } : input
@@ -570,9 +572,16 @@ const VaccinationDashboard = () => {
             cancelText="Cancel"
             cancelButtonProps={{ className: "custom-cancel-button" }}
           >
+                     <Row>
+            <Space direction="vertical">
+    <DatePicker onChange={onChange} />
+    
+  </Space>
+            </Row>
             <Row>
               <h2>Morning</h2>
             </Row>
+   
             <Row>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker
@@ -635,468 +644,14 @@ const VaccinationDashboard = () => {
               </Col>
             </Row>
 
-            <Row>
-              <h3>Select Vaccination Date</h3>
-              <p>
-                You can schedule your vaccination days. Fill the vaccination
-                name accroding to your relevant vaccinations days.
-              </p>
-              <br />
-            </Row>
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="green"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Monday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput1(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput1}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="red"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Tuesday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs2.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput2(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput2}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row> 
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="magenta"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Wednesday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs3.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput3(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput3}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="purple"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Thursday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs4.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput4(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput4}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="blue"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Friday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs5.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput5(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput5}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="volcano"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Saturday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs6.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput6(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput6}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {" "}
-                <Space size={[0, 8]} wrap>
-                  <Tag
-                    color="gold"
-                    style={{
-                      height: "32px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                      width: "120px",
-                    }}
-                  >
-                    Sunday
-                  </Tag>
-                </Space>
-              </Col>
-              <Col>
-                {inputs7.map((input) => (
-                  <div
-                    key={input.id}
-                    style={{ marginBottom: "8px", paddingRight: "10px" }}
-                  >
-                    <Input
-                      value={input.value}
-                      placeholder={`Vaccine ${input.id}`}
-                      style={{ width: "100px", marginRight: "8px" }}
-                      onChange={(e) => handleChange(input.id, e.target.value)}
-                    />
-                    <Button
-                      type="primary"
-                      danger
-                      onClick={() => handleDeleteInput7(input.id)}
-                      style={{ height: "35px" }}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                ))}
-              </Col>
-              <Col>
-                <Button type="primary" onClick={handleAddInput7}>
-                  Add Input
-                </Button>
-              </Col>
-            </Row>
-       
+            
        
           </Modal>
         </div>
       </Row>
-      
-      <Row>
-        <h1 style={{ paddingLeft: "60px" }}>Schedule</h1>
-      </Row>
-      <Row
-        gutter={[16, 24]}
-        style={{
-          padding: "30px 60px 30px 60px",
-          background: "#c7d3d9",
-          borderRadius: "0.5",
-        }}
-      >
-        <Col className="gutter-row" span={4}>
-          <div style={style}>9.00 A.M- 9.15 A.M</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}> 9.15 A.M - 9.30 A.M</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-        <Col className="gutter-row" span={4}>
-          <div style={style}>col-6</div>
-        </Col>
-      </Row>
-      {/* <Row>
-        <Col
-          span={24}
-          style={{ padding: "50px 40px 30px 40px", width: "100%" }}
-        >
-          <Card
-            style={{
-              width: "100%",
-              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "0 15px",
-              }}
-            >
-              <span style={{ fontSize: "20px", fontWeight: "bold" }}>
-                Request Appointments
-              </span>
-              <Button type="primary">Click Here to See</Button>
-            </div>
-          </Card>
-        </Col>
-      </Row> */}
+     
+  
+   
       <Row style={{ padding: "20px 40px 30px 70px" }}>
         <h1>Donation Details</h1>
       </Row>

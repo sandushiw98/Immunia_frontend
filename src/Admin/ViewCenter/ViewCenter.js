@@ -135,6 +135,8 @@ const ViewCenter = () => {
     },
   ];
 
+  
+
   React.useEffect(() => {
     getVaccinationCenters().then((centers) => {
       setDataSource(centers);

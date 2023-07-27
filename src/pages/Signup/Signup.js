@@ -50,8 +50,34 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-  return password.length >= 6;
+  // Check if password length is more than 8 characters
+  if (password.length < 8) {
+    return false;
+  }
+
+  // Check if there is at least one uppercase letter
+  if (!/[A-Z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one lowercase letter
+  if (!/[a-z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one number
+  if (!/\d/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one special character
+  if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(password)) {
+    return false;
+  }
+
+  return true;
 }
+
 
 function validateContactNumber(mobile) {
   return /^[0-9]{10}$/.test(mobile); // Validates if the contact number is a 10-digit number
@@ -105,9 +131,10 @@ export default function Signup() {
     //   newErrors.email = "Invalid email address";
     // }
 
-    // if (!validatePassword(password)) {
-    //   newErrors.password = "Password must be at least 6 characters long";
-    // }
+    if (!validatePassword(password)) {
+      newErrors.password = "Invalid Password";
+    }
+    
 
     // if (password !== confirmPassword) {
     //   newErrors.confirmpassword = "Passwords do not match";
@@ -310,12 +337,15 @@ export default function Signup() {
                           label="Confirm Password"
                           name="confirmpassword"
                           type={showPassword ? "text" : "password"}
-                          error={!passwordMatch || !!errors.confirmpassword}
-                          helperText={
-                            !passwordMatch
-                              ? "Passwords do not match"
-                              : errors.confirmpassword
-                          }
+                          error={!!errors.confirmpassword}
+                          helperText={errors.confirmpassword}
+                          // error={!passwordMatch || !!errors.confirmpassword}
+                          // helperText={
+                          //   !passwordMatch
+                          //     ? "Passwords do not match"
+                          //     : errors.confirmpassword
+                          // }
+
                           InputProps={{
                             endAdornment: (
                               <IconButton
@@ -332,6 +362,9 @@ export default function Signup() {
                             ),
                           }}
                         />
+                         <Typography variant="body2" color="textSecondary">
+    Password should contain more than 8 characters with lowercase , uppercasses and special characters.
+  </Typography>
                       </Grid>
                       <Grid item xs={12}>
                         <FormControlLabel

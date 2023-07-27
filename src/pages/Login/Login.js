@@ -63,7 +63,14 @@ export default function Login() {
     console.log(userData);
     const res = await signInUser(userData);
     context.setUser(res.user);
-    navigate("/parentDashboard");
+    if (res.user.userRole === "parent") {
+      navigate("/parentDashboard");
+    } else if (res.user.userRole === "vaccine_center") {
+      navigate("/vaccinationdashboard");
+    } else if (res.user.userRole === "Admin") {
+      navigate("/adminDashboard");
+    }
+
     console.log(res.user);
   };
   return (

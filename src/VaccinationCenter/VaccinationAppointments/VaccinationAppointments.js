@@ -1,9 +1,11 @@
 import React from "react";
 import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
 import "./VaccinationAppointments.css";
-import { Row, Col, Table, Space, Input, Button,Dropdown } from "antd";
+import { Row, Col, Table, Space, Input, Button, Dropdown } from "antd";
 import { AudioOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { getAppointmentsByCenter } from "../../services/appointment";
+import useUser from "../../hooks/useUser";
 
 const { Search } = Input;
 const suffix = (
@@ -17,31 +19,18 @@ const suffix = (
 
 const items = [
   {
-    key: '1',
-    label: (
-      <a >
-        All
-      </a>
-    ),
+    key: "1",
+    label: <a>All</a>,
   },
   {
-    key: '2',
-    label: (
-      <a >
-        Upcomming vaccinations
-      </a>
-    ),
+    key: "2",
+    label: <a>Upcomming vaccinations</a>,
   },
   {
-    key: '3',
-    label: (
-      <a>
-       Vaccinated
-      </a>
-    ),
+    key: "3",
+    label: <a>Vaccinated</a>,
   },
 ];
-
 
 const onSearch = (value) => console.log(value);
 
@@ -89,15 +78,38 @@ const data = [
 ];
 
 const VaccinationAppointments = () => {
-
-
+  const [appointmentData, setAppointments] = useState([]);
+  const user = useUser();
+  React.useEffect(() => {
+    // Call the getAppointments function to fetch the data
+    if (!user) {
+      return;
+    }
+    getAppointmentsByCenter(user.id)
+      .then((data) => {
+        // Update the state with the fetched appointments data
+        setAppointments(
+          data.map((d) => {
+            return {
+              ...d,
+              scheduleDate: d.schedule.scheduleDate,
+              startTime: d.schedule.startTime,
+              centerName: d.vaccineCenter.centerName,
+            };
+          })
+        );
+      })
+      .catch((error) => {
+        // Handle error if needed
+        console.log("Error fetching appointments:", error);
+      });
+  }, [user, user.id]);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleMenuClick = ({ key }) => {
     const selectedItem = items.find((item) => item.key === key);
     setSelectedItem(selectedItem);
   };
-
 
   <Space direction="vertical"></Space>;
 
@@ -121,132 +133,12 @@ const VaccinationAppointments = () => {
       columnKey: "hallnumber",
     });
   };
-  const columns = [
-    {
-      title: "Appointment ID",
-      dataIndex: "appointments",
-      key: "appointments",
-      filters: [
-        {
-          text: "A34",
-          value: "A34",
-        },
-        {
-          text: "A37",
-          value: "A37",
-        },
-        {
-          text: "A90",
-          value: "A90",
-        },
-        {
-          text: "A954",
-          value: "A954",
-        },
-      ],
-      filteredValue: filteredInfo.appointments || null,
-      onFilter: (value, record) => record.appointments.includes(value),
-      sorter: (a, b) => a.appointments.length - b.appointments.length,
-      sortOrder:
-        sortedInfo.columnKey === "appointments" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      sorter: (a, b) => a.date - b.date,
-      sortOrder: sortedInfo.columnKey === "date" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Time",
-      dataIndex: "time",
-      key: "time",
-      sorter: (a, b) => a.time - b.time,
-      sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Child Name",
-      dataIndex: "childname",
-      key: "childname",
-      sorter: (a, b) => a.childname - b.childname,
-      sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Parent Name",
-      dataIndex: "parentname",
-      key: "parentname",
-      sorter: (a, b) => a.parentname - b.parentname,
-      sortOrder:
-        sortedInfo.columnKey === "parentname" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Vaccination Hall Number",
-      dataIndex: "hallnumber",
-      key: "hallnumber",
-      filters: [
-        {
-          text: "1",
-          value: "1",
-        },
-        {
-          text: "2",
-          value: "2",
-        },
-      ],
-      filteredValue: filteredInfo.hallnumber || null,
-      onFilter: (value, record) => record.hallnumber.includes(value),
-      sorter: (a, b) => a.hallnumber.length - b.hallnumber.length,
-      sortOrder:
-        sortedInfo.columnKey === "hallnumber" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Vaccination Type",
-      dataIndex: "vaccinationType",
-      key: "vaccinationType",
-      filters: [
-        {
-          text: "Poliyo ",
-          value: "Poliyo",
-        },
-        {
-          text: "BCG",
-          value: "BCG",
-        },
-        {
-          text: "ATD",
-          value: "ATD",
-        },
-      ],
-      filteredValue: filteredInfo.vaccinationType || null,
-      onFilter: (value, record) => record.vaccinationType.includes(value),
-      sorter: (a, b) => a.vaccinationType.length - b.vaccinationType.length,
-      sortOrder:
-        sortedInfo.columnKey === "vaccinationType" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    {
-      title: "Respond",
-      key: "action",
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Accept {record.name}</a>
-          <a>Reject</a>
-        </Space>
-      ),
-    },
-  ];
 
   const columns2 = [
     {
       title: "Appointment ID",
-      dataIndex: "appointments",
-      key: "appointments",
+      dataIndex: "appointmentId",
+      key: "appointmentId",
       filters: [
         {
           text: "A34",
@@ -265,93 +157,46 @@ const VaccinationAppointments = () => {
           value: "A954",
         },
       ],
-      filteredValue: filteredInfo.appointments || null,
-      onFilter: (value, record) => record.appointments.includes(value),
-      sorter: (a, b) => a.appointments.length - b.appointments.length,
-      sortOrder:
-        sortedInfo.columnKey === "appointments" ? sortedInfo.order : null,
-      ellipsis: true,
     },
     {
       title: "Date",
-      dataIndex: "date",
-      key: "date",
-      sorter: (a, b) => a.date - b.date,
-      sortOrder: sortedInfo.columnKey === "date" ? sortedInfo.order : null,
+      dataIndex: "scheduleDate",
+      key: "scheduleDate",
+      sorter: (a, b) => a.scheduleDate - b.scheduleDate,
+      sortOrder:
+        sortedInfo.columnKey === "scheduleDate" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
       title: "Time",
-      dataIndex: "time",
-      key: "time",
-      sorter: (a, b) => a.time - b.time,
-      sortOrder: sortedInfo.columnKey === "time" ? sortedInfo.order : null,
+      dataIndex: "startTime",
+      key: "startTime",
+      sorter: (a, b) => a.startTime - b.startTime,
+      sortOrder: sortedInfo.columnKey === "startTime" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
       title: "Child Name",
-      dataIndex: "childname",
-      key: "childname",
-      sorter: (a, b) => a.childname - b.childname,
-      sortOrder: sortedInfo.columnKey === "childname" ? sortedInfo.order : null,
+      dataIndex: "childName",
+      key: "childName",
+      sorter: (a, b) => a.childName - b.childName,
+      sortOrder: sortedInfo.columnKey === "childName" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
       title: "Parent Name",
-      dataIndex: "parentname",
-      key: "parentname",
-      sorter: (a, b) => a.parentname - b.parentname,
+      dataIndex: "parentName",
+      key: "parentName",
+      sorter: (a, b) => a.parentName - b.parentName,
       sortOrder:
-        sortedInfo.columnKey === "parentname" ? sortedInfo.order : null,
+        sortedInfo.columnKey === "parentName" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
-      title: "Vaccination Hall Number",
-      dataIndex: "hallnumber",
-      key: "hallnumber",
-      filters: [
-        {
-          text: "1",
-          value: "1",
-        },
-        {
-          text: "2",
-          value: "2",
-        },
-      ],
-      filteredValue: filteredInfo.hallnumber || null,
-      onFilter: (value, record) => record.hallnumber.includes(value),
-      sorter: (a, b) => a.hallnumber.length - b.hallnumber.length,
-      sortOrder:
-        sortedInfo.columnKey === "hallnumber" ? sortedInfo.order : null,
-      ellipsis: true,
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
-    {
-      title: "Vaccination Type",
-      dataIndex: "vaccinationType",
-      key: "vaccinationType",
-      filters: [
-        {
-          text: "Poliyo ",
-          value: "Poliyo",
-        },
-        {
-          text: "BCG",
-          value: "BCG",
-        },
-        {
-          text: "ATD",
-          value: "ATD",
-        },
-      ],
-      filteredValue: filteredInfo.vaccinationType || null,
-      onFilter: (value, record) => record.vaccinationType.includes(value),
-      sorter: (a, b) => a.vaccinationType.length - b.vaccinationType.length,
-      sortOrder:
-        sortedInfo.columnKey === "vaccinationType" ? sortedInfo.order : null,
-      ellipsis: true,
-    },
-    
   ];
 
   return (
@@ -394,49 +239,52 @@ const VaccinationAppointments = () => {
           }}
         />
       </Row> */}
-      <Row style={{
+      <Row
+        style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-
-        }}>
+        }}
+      >
         <h1> Appointments</h1>
       </Row>
-      <Row style={{paddingLeft: '1640px'}}>
-   
-      <Dropdown
-        menu={{
-          items,
-          onClick: handleMenuClick,
-        }}
-        placement="bottom"
-        arrow
-      >
-        <Button style={{background: '#036ffc', color: 'white', width: '200px'}}>{selectedItem ? selectedItem.label : 'All'}</Button>
-      </Dropdown>
-      
+      <Row style={{ paddingLeft: "1640px" }}>
+        <Dropdown
+          menu={{
+            items,
+            onClick: handleMenuClick,
+          }}
+          placement="bottom"
+          arrow
+        >
+          <Button
+            style={{ background: "#036ffc", color: "white", width: "200px" }}
+          >
+            {selectedItem ? selectedItem.label : "All"}
+          </Button>
+        </Dropdown>
       </Row>
       <Row>
-      <Row style={{ padding: "20px" ,paddingBottom: '80px'}}>
-        <Space
-          style={{
-            marginBottom: 16,
-          }}
-        >
-          <Button onClick={setHallSort}>Sort Hall</Button>
-          <Button onClick={clearFilters}>Clear filters</Button>
-          <Button onClick={clearAll}>Clear filters and sorters</Button>
-        </Space>
-        <Table
-          columns={columns2}
-          dataSource={data}
-          onChange={handleChange}
-          pagination={false}
-          scroll={{
-            y: 200,
-          }}
-        />
-      </Row>
+        <Row style={{ padding: "20px", paddingBottom: "80px" }}>
+          <Space
+            style={{
+              marginBottom: 16,
+            }}
+          >
+            <Button onClick={setHallSort}>Sort Hall</Button>
+            <Button onClick={clearFilters}>Clear filters</Button>
+            <Button onClick={clearAll}>Clear filters and sorters</Button>
+          </Space>
+          <Table
+            columns={columns2}
+            dataSource={appointmentData}
+            onChange={handleChange}
+            pagination={false}
+            scroll={{
+              y: 200,
+            }}
+          />
+        </Row>
       </Row>
     </>
   );

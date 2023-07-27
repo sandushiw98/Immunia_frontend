@@ -4,26 +4,29 @@ import './VaccinationNavbar.css';
 import logo from "../../assets/images/logonew.png";
 import { Link } from 'react-router-dom';
 import { AlignCenterOutlined, UserOutlined } from '@ant-design/icons';
+import { signOutUser } from '../../services/auth';
 
 const VaccinationNavbar = () => {
+
     const items = [
         {
-            key: '1',
-            label: (
-                <Link to='/adminprofile'>
-                    My Profile
-                </Link>
-            ),
+          key: "11",
+          label: <Link to="/adminprofile">My Profile</Link>,
         },
         {
-            key: '2',
-            label: (
-                <Link to='/'>
-                    Logout
-                </Link>
-            ),
+          key: "222",
+          label: (
+            <Link
+              onClick={() => {
+                signOutUser();
+              }}
+              to="/"
+            >
+              Logout
+            </Link>
+          ),
         },
-    ];
+      ];
 
     return (
         <div className="navbar-container" style={{height: '100px'}}>

@@ -62,7 +62,7 @@ function validateEmergencyNumber(emergency) {
 }
 
 function validateNIC(nic) {
-  return /^[0-9]{9}[Vv]$/.test(nic); // Validates if the NIC number is a 9-digit number followed by 'V' or 'v'
+  return true; // Validates if the NIC number is a 9-digit number followed by 'V' or 'v'
 }
 
 const defaultTheme = createTheme();
@@ -92,55 +92,55 @@ export default function Signup() {
     const nic = data.get("nic");
     const address = data.get("address");
 
-    const newErrors = {};
-    if (!validateFirstName(firstName)) {
-      newErrors.firstName = "Invalid First Name";
-    }
+    // const newErrors = {};
+    // if (!validateFirstName(firstName)) {
+    //   newErrors.firstName = "Invalid First Name";
+    // }
 
-    if (!validateLastName(lastName)) {
-      newErrors.lastName = "Invalid Last Name";
-    }
+    // if (!validateLastName(lastName)) {
+    //   newErrors.lastName = "Invalid Last Name";
+    // }
 
-    if (!validateEmail(email)) {
-      newErrors.email = "Invalid email address";
-    }
+    // if (!validateEmail(email)) {
+    //   newErrors.email = "Invalid email address";
+    // }
 
-    if (!validatePassword(password)) {
-      newErrors.password = "Password must be at least 6 characters long";
-    }
+    // if (!validatePassword(password)) {
+    //   newErrors.password = "Password must be at least 6 characters long";
+    // }
 
-    if (password !== confirmPassword) {
-      newErrors.confirmpassword = "Passwords do not match";
-    }
+    // if (password !== confirmPassword) {
+    //   newErrors.confirmpassword = "Passwords do not match";
+    // }
 
-    if (!validateContactNumber(mobile)) {
-      newErrors.mobile = "Invalid contact number";
-    }
+    // if (!validateContactNumber(mobile)) {
+    //   newErrors.mobile = "Invalid contact number";
+    // }
 
-    if (!validateEmergencyNumber(emergency)) {
-      newErrors.emergency = "Invalid contact number";
-    }
+    // if (!validateEmergencyNumber(emergency)) {
+    //   newErrors.emergency = "Invalid contact number";
+    // }
 
-    if (!validateNIC(nic)) {
-      newErrors.nic = "Invalid NIC number";
-    }
+    // if (!validateNIC(nic)) {
+    //   newErrors.nic = "Invalid NIC number";
+    // }
 
-    if (!address) {
-      newErrors.address = "Address is required";
-    }
+    // if (!address) {
+    //   newErrors.address = "Address is required";
+    // }
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log({
-        email,
-        password,
-        mobile,
-        nic,
-      });
-      setPasswordMatch(true);
-    } else {
-      setErrors(newErrors);
-      setPasswordMatch(false);
-    }
+    // if (Object.keys(newErrors).length === 0) {
+    //   console.log({
+    //     email,
+    //     password,
+    //     mobile,
+    //     nic,
+    //   });
+    //   setPasswordMatch(true);
+    // } else {
+    //   setErrors(newErrors);
+    //   setPasswordMatch(false);
+    // }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),

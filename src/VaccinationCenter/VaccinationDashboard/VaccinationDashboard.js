@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
 import "./VaccinationDashboard.css";
-import { Col, Row, Dropdown, Divider, Tag } from "antd";
+import { Col, Row, Dropdown, Divider, Tag, DatePicker } from "antd";
 import {
   Avatar,
   Button,
@@ -32,48 +32,34 @@ import {
 } from "@ant-design/icons";
 import { PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import { DatePicker, Space } from 'antd';
+import { getScheduleByDate, saveAllSchedule } from "../../services/schedule";
+import useUser from "../../hooks/useUser";
 
+function splitTimeRange(startTime, endTime, gapInMinutes, date, centerId) {
+  const result = [];
+  let currentTime = dayjs(startTime);
+  const endTimeObj = dayjs(endTime);
 
+  while (currentTime.isBefore(endTimeObj)) {
+    const nextTime = currentTime.add(gapInMinutes, "minute");
+    const endTimeInRange = nextTime.isBefore(endTimeObj)
+      ? nextTime
+      : endTimeObj;
 
-const items = [
-  {
-    key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    ),
-  },
-];
+    result.push({
+      startTime: currentTime.format("HH:mm:ss"),
+      endTime: endTimeInRange.format("HH:mm:ss"),
+      scheduleDate: date.format("YYYY-MM-DD"),
+      vaccineCenter: {
+        id: centerId,
+      },
+    });
+
+    currentTime = nextTime;
+  }
+
+  return result;
+}
 
 const data2 = [
   {
@@ -188,14 +174,6 @@ const renderCustomizedLabel = ({
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
-};
-
-const style = {
-  background: "#0092ff",
-  padding: "8px 0",
-  textAlign: "center",
-  fontSize: "20px",
-  fontWeight: "bold",
 };
 
 const columns = [
@@ -333,100 +311,60 @@ const onChange = (pagination, filters, sorter, extra) => {
 };
 
 const VaccinationDashboard = () => {
-  const [inputs, setInputs] = useState([{ id: 1, value: "" }]);
-  const [inputs2, setInputs2] = useState([{ id: 1, value: "" }]);
-  const [inputs3, setInputs3] = useState([{ id: 1, value: "" }]);
-  const [inputs4, setInputs4] = useState([{ id: 1, value: "" }]);
-  const [inputs5, setInputs5] = useState([{ id: 1, value: "" }]);
-  const [inputs6, setInputs6] = useState([{ id: 1, value: "" }]);
-  const [inputs7, setInputs7] = useState([{ id: 1, value: "" }]);
-
-
-  const handleDeleteInput1 = (id) => {
-    const updatedInputs = inputs.filter((input) => input.id !== id);
-    setInputs(updatedInputs);
-  };
-  const handleAddInput1 = () => {
-    const newId = inputs.length > 0 ? inputs[inputs.length - 1].id + 1 : 1;
-    setInputs([...inputs, { id: newId, value: "" }]);
-  };
-  const handleDeleteInput2 = (id) => {
-    const updatedInputs = inputs2.filter((input) => input.id !== id);
-    setInputs2(updatedInputs);
-  };
-  const handleAddInput2 = () => {
-    const newId = inputs2.length > 0 ? inputs2[inputs2.length - 1].id + 1 : 1;
-    setInputs2([...inputs2, { id: newId, value: "" }]);
-  };
-
-  const handleDeleteInput3 = (id) => {
-    const updatedInputs = inputs3.filter((input) => input.id !== id);
-    setInputs3(updatedInputs);
-  };
-  const handleAddInput3 = () => {
-    const newId = inputs3.length > 0 ? inputs3[inputs3.length - 1].id + 1 : 1;
-    setInputs3([...inputs3, { id: newId, value: "" }]);
-  };
-
-  const handleDeleteInput4 = (id) => {
-    const updatedInputs = inputs4.filter((input) => input.id !== id);
-    setInputs4(updatedInputs);
-  };
-  const handleAddInput4= () => {
-    const newId = inputs4.length > 0 ? inputs4[inputs4.length - 1].id + 1 : 1;
-    setInputs4([...inputs4, { id: newId, value: "" }]);
-  };
-  const handleDeleteInput5 = (id) => {
-    const updatedInputs = inputs5.filter((input) => input.id !== id);
-    setInputs5(updatedInputs);
-  };
-  const handleAddInput5= () => {
-    const newId = inputs5.length > 0 ? inputs5[inputs5.length - 1].id + 1 : 1;
-    setInputs5([...inputs5, { id: newId, value: "" }]);
-  };
-  const handleDeleteInput6 = (id) => {
-    const updatedInputs = inputs6.filter((input) => input.id !== id);
-    setInputs6(updatedInputs);
-  };
-  const handleAddInput6= () => {
-    const newId = inputs6.length > 0 ? inputs6[inputs6.length - 1].id + 1 : 1;
-    setInputs6([...inputs6, { id: newId, value: "" }]);
-  };
-
-  const handleDeleteInput7 = (id) => {
-    const updatedInputs = inputs7.filter((input) => input.id !== id);
-    setInputs7(updatedInputs);
-  };
-  const handleAddInput7= () => {
-    const newId = inputs7.length > 0 ? inputs7[inputs7.length - 1].id + 1 : 1;
-    setInputs7([...inputs7, { id: newId, value: "" }]);
-  };
-
-
-  const handleChange = (id, value) => {
-    const updatedInputs = inputs.map((input) =>
-      input.id === id ? { ...input, value } : input
-    );
-    setInputs(updatedInputs);
-  };
-
-  const [numInputs, setNumInputs] = useState(1);
-
-  // const handleAddInput = () => {
-  //   setNumInputs((prevNum) => prevNum + 1);
-  // };
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setselectedDate] = useState(dayjs(Date.now()));
+  const [schedules, setschedules] = useState([]);
+  const user = useUser();
+  const [scheduleData, setscheduleData] = useState({
+    date: dayjs(Date.now()),
+    morning: {
+      startTime: dayjs("8:00:00", "HH:mm:ss"),
+      endTime: dayjs("12:00:00", "HH:mm:ss"),
+      gap: 30,
+    },
+    evening: {
+      startTime: dayjs("13:00:00", "HH:mm:ss"),
+      endTime: dayjs("17:00:00", "HH:mm:ss"),
+      gap: 30,
+    },
+  });
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
+  const handleOk = useCallback(() => {
+    console.log(scheduleData);
+    const morningschedules = splitTimeRange(
+      scheduleData.morning.startTime,
+      scheduleData.morning.endTime,
+      scheduleData.morning.gap,
+      scheduleData.date,
+      user.id
+    );
+    const eveningschedules = splitTimeRange(
+      scheduleData.evening.startTime,
+      scheduleData.evening.endTime,
+      scheduleData.evening.gap,
+      scheduleData.date,
+      user.id
+    );
+    console.log(eveningschedules);
+    // setschedules([...morningschedules, ...eveningschedules]);
+    saveAllSchedule([...morningschedules, ...eveningschedules]).then((v) => {
+      setselectedDate(scheduleData.date);
+    });
     setIsModalOpen(false);
-  };
+  }, [scheduleData]);
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
+  React.useEffect(() => {
+    if (user && selectedDate) {
+      getScheduleByDate(user.id, selectedDate.format("YYYY-MM-DD")).then((v) =>
+        setschedules(v)
+      );
+    }
+  }, [selectedDate, user]);
   return (
     <>
       <VaccinationNavbar />
@@ -550,7 +488,7 @@ const VaccinationDashboard = () => {
       >
         <div>
           <Button type="primary" onClick={showModal}>
-            Customize Schedule
+            Customize schedule
           </Button>
           <Modal
             title={
@@ -561,7 +499,7 @@ const VaccinationDashboard = () => {
                   textAlign: "center",
                 }}
               >
-                Customize Your Vaccinationa Center Schedule
+                Customize Your Vaccination Center schedule
               </span>
             }
             open={isModalOpen}
@@ -579,26 +517,58 @@ const VaccinationDashboard = () => {
   </Space>
             </Row>
             <Row>
+              <DatePicker
+                value={scheduleData.date}
+                onChange={(v) => {
+                  setscheduleData((sd) => {
+                    return { ...sd, date: v };
+                  });
+                }}
+                defaultValue={dayjs(Date.now())}
+              />
+            </Row>
+            <Row>
               <h2>Morning</h2>
             </Row>
    
             <Row>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker
-                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  value={scheduleData.morning.startTime}
+                  onChange={(v) =>
+                    setscheduleData((d) => {
+                      return { ...d, morning: { ...d.evening, startTime: v } };
+                    })
+                  }
+                  defaultValue={dayjs("8:00:00", "HH:mm:ss")}
                   size="large"
                   placeholder="Starting time"
                 />
               </Col>
               <Col style={{ paddingRight: "180px" }}>
                 <TimePicker
-                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  value={scheduleData.morning.endTime}
+                  onChange={(v) =>
+                    setscheduleData((d) => {
+                      return { ...d, morning: { ...d.morning, endTime: v } };
+                    })
+                  }
+                  defaultValue={dayjs("12:00:00", "HH:mm:ss")}
                   size="large"
                   placeholder="Ending time"
                 />
               </Col>
               <Col>
                 <Input
+                  onChange={(e) =>
+                    setscheduleData((v) => {
+                      return {
+                        ...v,
+                        morning: { ...v.morning, gap: e.target.value },
+                      };
+                    })
+                  }
+                  value={scheduleData.morning.gap}
                   style={{ width: "360px", height: "40px" }}
                   placeholder="Time gap that you wish to allocate for one child (Min)"
                 />
@@ -623,35 +593,115 @@ const VaccinationDashboard = () => {
             <Row style={{ paddingBottom: "20px" }}>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker
-                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  value={scheduleData.evening.startTime}
+                  onChange={(v) =>
+                    setscheduleData((d) => {
+                      return { ...d, evening: { ...d.evening, startTime: v } };
+                    })
+                  }
+                  defaultValue={dayjs("13:00:00", "HH:mm:ss")}
                   size="large"
                   placeholder="Starting time"
                 />
               </Col>
               <Col style={{ paddingRight: "180px" }}>
                 <TimePicker
-                  defaultValue={dayjs("12:08:23", "HH:mm:ss")}
+                  value={scheduleData.evening.endTime}
+                  onChange={(v) =>
+                    setscheduleData((d) => {
+                      return { ...d, evening: { ...d.evening, endTime: v } };
+                    })
+                  }
+                  defaultValue={dayjs("17:00:00", "HH:mm:ss")}
                   size="large"
                   placeholder="Ending time"
                 />
               </Col>
               <Col>
                 <Input
+                  onChange={(e) =>
+                    setscheduleData((v) => {
+                      return {
+                        ...v,
+                        evening: { ...v.evening, gap: e.target.value },
+                      };
+                    })
+                  }
+                  value={scheduleData.evening.gap}
                   style={{ width: "360px", height: "40px" }}
                   placeholder="Time gap that you wish to allocate for one child (Min)"
                 />
                 ;
               </Col>
             </Row>
-
-            
-       
           </Modal>
         </div>
       </Row>
-     
-  
-   
+
+      <Row>
+        <Col>
+          <h1 style={{ paddingLeft: "60px" }}>Schedule</h1>
+        </Col>
+        <Col>
+          <DatePicker value={selectedDate} onChange={setselectedDate} />
+        </Col>
+      </Row>
+
+      <Row
+        gutter={[16, 24]}
+        style={{
+          padding: "30px 60px 30px 60px",
+          background: "#c7d3d9",
+          borderRadius: "0.5",
+        }}
+      >
+        {schedules.map((s, ind) => {
+          return (
+            <Col key={ind} className="gutter-row" span={4}>
+              <div
+                style={{
+                  background: s.status ? "red" : "#0092ff",
+                  padding: "8px 0",
+                  textAlign: "center",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                {s.startTime}- {s.endTime}
+              </div>
+            </Col>
+          );
+        })}
+      </Row>
+      {/* <Row>
+        <Col
+          span={24}
+          style={{ padding: "50px 40px 30px 40px", width: "100%" }}
+        >
+          <Card
+            style={{
+              width: "100%",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "0 15px",
+              }}
+            >
+              <span style={{ fontSize: "20px", fontWeight: "bold" }}>
+                Request Appointments
+              </span>
+              <Button type="primary">Click Here to See</Button>
+            </div>
+          </Card>
+        </Col>
+      </Row> */}
+
       <Row style={{ padding: "20px 40px 30px 70px" }}>
         <h1>Donation Details</h1>
       </Row>

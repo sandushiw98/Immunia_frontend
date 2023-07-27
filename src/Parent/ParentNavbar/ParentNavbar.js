@@ -8,6 +8,7 @@ import useUser from "../../hooks/useUser";
 import { useEffect } from "react";
 import { getChildrenByParentId } from "../../services/child";
 import useParent from "../../hooks/useParent";
+import { signOutUser } from "../../services/auth";
 
 const ParentNavbar = () => {
   const user = useUser();
@@ -22,6 +23,26 @@ const ParentNavbar = () => {
   //       label: <Link to="/">Logout</Link>,
   //     },
   //   ];
+
+  const items1 = [
+    {
+      key: "11",
+      label: <Link to="/adminprofile">My Profile</Link>,
+    },
+    {
+      key: "222",
+      label: (
+        <Link
+          onClick={() => {
+            signOutUser();
+          }}
+          to="/"
+        >
+          Logout
+        </Link>
+      ),
+    },
+  ];
 
   const items = children.map((child, ind) => {
     return {
@@ -91,12 +112,7 @@ const ParentNavbar = () => {
           </Link>
         </Col>
         <Col span={1} className="nav-section-img">
-          <Dropdown
-            menu={{
-              items,
-            }}
-            placement="bottomRight"
-          >
+          <Dropdown menu={{ items: items1 }} placement="bottomRight">
             <Avatar
               size={48}
               icon={<UserOutlined />}

@@ -6,140 +6,94 @@ import {PlusOutlined} from "@ant-design/icons"
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import { getVaccinationCenters } from "../../services/vaccination-center";
 
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    filters: [
+      {
+        text: 'Joe',
+        value: 'Joe',
+      },
+      {
+        text: 'Jim',
+        value: 'Jim',
+      },
+      {
+        text: 'Submenu',
+        value: 'Submenu',
+        children: [
+          {
+            text: 'Green',
+            value: 'Green',
+          },
+          {
+            text: 'Black',
+            value: 'Black',
+          },
+        ],
+      },
+    ],
+    // specify the condition of filtering result
+    // here is that finding the name started with `value`
+    onFilter: (value, record) => record.name.indexOf(value) === 0,
+    sorter: (a, b) => a.name.length - b.name.length,
+    sortDirections: ['descend'],
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.age - b.age,
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    filters: [
+      {
+        text: 'London',
+        value: 'London',
+      },
+      {
+        text: 'New York',
+        value: 'New York',
+      },
+    ],
+    onFilter: (value, record) => record.address.indexOf(value) === 0,
+  },
+];
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+  },
+  {
+    key: '4',
+    name: 'Jim Red',
+    age: 32,
+    address: 'London No. 2 Lake Park',
+  },
+];
+const onChange = (pagination, filters, sorter, extra) => {
+  console.log('params', pagination, filters, sorter, extra);
+};
+
 
 const ViewCenter = () => {
-  const [dataSource, setDataSource] = useState([
-    // {
-    //   id: "0",
-    //   mobile: "32",
-    //   location: "London, Park Lane no. 0",
-    //   name0fDirector : "R.J.Perera",
-    //   type : "MOH"
-
-    // },
-    // {
-    //   id: "1",
-    //   mobile: "32",
-    //   location: "London, Park Lane no. 1",
-    //   name0fDirector : "R.J.Perera",
-    //   type : "MOH"
-    // },
-  ]);
-  const [count, setCount] = useState(2);
-  const handleDelete = (key) => {
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
-
-  const [filteredInfo, setFilteredInfo] = useState({});
-  const [sortedInfo, setSortedInfo] = useState({});
-  const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
-    setFilteredInfo(filters);
-    setSortedInfo(sorter);
-  };
-  const clearFilters = () => {
-    setFilteredInfo({});
-  };
-  const clearAll = () => {
-    setFilteredInfo({});
-    setSortedInfo({});
-  };
-  const setAgeSort = () => {
-    setSortedInfo({
-      order: "descend",
-      columnKey: "age",
-    });
-  };
-
-  const columns = [
-    {
-      title: "Center ID",
-      dataIndex: "id",
-       filters: [
-        {
-          text: "1",
-          value: "1",
-        },
-        {
-          text: "2",
-          value: "2",
-        },
-      ],
-      filteredValue: filteredInfo.id || null,
-      onFilter: (value, record) => record.id.includes(value),
-      sorter: (a, b) => a.id.length - b.id.length,
-      sortOrder: sortedInfo.columnKey === "id" ? sortedInfo.order : null,
-      ellipsis: true,
-     
-    },
-    {
-      title: "Location",
-      dataIndex: "centerAddress",
-      filters: [
-        {
-          text: "Boralla",
-          value: "Boralla",
-        },
-        {
-          text: "Maradana",
-          value: "Maradana",
-        },
-      ],
-      filteredValue: filteredInfo.centerAddress || null,
-      onFilter: (value, record) => record.centerAddress.includes(value),
-      sorter: (a, b) => a.centerAddress.length - b.centerAddress.length,
-      sortOrder: sortedInfo.columnKey === "centerAddress" ? sortedInfo.order : null,
-      ellipsis: true,
-     
-      
-    },
-    {
-      title: "Contact Numner",
-      dataIndex: "contactNumber",
-      orter: (a, b) => a.contactNumber - b.contactNumber,
-      sortOrder: sortedInfo.columnKey === "contactNumber" ? sortedInfo.order : null,
-      ellipsis: true,
-      
-    },
-    {
-      title: "Director's Name",
-      dataIndex: "email",
-      orter: (a, b) => a.email - b.email,
-      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
-      ellipsis: true,
-      
-    },
-    {
-      title: "Center Type",
-      dataIndex: "centerType",
-      filters: [
-        {
-          text: "MOH",
-          value: "BMOH",
-        },
-        {
-          text: "Hospital",
-          value: "Hospital",
-        },
-      ],
-      filteredValue: filteredInfo.location || null,
-      onFilter: (value, record) => record.centerType.includes(value),
-      sorter: (a, b) => a.centerType.length - b.centerType.length,
-      sortOrder: sortedInfo.columnKey === "centerType" ? sortedInfo.order : null,
-      ellipsis: true,
-      
-    },
-    
-  ];
-  React.useEffect(() => {
-    getVaccinationCenters().then((centers) => {
-      setDataSource(centers);
-      console.log(centers);
-    });
-
-    return () => {};
-  }, []);
   
   return (
     <>
@@ -163,15 +117,8 @@ const ViewCenter = () => {
       </Row>
       <Row style={{ padding:'20px 20px 105px 20px' }} >
         <Col  span={24}>
-
-          <Table
-            
-            
-            bordered 
-            pagination = {false}
-            dataSource={dataSource}
-            columns={columns}
-          />
+        <Table columns={columns} dataSource={data} onChange={onChange} />;
+          
         </Col>
       </Row>
     </>

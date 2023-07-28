@@ -289,10 +289,10 @@ const ParentRecordCard = () => {
               style={{
                 width: 400,
               }}
-              cover={<img alt="example" src={image2} />}
+              cover={<img alt="example" src={childData.child.photoURL} />}
             >
               <Meta
-                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                avatar={<Avatar src={childData.child.photoURL} />}
                 title={
                   <span className="custom-table-header">
                     {`${childData.child.firstName} ${childData.child.lastName}`}

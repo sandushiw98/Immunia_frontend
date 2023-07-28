@@ -21,6 +21,8 @@ import { getVaccinationCenters } from "../../services/vaccination-center";
 import { getScheduleByDate } from "../../services/schedule";
 import useUser from "../../hooks/useUser";
 import { saveAppointment } from "../../services/appointment";
+import { VaccineTypeEnum, VaccineTypes } from "../../services/constants";
+import useParent from "../../hooks/useParent";
 
 const gridStyle = {
   width: "25%",
@@ -37,7 +39,7 @@ const ParentBooking = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useUser();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState();
-
+  const [kiddos] = useParent();
   const showModal = () => {
     if (selectedCenter && selectedDate) {
       getScheduleByDate(selectedCenter, selectedDate.format("YYYY-MM-DD")).then(
@@ -103,13 +105,17 @@ const ParentBooking = () => {
 
           <Form
             onFinish={(values) => {
+              const child = kiddos.find((s) => s.childId === values.childId);
+              if (!child) {
+                return;
+              }
               const data = {
-                vaccinationName: "Polio",
+                vaccineType: values.vaccineType,
                 parentName: values.parentName,
-                vaccinationCardNumber: values.vaccinationCardNumber,
+                vaccinationCardNumber: child.vaccinationCardNumber,
                 slotId: selectedTimeSlot,
                 status: true,
-                childName: values.childName,
+                childName: `${child.firstName} ${child.lastName}`,
                 vaccinationCenter: vacCenters.find(
                   (s) => s.id === selectedCenter
                 ).centerName,
@@ -121,6 +127,9 @@ const ParentBooking = () => {
                 },
                 schedule: {
                   scheduleId: selectedTimeSlot,
+                },
+                child: {
+                  childId: values.childId,
                 },
               };
 
@@ -145,8 +154,18 @@ const ParentBooking = () => {
               <Form.Item name="parentName" label="Parent Full Name">
                 <Input />
               </Form.Item>
-
-              <Form.Item name="childName" label="Child Full Name">
+              <Form.Item name="childId" label="Select Child">
+                <Select>
+                  {kiddos.map((v) => {
+                    return (
+                      <Select.Option value={v.childId}>
+                        {v.firstName}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              {/* <Form.Item name="childName" label="Child Full Name">
                 <Input />
               </Form.Item>
               <Form.Item
@@ -154,8 +173,18 @@ const ParentBooking = () => {
                 label="Vaccination Card No"
               >
                 <Input />
+              </Form.Item> */}
+              <Form.Item name="vaccineType" label="Vaccine Type">
+                <Select>
+                  {Object.keys(VaccineTypeEnum).map((v) => {
+                    return (
+                      <Select.Option value={VaccineTypeEnum[v]}>
+                        {VaccineTypes[VaccineTypeEnum[v]]}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
               </Form.Item>
-
               <Form.Item label="Vaccination Center">
                 <Select
                   onChange={(s) => {
@@ -226,7 +255,9 @@ const ParentBooking = () => {
                               >
                                 <Button
                                   type="primary"
-                                  onClick={() => setSelectedTimeSlot(s.scheduleId)}
+                                  onClick={() =>
+                                    setSelectedTimeSlot(s.scheduleId)
+                                  }
                                   style={{
                                     width: "100%",
                                     height: "250%",

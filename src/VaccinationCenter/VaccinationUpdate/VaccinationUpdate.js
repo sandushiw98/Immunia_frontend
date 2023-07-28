@@ -1,7 +1,7 @@
 import React from "react";
 import "./VaccinationUpdate.css";
 import VaccinationNavbar from "../VaccinationNavbar/VaccinationNavbar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { DownloadOutlined } from "@ant-design/icons";
 import image1 from "../../assets/images/reminder.jpg";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
@@ -20,6 +20,8 @@ import {
   Form,
   Input,
   Modal,
+  Select,
+  DatePicker,
 } from "antd";
 import image2 from "../../assets/images/childprofile3.jpg";
 import { PureComponent } from "react";
@@ -33,13 +35,23 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { getChildById } from "../../services/child";
+import { VaccineTypeEnum, VaccineTypes } from "../../services/constants";
+import {
+  getReturnDatesById,
+  getVaccineRecordsById,
+  submitVaccineRecord,
+} from "../../services/record";
+import useUser from "../../hooks/useUser";
 
 const { Meta } = Card;
 
 const columns = [
   {
-    title: "Vaccine Type",
-    dataIndex: "vaccine",
+    title: <span class="vaccine_details">Vaccine Type</span>,
+    dataIndex: "vaccineType",
+    key: "vaccineType",
+    render: (_, itm) => <>{VaccineTypes[VaccineTypeEnum[itm.vaccineType]]}</>,
   },
   {
     title: "Dosage",
@@ -56,38 +68,6 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    date: "23/3/2022",
-    dosage: "1st dose",
-    vaccine: "Polio",
-    location: "Lady Ridgway",
-  },
-  {
-    key: "2",
-    date: "9/4/2022",
-    dosage: "2nd dose",
-    vaccine: "Polio",
-    location: "Lady Ridgway",
-  },
-
-  {
-    key: "3",
-    date: "3/5/2022",
-    dosage: "3rd dose",
-    vaccine: "Polio",
-    location: "Lady Ridgway",
-  },
-  {
-    key: "4",
-    date: "14/7/2022",
-    dosage: "1st dose",
-    vaccine: "Sarampa",
-    location: "National Hospital",
-  },
-];
-
 const handleButtonClick = (e) => {
   message.info("Click on left button.");
   console.log("click left button", e);
@@ -98,35 +78,22 @@ const handleMenuClick = (e) => {
   console.log("click", e);
 };
 
-const data1 = [
-  {
-    key: "1",
-    name: "John Brown",
-    chinese: 98,
-    math: 60,
-    english: 70,
-  },
-];
-
-const menuProps = {
-  onClick: handleMenuClick,
-};
-
 const columnschild = [
   {
-    title: <span class="vaccine_details">Vaccine</span>,
-    dataIndex: "vaccine",
-    key: "vaccine",
+    title: <span class="vaccine_details">Vaccine Type</span>,
+    dataIndex: "vaccineType",
+    key: "vaccineType",
+    render: (_, itm) => <>{VaccineTypes[VaccineTypeEnum[itm.vaccineType]]}</>,
   },
   {
     title: <span class="vaccine_details">Dosage</span>,
-    dataIndex: "Dosage",
-    key: "Dosage",
+    dataIndex: "dosage",
+    key: "dosage",
   },
   {
     title: <span class="vaccine_details">Return Date</span>,
-    dataIndex: "Return_Date",
-    key: "Return_Date",
+    dataIndex: "returnDate",
+    key: "returnDate",
   },
 ];
 const datachild = [
@@ -139,8 +106,12 @@ const datachild = [
 ];
 
 const VaccinationUpdate = () => {
+  const { id: childId } = useParams();
   const [size, setSize] = useState("large");
-
+  const [vaccineRecords, setvaccineRecords] = useState([]);
+  const [returnDates, setReturnDates] = useState([]);
+  const user = useUser();
+  const [kid, setKid] = useState();
   const dataweight = [
     {
       name: "January",
@@ -238,7 +209,7 @@ const VaccinationUpdate = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -249,7 +220,20 @@ const VaccinationUpdate = () => {
     setIsModalOpen(false);
   };
 
-  
+  React.useEffect(() => {
+    getChildById(childId).then((c) => setKid(c));
+  }, [childId]);
+  React.useEffect(() => {
+    getVaccineRecordsById(childId).then((rs) => setvaccineRecords(rs));
+  }, [childId]);
+  React.useEffect(() => {
+    getReturnDatesById(childId).then((rd) => setReturnDates(rd));
+  }, [childId]);
+
+  if (!kid) {
+    return;
+  }
+
   return (
     <div className="cover">
       <Row>
@@ -327,7 +311,7 @@ const VaccinationUpdate = () => {
       <Row>
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={vaccineRecords}
           style={{ width: 2000, padding: "30px" }}
           pagination={false}
         />
@@ -338,7 +322,7 @@ const VaccinationUpdate = () => {
       <Row className="returndate">
         <Table
           columns={columnschild}
-          dataSource={datachild}
+          dataSource={returnDates}
           pagination={false}
           style={{
             width: "100%",
@@ -402,7 +386,7 @@ const VaccinationUpdate = () => {
         </Col>
       </Row>
 
-      <Row className="reminder" style={{padding: '50px 0px  50px 0px'}}>
+      <Row className="reminder" style={{ padding: "50px 0px  50px 0px" }}>
         {/* <Col span={10} style={{ paddingLeft: "50px" }}>
           <img
             src={image1}
@@ -421,32 +405,96 @@ const VaccinationUpdate = () => {
                 Updating Vaccination Details
               </h1>
             }
-            open={isModalOpen1}
             onOk={handleOk1}
             onCancel={handleCancel1}
-            okText="Update"
-            cancelText="Cancel"
-            cancelButtonProps={{ className: "custom-cancel-button" }}
+            open={isModalOpen1}
+            cancelButtonProps={{ hidden: true }}
+            okButtonProps={{ hidden: true }}
             width={1000}
           >
-            <div>
+            <Form
+              onFinish={(values) => {
+                submitVaccineRecord({
+                  vaccineRecord: {
+                    vaccineType: values.vaccineType,
+                    dosage: values.dosage,
+                    location: user.centerName,
+                    date: values.date.format("YYYY-MM-DD"),
+                    weight: values.weight,
+                    child: {
+                      childId: childId,
+                    },
+                  },
+
+                  returnDate: {
+                    vaccineType: values.returnVaccineType,
+                    dosage: values.returnDosage,
+                    returnDate: values.returnDate.format("YYYY-MM-DD"),
+                    child: {
+                      childId: childId,
+                    },
+                  },
+                }).then((v) => {
+                  handleOk1();
+                });
+              }}
+              labelCol={{
+                span: 5,
+              }}
+              wrapperCol={{
+                span: 14,
+              }}
+              layout="horizontal"
+            >
               <h3>Update Details of Child Vaccination Record Card</h3>
-              <Input placeholder="Vaccine Type" />;
-              <Input placeholder="Dosage" />;
-              <Input placeholder="Location" />;
-              <Input placeholder="Date" />;
-            </div>
-            <div>
+              <Form.Item name="vaccineType" label="Vaccine Type">
+                <Select>
+                  {Object.keys(VaccineTypeEnum).map((v) => {
+                    return (
+                      <Select.Option value={VaccineTypeEnum[v]}>
+                        {VaccineTypes[VaccineTypeEnum[v]]}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item name="dosage" label="Dosage">
+                <Input />
+              </Form.Item>
+              {/* <Form.Item name="location" label="Location">
+                <Input />
+              </Form.Item> */}
+              <Form.Item name="date" label="Date">
+                <DatePicker />
+              </Form.Item>
               <h3>Return Date Details</h3>
-              <Input placeholder="Vaccine Type" />;
-              <Input placeholder="Dosage" />;
-              <Input placeholder="Return Date" />;
-            </div>
-            <div>
+              <Form.Item name="returnVaccineType" label="Vaccine Type">
+                <Select>
+                  {Object.keys(VaccineTypeEnum).map((v) => {
+                    return (
+                      <Select.Option value={VaccineTypeEnum[v]}>
+                        {VaccineTypes[VaccineTypeEnum[v]]}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item name="returnDosage" label="Dosage">
+                <Input />
+              </Form.Item>
+              <Form.Item name="returnDate" label="Return Date">
+                <DatePicker />
+              </Form.Item>
               <h3>Child's Weight Details</h3>
-              <Input placeholder="Child's Weight" />;
-              <Input placeholder="Month" />;
-            </div>
+              <Form.Item name="weight" label="Child's Weight">
+                <Input />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit" size="large" type="primary">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
           </Modal>
         </Col>
         <Col span={4} style={{ paddingLeft: "100px" }}>
@@ -468,7 +516,6 @@ const VaccinationUpdate = () => {
             cancelButtonProps={{ className: "custom-cancel-button" }}
             width={1000}
           >
-           
             <div>
               <h3>Child's Weight Details</h3>
               <Input placeholder="Child's Weight" />;

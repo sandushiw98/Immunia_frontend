@@ -10,6 +10,7 @@ import {
   Modal,
   TimePicker,
   Input,
+  Space,
 } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
@@ -510,12 +511,6 @@ const VaccinationDashboard = () => {
             cancelText="Cancel"
             cancelButtonProps={{ className: "custom-cancel-button" }}
           >
-                     <Row>
-            <Space direction="vertical">
-    <DatePicker onChange={onChange} />
-    
-  </Space>
-            </Row>
             <Row>
               <DatePicker
                 value={scheduleData.date}
@@ -530,7 +525,7 @@ const VaccinationDashboard = () => {
             <Row>
               <h2>Morning</h2>
             </Row>
-   
+
             <Row>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker

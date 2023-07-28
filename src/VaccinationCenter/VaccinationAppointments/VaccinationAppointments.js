@@ -89,14 +89,16 @@ const VaccinationAppointments = () => {
       .then((data) => {
         // Update the state with the fetched appointments data
         setAppointments(
-          data.map((d) => {
-            return {
-              ...d,
-              scheduleDate: d.schedule.scheduleDate,
-              startTime: d.schedule.startTime,
-              centerName: d.vaccineCenter.centerName,
-            };
-          })
+          data
+            .filter((d) => d.child)
+            .map((d) => {
+              return {
+                ...d,
+                scheduleDate: d.schedule.scheduleDate,
+                startTime: d.schedule.startTime,
+                centerName: d.vaccineCenter.centerName,
+              };
+            })
         );
       })
       .catch((error) => {
@@ -196,6 +198,15 @@ const VaccinationAppointments = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => {
+        return (
+          <a href={`/vaccinationupdate/${record.child.childId}`}>Record</a>
+        );
+      },
     },
   ];
 

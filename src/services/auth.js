@@ -15,7 +15,7 @@ export const signUpUser = (userData) => {
 };
 export const signInUser = async (userData) => {
   const res = await fetchWithHeader("/login", "POST", userData);
-  if (!res.access_token) {
+  if (!res || !res.access_token) {
     return;
   }
   window.localStorage.setItem("access_token", res.access_token);

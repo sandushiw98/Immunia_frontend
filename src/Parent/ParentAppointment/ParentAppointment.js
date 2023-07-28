@@ -81,14 +81,16 @@ const Appointments = () => {
       .then((data) => {
         // Update the state with the fetched appointments data
         setAppointments(
-          data.map((d) => {
-            return {
-              ...d,
-              scheduleDate: d.schedule.scheduleDate,
-              startTime: d.schedule.startTime,
-              centerName: d.vaccineCenter.centerName,
-            };
-          })
+          data
+            .filter((d) => d.child)
+            .map((d) => {
+              return {
+                ...d,
+                scheduleDate: d.schedule.scheduleDate,
+                startTime: d.schedule.startTime,
+                centerName: d.vaccineCenter.centerName,
+              };
+            })
         );
       })
       .catch((error) => {

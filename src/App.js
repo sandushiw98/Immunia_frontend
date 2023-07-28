@@ -69,27 +69,50 @@ function App() {
             <Route path="/parentNavbar" element={<ParentNavbar />} />
             <Route path="/parentsearch" element={<ParentSearch />} />
             <Route path="/parentbooking" element={<ParentBooking />} />
-            <Route path="/parentchildaccount" element={<ParentChildAccount />}/>
-            <Route path="/parentrecordcard/:id" element={<ParentRecordCard />}/>
+            <Route
+              path="/parentchildaccount"
+              element={<ParentChildAccount />}
+            />
+            <Route
+              path="/parentrecordcard/:id"
+              element={<ParentRecordCard />}
+            />
             <Route path="/parentcenter" element={<ParentCenter />} />
             <Route path="/parentappointment" element={<ParentAppointment />} />
             <Route path="/adminDonations" element={<AdminDonations />} />
             <Route path="/childprofile" element={<ChildProfile />} />
             <Route path="/parentDashboard" element={<ParentDashboard />} />
             <Route path="/vaccinationnavbar" element={<VaccinationNavbar />} />
-            <Route path="/vaccinationdashboard"  element={<VaccinationDashboard />}/>
-            <Route path="/vaccinationdonation" element={<VaccinationDonation />}/>
-            <Route path="/vaccinationappointments" element={<VaccinationAppointments />}/>
-            <Route path="/vaccinationupdate" element={<VaccinationUpdate />} />
+            <Route
+              path="/vaccinationdashboard"
+              element={<VaccinationDashboard />}
+            />
+            <Route
+              path="/vaccinationdonation"
+              element={<VaccinationDonation />}
+            />
+            <Route
+              path="/vaccinationappointments"
+              element={<VaccinationAppointments />}
+            />
+            <Route
+              path="/vaccinationupdate/:id"
+              element={<VaccinationUpdate />}
+            />
             <Route path="/admincentersginup" element={<AdminCenterSignup />} />
             <Route path="/vaccinationschool" element={<VaccinationSchool />} />
-            <Route path="/vaccinationvaccines" element={<VaccinationVaccines />}/>
-            <Route path="/parentnotification"element={<ParentNotification />}/>
+            <Route
+              path="/vaccinationvaccines"
+              element={<VaccinationVaccines />}
+            />
+            <Route
+              path="/parentnotification"
+              element={<ParentNotification />}
+            />
             <Route path="/downloadpdfbutton" element={<DownloadPDFButton />} />
             <Route path="/map" element={<Map />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
-            <Route path="/forgetpassword" element ={<Forgetpassword/>}/>
-            
+            <Route path="/forgetpassword" element={<Forgetpassword />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

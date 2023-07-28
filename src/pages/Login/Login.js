@@ -62,6 +62,9 @@ export default function Login() {
 
     console.log(userData);
     const res = await signInUser(userData);
+    if (!res || !res.user) {
+      return;
+    }
     context.setUser(res.user);
     if (res.user.userRole === "parent") {
       navigate("/parentDashboard");

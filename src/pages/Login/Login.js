@@ -23,33 +23,28 @@ import { signInUser } from "../../services/auth";
 import useAuthContext from "../../hooks/useAuthContext";
 import { useEffect } from "react";
 
-// function Copyright(props) {
-//   return (
-//     <Typography
-//       variant="body2"
-//       color="text.secondary"
-//       align="center"
-//       {...props}
-//     >
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://mui.com/">
-//         Immunia
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
-
 const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
   const context = useAuthContext();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [emailError, setEmailError] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState("");
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // Password should have at least 8 characters, one uppercase, one lowercase, and one special character
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
   };
 
   const handleLogin2 = async (e) => {
@@ -59,6 +54,21 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     };
+
+    // Validate email and password
+    if (!validateEmail(userData.email)) {
+      setEmailError("Invalid email address");
+      return;
+    } else {
+      setEmailError("");
+    }
+
+    if (!validatePassword(userData.password)) {
+      setPasswordError("Password must have at least 8 characters, one uppercase, one lowercase, and one special character");
+      return;
+    } else {
+      setPasswordError("");
+    }
 
     console.log(userData);
     const res = await signInUser(userData);
@@ -73,6 +83,7 @@ export default function Login() {
 
     console.log(res.user);
   };
+
   return (
     <>
       <Row>
@@ -136,6 +147,8 @@ export default function Login() {
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    error={!!emailError}
+                    helperText={emailError}
                   />
                   <TextField
                     margin="normal"
@@ -157,6 +170,8 @@ export default function Login() {
                         </IconButton>
                       ),
                     }}
+                    error={!!passwordError}
+                    helperText={passwordError}
                   />
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}

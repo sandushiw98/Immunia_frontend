@@ -237,7 +237,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'}}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',height: '120px'}}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -254,7 +254,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',height: '120px' }}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -271,7 +271,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)', height: '120px' }}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -288,7 +288,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',height: '120px' }}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -305,7 +305,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',height: '120px' }}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -322,7 +322,7 @@ const Dashbaord = () => {
           <Card
           className="dashboard-cards"
             bordered={false}
-            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
+            style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',height: '120px' }}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Space>
@@ -338,7 +338,7 @@ const Dashbaord = () => {
       </Row>
 
 
-      <Row gutter={[32]} style={{ padding: '40px 20px 20px 20px' }}>
+      <Row gutter={[32]} style={{ padding: '40px 20px 20px 20px'}}>
         <Col span={12} className="donor-details">
           <Row style={{ padding: '0px 50px  40px 0px' }}>
             <Col span={24}>

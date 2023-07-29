@@ -55,7 +55,7 @@ const VaccinationNavbar = () => {
                     </Link>
                 </Col>
                 <Col span={2} className='nav-section'>
-                    <Link to='/vaccinationupdate'>
+                    <Link to='/vaccinationchildren'>
                         <Button className='center-button'>
                             CHILDREN
                         </Button>

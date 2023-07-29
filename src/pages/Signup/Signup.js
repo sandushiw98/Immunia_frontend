@@ -118,56 +118,56 @@ export default function Signup() {
     const nic = data.get("nic");
     const address = data.get("address");
 
-    // const newErrors = {};
-    // if (!validateFirstName(firstName)) {
-    //   newErrors.firstName = "Invalid First Name";
-    // }
+    const newErrors = {};
+    if (!validateFirstName(firstName)) {
+      newErrors.firstName = "Invalid First Name";
+    }
 
-    // if (!validateLastName(lastName)) {
-    //   newErrors.lastName = "Invalid Last Name";
-    // }
+    if (!validateLastName(lastName)) {
+      newErrors.lastName = "Invalid Last Name";
+    }
 
-    // if (!validateEmail(email)) {
-    //   newErrors.email = "Invalid email address";
-    // }
+    if (!validateEmail(email)) {
+      newErrors.email = "Invalid email address";
+    }
 
     if (!validatePassword(password)) {
       newErrors.password = "Invalid Password";
     }
     
 
-    // if (password !== confirmPassword) {
-    //   newErrors.confirmpassword = "Passwords do not match";
-    // }
+    if (password !== confirmPassword) {
+      newErrors.confirmpassword = "Passwords do not match";
+    }
 
-    // if (!validateContactNumber(mobile)) {
-    //   newErrors.mobile = "Invalid contact number";
-    // }
+    if (!validateContactNumber(mobile)) {
+      newErrors.mobile = "Invalid contact number";
+    }
 
-    // if (!validateEmergencyNumber(emergency)) {
-    //   newErrors.emergency = "Invalid contact number";
-    // }
+    if (!validateEmergencyNumber(emergency)) {
+      newErrors.emergency = "Invalid contact number";
+    }
 
-    // if (!validateNIC(nic)) {
-    //   newErrors.nic = "Invalid NIC number";
-    // }
+    if (!validateNIC(nic)) {
+      newErrors.nic = "Invalid NIC number";
+    }
 
-    // if (!address) {
-    //   newErrors.address = "Address is required";
-    // }
+    if (!address) {
+      newErrors.address = "Address is required";
+    }
 
-    // if (Object.keys(newErrors).length === 0) {
-    //   console.log({
-    //     email,
-    //     password,
-    //     mobile,
-    //     nic,
-    //   });
-    //   setPasswordMatch(true);
-    // } else {
-    //   setErrors(newErrors);
-    //   setPasswordMatch(false);
-    // }
+    if (Object.keys(newErrors).length === 0) {
+      console.log({
+        email,
+        password,
+        mobile,
+        nic,
+      });
+      setPasswordMatch(true);
+    } else {
+      setErrors(newErrors);
+      setPasswordMatch(false);
+    }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),

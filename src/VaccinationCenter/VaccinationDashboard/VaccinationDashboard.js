@@ -531,7 +531,7 @@ const VaccinationDashboard = () => {
             <Row>
               <h2>Morning</h2>
             </Row>
-   
+
             <Row>
               <Col style={{ paddingRight: "60px" }}>
                 <TimePicker

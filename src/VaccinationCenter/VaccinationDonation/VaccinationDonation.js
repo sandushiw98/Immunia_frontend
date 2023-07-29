@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Col, Row, Card ,Table} from "antd";
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
+import { Link } from "react-router-dom";
 
 const { Search } = Input;
 const suffix = (
@@ -255,8 +256,13 @@ const VaccinationDonation = () => {
   return (
     <>
       <VaccinationNavbar/>
+      
       <Row style={{paddingTop:'120px', paddingLeft:'1600px'}}>
-      <Search placeholder="input search text" onSearch={onSearch} enterButton style={{width: '250px'}}/>
+        {/* <Col span={12} style={{display: 'flex',marginLeft: '20px'}}><Link className="back-btn" to="/" underline="none">
+          <button className="backbtn">Back to Home </button>
+        </Link> </Col>
+        <Col span={12}><Search placeholder="input search text" onSearch={onSearch} enterButton style={{width: '250px'}}/></Col> */}
+      
       </Row>
       <Row style={{paddingTop:'30px', paddingBottom:'20px', display:'flex', justifyContent:'center', alignItems: 'center'}}>
         <h1>Donation Details</h1>

@@ -240,8 +240,14 @@ const VaccinationUpdate = () => {
         <VaccinationNavbar />
       </Row>
 
+      <Row style={{paddingTop: "80px"}}>
+        <Link className="back-btn" to="/vaccinationchildren" underline="none">
+          <button className="backbtn">Back </button>
+        </Link>
+      </Row>
+
       <Row>
-        <Col span={10} style={{ paddingTop: "100px", paddingLeft: "150px" }}>
+        <Col span={10} style={{paddingTop: "80px", paddingLeft: "150px" }}>
           <Card
             style={{
               width: 400,
@@ -256,7 +262,7 @@ const VaccinationUpdate = () => {
             />
           </Card>
         </Col>
-        <Col span={14} className="childtable" style={{ paddingTop: "100px" }}>
+        <Col span={14} className="childtable" style={{ paddingTop: "80px" }}>
           <Card className="childshadow">
             <div className="childcontent">
               <table class="childclass">

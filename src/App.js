@@ -41,6 +41,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import AuthProvider from "./providers/AuthProvider";
 import Resetpassword from "./components/Resetpassword/Resetpassword";
 import Forgetpassword from "./components/Forgetpassword/Forgetpassword";
+import VaccinationChildren from "./VaccinationCenter/VaccinationChildren/VaccinationChildren";
 
 function App() {
   return (
@@ -112,7 +113,8 @@ function App() {
             <Route path="/downloadpdfbutton" element={<DownloadPDFButton />} />
             <Route path="/map" element={<Map />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
-            <Route path="/forgetpassword" element={<Forgetpassword />} />
+            <Route path="/forgetpassword" element ={<Forgetpassword/>}/>
+            <Route path="/vaccinationchildren" element ={<VaccinationChildren/>}/>
           </Routes>
         </AuthProvider>
       </BrowserRouter>

@@ -50,8 +50,34 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-  return password.length >= 6;
+  // Check if password length is more than 8 characters
+  if (password.length < 8) {
+    return false;
+  }
+
+  // Check if there is at least one uppercase letter
+  if (!/[A-Z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one lowercase letter
+  if (!/[a-z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one number
+  if (!/\d/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one special character
+  if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(password)) {
+    return false;
+  }
+
+  return true;
 }
+
 
 function validateContactNumber(mobile) {
   return /^[0-9]{10}$/.test(mobile); // Validates if the contact number is a 10-digit number
@@ -92,55 +118,56 @@ export default function Signup() {
     const nic = data.get("nic");
     const address = data.get("address");
 
-    // const newErrors = {};
-    // if (!validateFirstName(firstName)) {
-    //   newErrors.firstName = "Invalid First Name";
-    // }
+    const newErrors = {};
+    if (!validateFirstName(firstName)) {
+      newErrors.firstName = "Invalid First Name";
+    }
 
-    // if (!validateLastName(lastName)) {
-    //   newErrors.lastName = "Invalid Last Name";
-    // }
+    if (!validateLastName(lastName)) {
+      newErrors.lastName = "Invalid Last Name";
+    }
 
-    // if (!validateEmail(email)) {
-    //   newErrors.email = "Invalid email address";
-    // }
+    if (!validateEmail(email)) {
+      newErrors.email = "Invalid email address";
+    }
 
-    // if (!validatePassword(password)) {
-    //   newErrors.password = "Password must be at least 6 characters long";
-    // }
+    if (!validatePassword(password)) {
+      newErrors.password = "Invalid Password";
+    }
+    
 
-    // if (password !== confirmPassword) {
-    //   newErrors.confirmpassword = "Passwords do not match";
-    // }
+    if (password !== confirmPassword) {
+      newErrors.confirmpassword = "Passwords do not match";
+    }
 
-    // if (!validateContactNumber(mobile)) {
-    //   newErrors.mobile = "Invalid contact number";
-    // }
+    if (!validateContactNumber(mobile)) {
+      newErrors.mobile = "Invalid contact number";
+    }
 
-    // if (!validateEmergencyNumber(emergency)) {
-    //   newErrors.emergency = "Invalid contact number";
-    // }
+    if (!validateEmergencyNumber(emergency)) {
+      newErrors.emergency = "Invalid contact number";
+    }
 
-    // if (!validateNIC(nic)) {
-    //   newErrors.nic = "Invalid NIC number";
-    // }
+    if (!validateNIC(nic)) {
+      newErrors.nic = "Invalid NIC number";
+    }
 
-    // if (!address) {
-    //   newErrors.address = "Address is required";
-    // }
+    if (!address) {
+      newErrors.address = "Address is required";
+    }
 
-    // if (Object.keys(newErrors).length === 0) {
-    //   console.log({
-    //     email,
-    //     password,
-    //     mobile,
-    //     nic,
-    //   });
-    //   setPasswordMatch(true);
-    // } else {
-    //   setErrors(newErrors);
-    //   setPasswordMatch(false);
-    // }
+    if (Object.keys(newErrors).length === 0) {
+      console.log({
+        email,
+        password,
+        mobile,
+        nic,
+      });
+      setPasswordMatch(true);
+    } else {
+      setErrors(newErrors);
+      setPasswordMatch(false);
+    }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),
@@ -310,12 +337,15 @@ export default function Signup() {
                           label="Confirm Password"
                           name="confirmpassword"
                           type={showPassword ? "text" : "password"}
-                          error={!passwordMatch || !!errors.confirmpassword}
-                          helperText={
-                            !passwordMatch
-                              ? "Passwords do not match"
-                              : errors.confirmpassword
-                          }
+                          error={!!errors.confirmpassword}
+                          helperText={errors.confirmpassword}
+                          // error={!passwordMatch || !!errors.confirmpassword}
+                          // helperText={
+                          //   !passwordMatch
+                          //     ? "Passwords do not match"
+                          //     : errors.confirmpassword
+                          // }
+
                           InputProps={{
                             endAdornment: (
                               <IconButton
@@ -332,6 +362,9 @@ export default function Signup() {
                             ),
                           }}
                         />
+                         <Typography variant="body2" color="textSecondary">
+    Password should contain more than 8 characters with lowercase , uppercasses and special characters.
+  </Typography>
                       </Grid>
                       <Grid item xs={12}>
                         <FormControlLabel

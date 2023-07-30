@@ -66,8 +66,8 @@ const ParentBooking = () => {
         <ParentNavbar />
       </Row>
       <Row style={{ paddingTop: "80px" }}>
-        <Link className="back-btn" to="/parentsearch" underline="none">
-          <button className="backbtn">Back to Home </button>
+        <Link className="back-btn" to="/parentappointment" underline="none">
+          <button className="backbtn">Back </button>
         </Link>
       </Row>
 
@@ -165,15 +165,7 @@ const ParentBooking = () => {
                   })}
                 </Select>
               </Form.Item>
-              {/* <Form.Item name="childName" label="Child Full Name">
-                <Input />
-              </Form.Item>
-              <Form.Item
-                name="vaccinationCardNumber"
-                label="Vaccination Card No"
-              >
-                <Input />
-              </Form.Item> */}
+            
               <Form.Item name="vaccineType" label="Vaccine Type">
                 <Select>
                   {Object.keys(VaccineTypeEnum).map((v) => {
@@ -292,6 +284,13 @@ const ParentBooking = () => {
               </Row>
             </div>
           </Form>
+          <Row style={{paddingLeft: '660px',paddingTop: '100px'}}>
+  <Link to="/parentsearch" underline="none">
+    <Button type="primary">Search Location</Button>
+  </Link>
+</Row>
+
+        
         </Col>
       </Row>
     </>

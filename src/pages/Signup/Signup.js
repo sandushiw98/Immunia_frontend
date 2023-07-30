@@ -147,22 +147,22 @@ export default function Signup() {
     //   newErrors.nic = "Invalid NIC number";
     // }
 
-    if (!address) {
-      newErrors.address = "Address is required";
-    }
+    // if (!address) {
+    //   newErrors.address = "Address is required";
+    // }
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log({
-        email,
-        password,
-        mobile,
-        nic,
-      });
-      setPasswordMatch(true);
-    } else {
-      setErrors(newErrors);
-      setPasswordMatch(false);
-    }
+    // if (Object.keys(newErrors).length === 0) {
+    //   console.log({
+    //     email,
+    //     password,
+    //     mobile,
+    //     nic,
+    //   });
+    //   setPasswordMatch(true);
+    // } else {
+    //   setErrors(newErrors);
+    //   setPasswordMatch(false);
+    // }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),

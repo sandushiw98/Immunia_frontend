@@ -12,12 +12,16 @@ import image13 from "../../assets/images/donation.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useParent from "../../hooks/useParent";
-
+import useUser from "../../hooks/useUser";
+import { getAppointmentsByParent } from "../../services/appointment";
+import dayjs from "dayjs";
 const { TextArea } = Input;
 
 const ParentDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [kiddos] = useParent();
+  const [apps, setapps] = useState([]);
+  const user = useUser();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -27,6 +31,36 @@ const ParentDashboard = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  React.useEffect(() => {
+    // Call the getAppointments function to fetch the data
+    if (!user) {
+      return;
+    }
+    getAppointmentsByParent(user.id)
+      .then((data) => {
+        // Update the state with the fetched appointments data
+
+        setapps(
+          data.filter((d) => {
+            const timeString = `${d.schedule.scheduleDate} ${d.schedule.endTime}`;
+            const date = dayjs(timeString);
+
+            if (!d.child) {
+              return false;
+            }
+            if (dayjs().isBefore(date)) {
+              return true;
+            }
+            return false;
+          })
+        );
+      })
+      .catch((error) => {
+        // Handle error if needed
+        console.log("Error fetching appointments:", error);
+      });
+  }, [user, user.id]);
   return (
     <>
       <Row>
@@ -98,7 +132,7 @@ const ParentDashboard = () => {
                       style={{ textAlign: "right", fontWeight: "bolder" }}
                     >
                       <span style={{ fontSize: "35px", color: "yellowgreen" }}>
-                        2
+                        {apps.length}
                       </span>
                     </Col>
                   </Card>
@@ -117,93 +151,41 @@ const ParentDashboard = () => {
                 bordered={false}
                 style={{ boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)" }}
               >
-                <Row>
-                  <Col span={24} style={{ padding: "3px 0px" }}>
-                    <Card bordered={true}>
-                      <Row
-                        style={{
-                          textAlign: "center",
-                          fontWeight: "bold",
-                          color: "orangered",
-                        }}
-                      >
-                        <Col span={2}>
-                          <CalendarOutlined />
-                        </Col>
-                        <Col span={4}>
-                          <span>2023-08-08</span>
-                        </Col>
-                        <Col span={4}>
-                          <span>10.00 - 10.20</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Sandushi Weraduwa</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Lady Ridgeway</span>
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={24} style={{ padding: "3px 0px" }}>
-                    <Card bordered={true}>
-                      <Row
-                        style={{
-                          textAlign: "center",
-                          fontWeight: "bold",
-                          color: "orangered",
-                        }}
-                      >
-                        <Col span={2}>
-                          <CalendarOutlined />
-                        </Col>
-                        <Col span={4}>
-                          <span>2023-08-08</span>
-                        </Col>
-                        <Col span={4}>
-                          <span>10.00 - 10.20</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Sandushi Weraduwa</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Lady Ridgeway</span>
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={24} style={{ padding: "3px 0px" }}>
-                    <Card bordered={true}>
-                      <Row
-                        style={{
-                          textAlign: "center",
-                          fontWeight: "bold",
-                          color: "orangered",
-                        }}
-                      >
-                        <Col span={2}>
-                          <CalendarOutlined />
-                        </Col>
-                        <Col span={4}>
-                          <span>2023-08-08</span>
-                        </Col>
-                        <Col span={4}>
-                          <span>10.00 - 10.20</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Sandushi Weraduwa</span>
-                        </Col>
-                        <Col span={7}>
-                          <span>Lady Ridgeway</span>
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
+                {apps.map((a) => {
+                  return (
+                    <Row>
+                      <Col span={24} style={{ padding: "3px 0px" }}>
+                        <Card bordered={true}>
+                          <Row
+                            style={{
+                              textAlign: "center",
+                              fontWeight: "bold",
+                              color: "orangered",
+                            }}
+                          >
+                            <Col span={2}>
+                              <CalendarOutlined />
+                            </Col>
+                            <Col span={4}>
+                              <span>{a.schedule.scheduleDate}</span>
+                            </Col>
+                            <Col span={4}>
+                              <span>
+                                {a.schedule.startTime} - {a.schedule.endTime}
+                              </span>
+                            </Col>
+                            <Col span={7}>
+                              <span>{a.parent.firstName}</span>
+                            </Col>
+                            <Col span={7}>
+                              <span>{a.vaccineCenter.centerName}</span>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                  );
+                })}
               </Card>
             </Col>
           </Row>

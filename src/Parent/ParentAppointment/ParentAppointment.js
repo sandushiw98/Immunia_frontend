@@ -12,62 +12,6 @@ import ParentNavbar from "../ParentNavbar/ParentNavbar";
 import image1 from "../../assets/images/appointment1234. girl jpg.jpg";
 import image2 from "../../assets/images/appointment1234 boy.jpg";
 import useUser from "../../hooks/useUser";
-// {
-//   "appointmentId": 4,
-//   "vaccinationName": "Polio",
-//   "parentName": "Navod",
-//   "vaccinationCardNumber": "123",
-//   "status": true,
-//   "childName": "Karuna",
-//   "vaccinationCenter": "Thissa",
-//   "date": "2023-03-12",
-//   "time": "23:59:59",
-//   "parent": {
-//       "id": 3,
-//       "userRole": "parent",
-//       "password": "$2a$10$9lBT1AdksAs8cPalrZipUuc9G20Z72zZppsPfuFJAQy8dcTl5DjTW",
-//       "email": "parent@gmail.com",
-//       "contactNumber": "0712594045",
-//       "isActivate": true,
-//       "firstName": "Prineeth",
-//       "lastName": "Wimalaweera",
-//       "address": "161 Helambagaswala Tissamaharama",
-//       "emergencyContactNumber": "0719270003",
-//       "nicnumber": "702475873V"
-//   },
-//   "vaccineCenter": {
-//       "id": 1,
-//       "userRole": "vaccine_center",
-//       "password": "$2a$10$d/CMMhMpzNLfZHyRt6us9uP6NSHaHwME3zEZpPZ50RUZQg27aVSPG",
-//       "email": "ridgeway@gmail.com",
-//       "contactNumber": "123",
-//       "isActivate": true,
-//       "centerType": "MOH",
-//       "centerName": "Lady Ridgeway",
-//       "centerAddress": "Colombo 08",
-//       "province": "Western"
-//   },
-//   "child": null,
-//   "schedule": {
-//       "scheduleId": 2,
-//       "scheduleDate": null,
-//       "startTime": "10:10:00",
-//       "endTime": "10:20:00",
-//       "status": true,
-//       "vaccineCenter": {
-//           "id": 1,
-//           "userRole": "vaccine_center",
-//           "password": "$2a$10$d/CMMhMpzNLfZHyRt6us9uP6NSHaHwME3zEZpPZ50RUZQg27aVSPG",
-//           "email": "ridgeway@gmail.com",
-//           "contactNumber": "123",
-//           "isActivate": true,
-//           "centerType": "MOH",
-//           "centerName": "Lady Ridgeway",
-//           "centerAddress": "Colombo 08",
-//           "province": "Western"
-//       }
-//   }
-// }
 
 const Appointments = () => {
   const [appointmentData, setAppointments] = useState([]);

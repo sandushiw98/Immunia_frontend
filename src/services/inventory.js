@@ -1,7 +1,9 @@
 import { fetchWithHeader } from "./utils";
 
-export const getInventory = () => {
-  return fetchWithHeader(`/vaccineInventory/`, "GET");
+export const getInventory = (id) => {
+  return fetchWithHeader(`/vaccineInventory/`, "GET").then((v) =>
+    v.filter((rec) => rec.vaccineCenter.id === id)
+  );
 };
 
 export const getInventoryById = (id) => {

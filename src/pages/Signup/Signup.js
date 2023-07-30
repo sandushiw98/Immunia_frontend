@@ -113,6 +113,7 @@ export default function Signup() {
     const nic = data.get("nic");
     const address = data.get("address");
 
+
     const newErrors = {};
     // if (!validateFirstName(firstName)) {
     //   newErrors.firstName = "Invalid First Name";
@@ -131,9 +132,9 @@ export default function Signup() {
     // }
     
 
-    if (password !== confirmPassword) {
-      newErrors.confirmpassword = "Passwords do not match";
-    }
+    // if (password !== confirmPassword) {
+    //   newErrors.confirmpassword = "Passwords do not match";
+    // }
 
     // if (!validateContactNumber(mobile)) {
     //   newErrors.mobile = "Invalid contact number";
@@ -147,22 +148,22 @@ export default function Signup() {
     //   newErrors.nic = "Invalid NIC number";
     // }
 
-    if (!address) {
-      newErrors.address = "Address is required";
-    }
+    // if (!address) {
+    //   newErrors.address = "Address is required";
+    // }
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log({
-        email,
-        password,
-        mobile,
-        nic,
-      });
-      setPasswordMatch(true);
-    } else {
-      setErrors(newErrors);
-      setPasswordMatch(false);
-    }
+    // if (Object.keys(newErrors).length === 0) {
+    //   console.log({
+    //     email,
+    //     password,
+    //     mobile,
+    //     nic,
+    //   });
+    //   setPasswordMatch(true);
+    // } else {
+    //   setErrors(newErrors);
+    //   setPasswordMatch(false);
+    // }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),
@@ -174,10 +175,11 @@ export default function Signup() {
       emergencyContactNumber: emergency.valueOf(),
     });
 
+
     if(res){
       navigate("/login");
     }
- 
+
     console.log(res);
   };
 

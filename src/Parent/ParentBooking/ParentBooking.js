@@ -31,6 +31,7 @@ const gridStyle = {
 
 const ParentBooking = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
+  const [form] = Form.useForm();
   const navigate = useNavigate();
   const [vacCenters, setvacCenters] = useState([]);
   const [selectedCenter, setselectedCenter] = useState();
@@ -40,6 +41,12 @@ const ParentBooking = () => {
   const user = useUser();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState();
   const [kiddos] = useParent();
+
+  useEffect(() => {
+    if (user) {
+      form.setFieldValue("parentName", `${user.firstName} ${user.lastName}`);
+    }
+  }, [form, user]);
   const showModal = () => {
     if (selectedCenter && selectedDate) {
       getScheduleByDate(selectedCenter, selectedDate.format("YYYY-MM-DD")).then(
@@ -104,6 +111,7 @@ const ParentBooking = () => {
           </Row>
 
           <Form
+            form={form}
             onFinish={(values) => {
               const child = kiddos.find((s) => s.childId === values.childId);
               if (!child) {

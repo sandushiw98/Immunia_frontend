@@ -1,6 +1,6 @@
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { Col, Row } from "antd";
-import React from "react";
+import React, { useRef } from "react";
 import image1 from "../../assets/images/cartoon1.jpg";
 import image2 from "../../assets/images/cartoon2.jpg";
 import image3 from "../../assets/images/10_Vaccine.jpg";
@@ -18,6 +18,9 @@ import {
 import "./AdminCentersignup.css";
 import { useState } from "react";
 import { saveVaccinationCenter } from "../../services/vaccination-center";
+import emailjs from '@emailjs/browser';
+import { generateRandomPassword } from "../../services/generateRandomPassword";
+
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -74,6 +77,37 @@ export const uploadProps = {
 
 const AdminCenterSignup = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
+  const [form] = Form.useForm();
+
+  const onFinish = async (values) => {
+    console.log("Form values:", values);
+    values.password = generateRandomPassword(8);
+    const templateParams = {
+      user_email: values.email,
+      password: values.password
+    }
+    emailjs.send('service_yqtp07c', 'template_wqyu7qv', templateParams, 'onmue6jxNsAMtwS7D')
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+
+    saveVaccinationCenter({
+      password: values.password,
+      email: values.email,
+      contactNumber: values.contactNumber,
+      centerType: values.centerType,
+      centerName: values.centerName,
+      centerAddress: values.centerAddress,
+      province: values.province,
+    }).then((v) => {
+      if (v) {
+        // TODO : Navigate to success page
+      }
+    });
+  };
+
   return (
     <>
       <Row>
@@ -97,6 +131,8 @@ const AdminCenterSignup = () => {
         <Col span={14} style={{ paddingTop: "90px", textAlign: "center" }}>
           <h1> Vaccination Center SignUp </h1>
           <Form
+            onFinish={onFinish}
+            form={form}
             layout="horizontal"
             disabled={componentDisabled}
             labelAlign="right"
@@ -108,24 +144,8 @@ const AdminCenterSignup = () => {
             onFinishFailed={(v) => {
               console.log("Faled", v);
             }}
-            onFinish={(values) => {
-              console.log(values);
-              saveVaccinationCenter({
-                password: values.password,
-                email: values.email,
-                contactNumber: values.contactNumber,
-                centerType: values.centerType,
-                centerName: values.centerName,
-                centerAddress: values.centerAddress,
-                province: values.province,
-              }).then((v) => {
-                if (v) {
-                  // TODO : Navigate to success page
-                }
-              });
-            }}
           >
-            <Form.Item
+            {/* <Form.Item
               name="photo"
               valuePropName="fileList"
               label="Upload Child Photo"
@@ -140,7 +160,7 @@ const AdminCenterSignup = () => {
                   <div>Upload</div>
                 </div>
               </Upload>
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item
               name="email"
               label="Email"
@@ -150,7 +170,7 @@ const AdminCenterSignup = () => {
             >
               <Input />
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
               name="password"
               label="Password"
               labelAlign="right"
@@ -158,7 +178,7 @@ const AdminCenterSignup = () => {
               wrapperCol={{ span: 17 }}
             >
               <Input />
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item
               name="centerName"
               label="Vaccination Center Name"
@@ -314,6 +334,7 @@ const AdminCenterSignup = () => {
       </Row>
     </>
   );
+
 };
 
 export default AdminCenterSignup;

@@ -392,14 +392,8 @@ const VaccinationUpdate = () => {
         </Col>
       </Row>
 
-      <Row className="reminder" style={{ padding: "50px 0px  50px 0px" }}>
-        {/* <Col span={10} style={{ paddingLeft: "50px" }}>
-          <img
-            src={image1}
-            alt="girl"
-            style={{ width: "70%", height: "70%", position: "fix" }}
-          />
-        </Col> */}
+      <Row className="reminder" style={{padding: '50px 0px  50px 0px'}}>
+ 
         <Col span={4} style={{ paddingLeft: "100px" }}>
           <Button type="primary" onClick={showModal1}>
             Update Details

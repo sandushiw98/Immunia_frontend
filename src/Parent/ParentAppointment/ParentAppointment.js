@@ -108,7 +108,7 @@ const Appointments = () => {
     <>
       <ParentNavbar />
       <Row className="createbtn" style={{ paddingTop: "100px" }}>
-        <Link to="../../ParentSearch" underline="none">
+        <Link to="/parentbooking" underline="none">
           <Button type="primary" size="large">
             Start scheduling
           </Button>{" "}

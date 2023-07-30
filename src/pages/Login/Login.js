@@ -56,19 +56,19 @@ export default function Login() {
     };
 
     // Validate email and password
-    if (!validateEmail(userData.email)) {
-      setEmailError("Invalid email address");
-      return;
-    } else {
-      setEmailError("");
-    }
+    // if (!validateEmail(userData.email)) {
+    //   setEmailError("Invalid email address");
+    //   return;
+    // } else {
+    //   setEmailError("");
+    // }
 
-    if (!validatePassword(userData.password)) {
-      setPasswordError("Password must have at least 8 characters, one uppercase, one lowercase, and one special character");
-      return;
-    } else {
-      setPasswordError("");
-    }
+    // if (!validatePassword(userData.password)) {
+    //   setPasswordError("Password must have at least 8 characters, one uppercase, one lowercase, and one special character");
+    //   return;
+    // } else {
+    //   setPasswordError("");
+    // }
 
     console.log(userData);
     const res = await signInUser(userData);

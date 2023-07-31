@@ -39,7 +39,8 @@ const ParentBooking = () => {
   const [schedules, setschedules] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useUser();
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState();
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+
   const [kiddos] = useParent();
 
   useEffect(() => {
@@ -54,6 +55,51 @@ const ParentBooking = () => {
       );
       setIsModalOpen(true);
     }
+  };
+
+  // Load selectedTimeSlot and its status from local storage when the component mounts
+  useEffect(() => {
+    const storedTimeSlot = localStorage.getItem("selectedTimeSlot");
+    setSelectedTimeSlot(storedTimeSlot ? parseInt(storedTimeSlot) : null);
+    const storedStatus = localStorage.getItem("selectedTimeSlotStatus");
+    if (storedStatus) {
+      const parsedStatus = JSON.parse(storedStatus);
+      setschedules((prevSchedules) => {
+        return prevSchedules.map((s) => {
+          if (parsedStatus[s.scheduleId]) {
+            return { ...s, status: true };
+          }
+          return s;
+        });
+      });
+    }
+  }, []);
+
+  // Save selectedTimeSlot to local storage when it changes
+  useEffect(() => {
+    if (selectedTimeSlot !== null) {
+      localStorage.setItem("selectedTimeSlot", selectedTimeSlot.toString());
+    }
+  }, [selectedTimeSlot]);
+
+  const handleTimeSlotSelect = (scheduleId) => {
+    const selectedSchedule = schedules.find((s) => s.scheduleId === scheduleId);
+    if (selectedSchedule && selectedSchedule.status) {
+      // If the selected time slot is already red, do not change its status
+      return;
+    }
+
+    const updatedSchedules = schedules.map((s) => {
+      if (s.scheduleId === scheduleId) {
+        return {
+          ...s,
+          status: true,
+        };
+      }
+      return s;
+    });
+    setschedules(updatedSchedules);
+    setSelectedTimeSlot(scheduleId);
   };
 
   const handleOk = () => {
@@ -202,79 +248,70 @@ const ParentBooking = () => {
                 <DatePicker onChange={(v) => setselectedDate(v)} />
               </Form.Item>
               <Form.Item label="Time Slots">
-                <Row>
-                  <Col style={{ paddingRight: "50px" }}>
-                    <Input
-                      value={(() => {
-                        const s = schedules.find(
-                          (s) => s.scheduleId === selectedTimeSlot
-                        );
-                        if (!s) {
-                          return "";
-                        }
-                        return `${s.startTime} - ${s.endTime}`;
-                      })()}
-                      style={{ paddingRight: "80px" }}
-                      readOnly
-                    />
-                  </Col>
-                  <Col>
-                    <Button type="primary" onClick={showModal}>
-                      select time slots
-                    </Button>
+      <Row>
+        <Col style={{ paddingRight: "50px" }}>
+          <Input
+            value={(() => {
+              const s = schedules.find((s) => s.scheduleId === selectedTimeSlot);
+              if (!s) {
+                return "";
+              }
+              return `${s.startTime} - ${s.endTime}`;
+            })()}
+            style={{ paddingRight: "80px" }}
+            readOnly
+          />
+        </Col>
+        <Col>
+          <Button type="primary" onClick={showModal}>
+            Select Time Slots
+          </Button>
 
-                    <Modal
-                      title="Basic Modal"
-                      visible={isModalOpen}
-                      onOk={handleOk}
-                      onCancel={handleCancel}
-                      width={1200}
-                      height={1000}
+          <Modal
+            title="Available Time Slots"
+            visible={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            width={1200}
+            height={1000}
+          >
+            <Card title="Available Time Slots" style={{ textAlign: "center" }}>
+              <Row
+                gutter={[0, 20]}
+                style={{
+                  padding: "30px 30px 30px 30px",
+                  borderRadius: "0.5",
+                }}
+              >
+                {schedules.map((s) => {
+                  return (
+                    <Col
+                      className="gutter-row"
+                      style={{ margin: 20 }}
+                      span={3}
+                      key={s.scheduleId}
                     >
-                      <Card
-                        title="Available Time Slots"
-                        style={{ textAlign: "center" }}
+                      <Button
+                        type="primary"
+                        onClick={() => handleTimeSlotSelect(s.scheduleId)}
+                        style={{
+                          width: "100%",
+                          height: "250%",
+                          backgroundColor: s.status ? "red" : "green",
+                        }}
+                        disabled={s.status}
                       >
-                        <Row
-                          gutter={[0, 20]}
-                          style={{
-                            padding: "30px 30px 30px 30px",
-                            borderRadius: "0.5",
-                          }}
-                        >
-                          {schedules.map((s) => {
-                            if (s.status) {
-                              return null;
-                            }
-                            console.log(s);
-                            return (
-                              <Col
-                                className="gutter-row"
-                                style={{ margin: 20 }}
-                                span={3}
-                              >
-                                <Button
-                                  type="primary"
-                                  onClick={() =>
-                                    setSelectedTimeSlot(s.scheduleId)
-                                  }
-                                  style={{
-                                    width: "100%",
-                                    height: "250%",
-                                    backgroundColor: "green",
-                                  }}
-                                >
-                                  {s.startTime} - {s.endTime}
-                                </Button>
-                              </Col>
-                            );
-                          })}
-                        </Row>
-                      </Card>
-                    </Modal>
-                  </Col>
-                </Row>
-              </Form.Item>
+                        {s.startTime} - {s.endTime}
+                      </Button>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Card>
+          </Modal>
+        </Col>
+      </Row>
+    </Form.Item>
               <Row className="finalbuttons">
                 <Col style={{ padding: "40px  60px 40px 240px" }}>
                   <Button
@@ -292,6 +329,7 @@ const ParentBooking = () => {
               </Row>
             </div>
           </Form>
+
           {selectedCenter && (
             <Row style={{ paddingLeft: "660px", paddingTop: "100px" }}>
               <Link to={`/parentsearch/${selectedCenter}`} underline="none">
@@ -299,6 +337,8 @@ const ParentBooking = () => {
               </Link>
             </Row>
           )}
+
+         
         </Col>
       </Row>
     </>

@@ -148,7 +148,7 @@ const datachild = [
     Dosage: <span class="return">2nd Dose</span>,
     Return_Date: <span class="return">02/08/2022</span>,
     appointment: (
-      <Link to="/parentsearch">
+      <Link to="/parentbooking">
         <Button style={{ background: "red", color: "white" }}>
           Make Appointment
         </Button>
@@ -432,7 +432,7 @@ const ParentRecordCard = () => {
             <LineChart
               width={1800}
               height={500}
-              data={childData}
+              data={dataweight}
               margin={{
                 top: 5,
                 right: 30,

@@ -20,6 +20,7 @@ import { uploadProps } from "../../Admin/AdminCenterSignup/AdminCenterSignup";
 import { saveChild } from "../../services/child";
 import useAuthContext from "../../hooks/useAuthContext";
 import useUser from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -30,11 +31,11 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
-
-
 const ParentChildAccount = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
   const user = useUser();
+  const navigate = useNavigate();
+
   return (
     <>
       <Row>
@@ -71,6 +72,9 @@ const ParentChildAccount = () => {
               data.photoURL = values.photo.file.response.url;
               data.parent = { id: user.id };
               const res = await saveChild(data);
+              if (res) {
+                navigate("/parentDashboard");
+              }
               console.log(res);
             }}
           >
@@ -80,6 +84,32 @@ const ParentChildAccount = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please upload a photo of your child.",
+                },
+                {
+                  validator: (_, file) => {
+                    if (!file || file.size <= 10 * 1024 * 1024) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "Image size should be less than 10MB."
+                    );
+                  },
+                },
+                {
+                  validator: (_, file) => {
+                    if (!file || /\.(png|jpe?g|pdf)$/i.test(file.name)) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "Only PNG, JPEG, and PDF formats are allowed."
+                    );
+                  },
+                },
+              ]}
             >
               <Upload {...uploadProps} listType="picture-card">
                 <div>
@@ -88,21 +118,45 @@ const ParentChildAccount = () => {
                 </div>
               </Upload>
             </Form.Item>
+
             <Form.Item
               name={"fullName"}
               label="Child Full Name"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter the child's full name.",
+                },
+                {
+                  pattern: /^[A-Za-z\s']+$/, // Only letters and apostrophes allowed
+                  message:
+                    "Child's name should only contain letters and apostrophes.",
+                },
+              ]}
             >
               <Input />
             </Form.Item>
+
             <Form.Item
               name="vaccinationCardNumber"
               label="Vaccination ID Number"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter the vaccination ID number.",
+                },
+                {
+                  pattern: /^\d{4}\/\d{2}$/, // Format: 6304/20
+                  message:
+                    "Please enter a valid vaccination ID number (e.g., 6304/20).",
+                },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -112,6 +166,28 @@ const ParentChildAccount = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter the date of birth.",
+                },
+                {
+                  validator: (_, value) => {
+                    if (value) {
+                      const birthDate = new Date(value);
+                      const cutoffDate = new Date("2005-02-01");
+                      if (birthDate >= cutoffDate) {
+                        return Promise.resolve();
+                      } else {
+                        return Promise.reject(
+                          "You can creat a account for the children below 18 "
+                        );
+                      }
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -142,6 +218,32 @@ const ParentChildAccount = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please upload the birth certificate of your child.",
+                },
+                {
+                  validator: (_, file) => {
+                    if (!file || file.size <= 10 * 1024 * 1024) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "File size should be less than 10MB."
+                    );
+                  },
+                },
+                {
+                  validator: (_, file) => {
+                    if (!file || /\.(png|jpe?g|pdf)$/i.test(file.name)) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      "Only PNG, JPEG, and PDF formats are allowed."
+                    );
+                  },
+                },
+              ]}
             >
               <Upload {...uploadProps}>
                 <Button icon={<UploadOutlined />}>Click to Upload</Button>

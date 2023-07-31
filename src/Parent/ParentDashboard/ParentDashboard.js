@@ -144,7 +144,7 @@ const ParentDashboard = () => {
                 className="parent-card-appoinments"
                 title="Upcoming Appointments"
                 extra={
-                  <Link to="/../ParentSearch">
+                  <Link to="/parentappointment">
                     <Button type="primary">+ Create Appointment</Button>
                   </Link>
                 }

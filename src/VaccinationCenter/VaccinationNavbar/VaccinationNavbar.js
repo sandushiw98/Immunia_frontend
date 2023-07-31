@@ -5,14 +5,14 @@ import logo from "../../assets/images/logonew.png";
 import { Link } from 'react-router-dom';
 import { AlignCenterOutlined, UserOutlined } from '@ant-design/icons';
 import { signOutUser } from '../../services/auth';
+import useUser from "../../hooks/useUser";
 
 const VaccinationNavbar = () => {
 
+    const user = useUser();
+
     const items = [
-        {
-          key: "11",
-          label: <Link to="/adminprofile">My Profile</Link>,
-        },
+        
         {
           key: "222",
           label: (
@@ -78,9 +78,7 @@ const VaccinationNavbar = () => {
                 </Col>
                 
                 <Col span={10} className='nav-section-name'>
-                    <Link to='/adminprofile'>
-                        <span style={{ fontWeight: '500', fontSize: '16px', color: 'black' }}>Sandushi Weraduwa</span>
-                    </Link>
+                {user && `${user.firstName} ${user.lastName}`}
                 </Col>
                 <Col span={1} className='nav-section-img'>
                     <Dropdown

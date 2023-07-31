@@ -20,71 +20,71 @@ import signup from "../../assets/images/signup.jpg";
 import "./Signup.css";
 import { signUpParent } from "../../services/auth";
 
-// function validateFirstName(firstName) {
-//   const minLength = 2;
-//   const lettersOnlyRegex = /^[A-Za-z']+$/;
-//   if (firstName.length < minLength || !lettersOnlyRegex.test(firstName)) {
-//     return false;
-//   }
-//   return true;
-// }
+function validateFirstName(firstName) {
+  const minLength = 2;
+  const lettersOnlyRegex = /^[A-Za-z']+$/;
+  if (firstName.length < minLength || !lettersOnlyRegex.test(firstName)) {
+    return false;
+  }
+  return true;
+}
 
-// function validateLastName(lastName) {
-//   const minLength = 2;
-//   const lettersOnlyRegex = /^[A-Za-z']+$/;
-//   if (lastName.length < minLength || !lettersOnlyRegex.test(lastName)) {
-//     return false;
-//   }
-//   return true;
-// }
-
-
-// function validateEmail(email) {
-//   const re = /\S+@\S+\.\S+/;
-//   return re.test(email);
-// }
-
-// function validatePassword(password) {
-//   // Check if password length is more than 8 characters
-//   if (password.length < 8) {
-//     return false;
-//   }
-
-//   // Check if there is at least one uppercase letter
-//   if (!/[A-Z]/.test(password)) {
-//     return false;
-//   }
-
-//   // Check if there is at least one lowercase letter
-//   if (!/[a-z]/.test(password)) {
-//     return false;
-//   }
-
-//   // Check if there is at least one number
-//   if (!/\d/.test(password)) {
-//     return false;
-//   }
-
-//   // Check if there is at least one special character
-//   if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(password)) {
-//     return false;
-//   }
-
-//   return true;
-// }
+function validateLastName(lastName) {
+  const minLength = 2;
+  const lettersOnlyRegex = /^[A-Za-z']+$/;
+  if (lastName.length < minLength || !lettersOnlyRegex.test(lastName)) {
+    return false;
+  }
+  return true;
+}
 
 
-// function validateContactNumber(mobile) {
-//   return /^[0-9]{10}$/.test(mobile); // Validates if the contact number is a 10-digit number
-// }
+function validateEmail(email) {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
 
-// function validateEmergencyNumber(emergency) {
-//   return /^[0-9]{10}$/.test(emergency); // Validates if the contact number is a 10-digit number
-// }
+function validatePassword(password) {
+  // Check if password length is more than 8 characters
+  if (password.length < 8) {
+    return false;
+  }
 
-// function validateNIC(nic) {
-//   return true; // Validates if the NIC number is a 9-digit number followed by 'V' or 'v'
-// }
+  // Check if there is at least one uppercase letter
+  if (!/[A-Z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one lowercase letter
+  if (!/[a-z]/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one number
+  if (!/\d/.test(password)) {
+    return false;
+  }
+
+  // Check if there is at least one special character
+  if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(password)) {
+    return false;
+  }
+
+  return true;
+}
+
+
+function validateContactNumber(mobile) {
+  return /^[0-9]{10}$/.test(mobile); // Validates if the contact number is a 10-digit number
+}
+
+function validateEmergencyNumber(emergency) {
+  return /^[0-9]{10}$/.test(emergency); // Validates if the contact number is a 10-digit number
+}
+
+function validateNIC(nic) {
+  return true; // Validates if the NIC number is a 9-digit number followed by 'V' or 'v'
+}
 
 const defaultTheme = createTheme();
 
@@ -115,55 +115,55 @@ export default function Signup() {
 
 
     const newErrors = {};
-    // if (!validateFirstName(firstName)) {
-    //   newErrors.firstName = "Invalid First Name";
-    // }
+    if (!validateFirstName(firstName)) {
+      newErrors.firstName = "Invalid First Name";
+    }
 
-    // if (!validateLastName(lastName)) {
-    //   newErrors.lastName = "Invalid Last Name";
-    // }
+    if (!validateLastName(lastName)) {
+      newErrors.lastName = "Invalid Last Name";
+    }
 
-    // if (!validateEmail(email)) {
-    //   newErrors.email = "Invalid email address";
-    // }
+    if (!validateEmail(email)) {
+      newErrors.email = "Invalid email address";
+    }
 
-    // if (!validatePassword(password)) {
-    //   newErrors.password = "Invalid Password";
-    // }
+    if (!validatePassword(password)) {
+      newErrors.password = "Invalid Password";
+    }
     
 
-    // if (password !== confirmPassword) {
-    //   newErrors.confirmpassword = "Passwords do not match";
-    // }
+    if (password !== confirmPassword) {
+      newErrors.confirmpassword = "Passwords do not match";
+    }
 
-    // if (!validateContactNumber(mobile)) {
-    //   newErrors.mobile = "Invalid contact number";
-    // }
+    if (!validateContactNumber(mobile)) {
+      newErrors.mobile = "Invalid contact number";
+    }
 
-    // if (!validateEmergencyNumber(emergency)) {
-    //   newErrors.emergency = "Invalid contact number";
-    // }
+    if (!validateEmergencyNumber(emergency)) {
+      newErrors.emergency = "Invalid contact number";
+    }
 
-    // if (!validateNIC(nic)) {
-    //   newErrors.nic = "Invalid NIC number";
-    // }
+    if (!validateNIC(nic)) {
+      newErrors.nic = "Invalid NIC number";
+    }
 
-    // if (!address) {
-    //   newErrors.address = "Address is required";
-    // }
+    if (!address) {
+      newErrors.address = "Address is required";
+    }
 
-    // if (Object.keys(newErrors).length === 0) {
-    //   console.log({
-    //     email,
-    //     password,
-    //     mobile,
-    //     nic,
-    //   });
-    //   setPasswordMatch(true);
-    // } else {
-    //   setErrors(newErrors);
-    //   setPasswordMatch(false);
-    // }
+    if (Object.keys(newErrors).length === 0) {
+      console.log({
+        email,
+        password,
+        mobile,
+        nic,
+      });
+      setPasswordMatch(true);
+    } else {
+      setErrors(newErrors);
+      setPasswordMatch(false);
+    }
     const res = await signUpParent({
       password: password.valueOf(),
       email: email.valueOf(),
@@ -372,7 +372,7 @@ export default function Signup() {
                         />
                       </Grid>
                     </Grid>
-                    <Link to="/login" variant="body2" style={{ textDecoration: 'none' }}>
+                   
                       <Button
                         type="submit"
                         fullWidth
@@ -381,7 +381,7 @@ export default function Signup() {
                       >
                         Sign Up
                       </Button>
-                    </Link>
+                    
 
                     <Grid container justifyContent="flex-end">
                       <Grid item>

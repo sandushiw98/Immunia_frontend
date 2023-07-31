@@ -25,10 +25,7 @@ const ParentNavbar = () => {
   //   ];
 
   const items1 = [
-    {
-      key: "11",
-      label: <Link to="/adminprofile">My Profile</Link>,
-    },
+    
     {
       key: "222",
       label: (
@@ -96,20 +93,12 @@ const ParentNavbar = () => {
           <Button>NOTIFICATIONS</Button>
         </Col>
 
-        {/* <Col span={2} className='nav-section'>
-                <Button>
-                    RECORDS
-                </Button>
-            </Col> */}
+      
 
         <Col span={9} className="nav-section-name">
-          <Link to="/adminprofile">
-            <span
-              style={{ fontWeight: "500", fontSize: "16px", color: "black" }}
-            >
-              {user && `${user.firstName} ${user.lastName}`}
-            </span>
-          </Link>
+          
+          {user && `${user.firstName} ${user.lastName}`}
+           
         </Col>
         <Col span={1} className="nav-section-img">
           <Dropdown menu={{ items: items1 }} placement="bottomRight">

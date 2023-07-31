@@ -234,7 +234,7 @@ const VaccinationVaccines = () => {
                 console.log(values);
                 if (user) {
                   if (values.inventoryId) {
-                    updateInventory({
+                    updateInventory(values.inventoryId,{
                       batchNumber: values.batchNumber,
                       quantity: values.quantity,
                       vaccineType: values.vaccineType,
@@ -290,7 +290,7 @@ const VaccinationVaccines = () => {
                 <Form.Item name="inventoryId" label="Inventory Id">
                   <Input
                     disabled={true}
-                    placeholder="Description"
+                    // placeholder="Description"
                     style={{ padding: "10px" }}
                   />
                 </Form.Item>

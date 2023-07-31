@@ -22,6 +22,7 @@ import "./Login.css";
 import { signInUser } from "../../services/auth";
 import useAuthContext from "../../hooks/useAuthContext";
 import { useEffect } from "react";
+import { message } from "antd";
 
 const defaultTheme = createTheme();
 
@@ -36,41 +37,7 @@ export default function Login() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  // const validateEmail = (email) => {
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return emailRegex.test(email);
-  // };
-
-
   
-  // function validatePassword(password) {
-  //   // Check if password length is more than 8 characters
-  //   if (password.length < 8) {
-  //     return false;
-  //   }
-  
-  //   // Check if there is at least one uppercase letter
-  //   if (!/[A-Z]/.test(password)) {
-  //     return false;
-  //   }
-  
-  //   // Check if there is at least one lowercase letter
-  //   if (!/[a-z]/.test(password)) {
-  //     return false;
-  //   }
-  
-  //   // Check if there is at least one number
-  //   if (!/\d/.test(password)) {
-  //     return false;
-  //   }
-  
-  //   // Check if there is at least one special character
-  //   if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>?]/.test(password)) {
-  //     return false;
-  //   }
-  
-  //   return true;
-  // }
   
 
   const handleLogin2 = async (e) => {
@@ -81,24 +48,12 @@ export default function Login() {
       password: data.get("password"),
     };
 
-    // Validate email and password
-    // if (!validateEmail(userData.email)) {
-    //   setEmailError("Invalid email address");
-    //   return;
-    // } else {
-    //   setEmailError("");
-    // }
-
-    // if (!validatePassword(userData.password)) {
-    //   setPasswordError("Password must have at least 8 characters, one uppercase, one lowercase, and one special character");
-    //   return;
-    // } else {
-    //   setPasswordError("");
-    // }
+  
 
     console.log(userData);
     const res = await signInUser(userData);
     if (!res || !res.user) {
+      message.error("Invalid Credentials");
       return;
     }
     context.setUser(res.user);
@@ -108,6 +63,8 @@ export default function Login() {
       navigate("/vaccinationdashboard");
     } else if (res.user.userRole === "Admin") {
       navigate("/adminDashboard");
+    }else {
+      message.error("Invalid Credentials");
     }
 
     console.log(res.user);

@@ -329,7 +329,16 @@ const ParentBooking = () => {
               </Row>
             </div>
           </Form>
-          
+
+          {selectedCenter && (
+            <Row style={{ paddingLeft: "660px", paddingTop: "100px" }}>
+              <Link to={`/parentsearch/${selectedCenter}`} underline="none">
+                <Button type="primary">Search Location</Button>
+              </Link>
+            </Row>
+          )}
+
+         
         </Col>
       </Row>
     </>

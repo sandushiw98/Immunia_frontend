@@ -43,7 +43,7 @@ import {
   submitVaccineRecord,
 } from "../../services/record";
 import useUser from "../../hooks/useUser";
-
+import dayjs from "dayjs";
 const { Meta } = Card;
 
 const columns = [
@@ -112,89 +112,12 @@ const VaccinationUpdate = () => {
   const [returnDates, setReturnDates] = useState([]);
   const user = useUser();
   const [kid, setKid] = useState();
-  const dataweight = [
-    {
-      name: "January",
-      One_Year: 240,
-      Two_Year: 400,
-      Three_Year: 600,
-    },
-    {
-      name: "February",
-      One_Year: 300,
-      Two_Year: 350,
-      Three_Year: 240,
-    },
-    {
-      name: "March",
-      One_Year: 500,
-      Two_Year: 600,
-      Three_Year: 650,
-    },
-    {
-      name: "April",
-
-      One_Year: 789,
-      Two_Year: 400,
-      Three_Year: 754,
-    },
-    {
-      name: "May",
-
-      One_Year: 890,
-      Two_Year: 321,
-      Three_Year: 678,
-    },
-    {
-      name: "June",
-
-      One_Year: 400,
-      Two_Year: 700,
-      Three_Year: 900,
-    },
-    {
-      name: "July",
-
-      One_Year: 690,
-      Two_Year: 678,
-      Three_Year: 890,
-    },
-    {
-      name: "August",
-
-      One_Year: 435,
-      Two_Year: 678,
-      Three_Year: 456,
-    },
-    {
-      name: "September",
-
-      One_Year: 890,
-      Two_Year: 345,
-      Three_Year: 567,
-    },
-    {
-      name: "October",
-
-      One_Year: 800,
-      Two_Year: 899,
-      Three_Year: 900,
-    },
-    {
-      name: "November",
-
-      One_Year: 1000,
-      Two_Year: 289,
-      Three_Year: 678,
-    },
-    {
-      name: "December",
-
-      One_Year: 800,
-      Two_Year: 450,
-      Three_Year: 800,
-    },
-  ];
+  const dataweight = vaccineRecords.map((r) => {
+    return {
+      name: r.date,
+      Weight: r.weight,
+    };
+  });
 
   const [isModalOpen1, setIsModalOpen1] = useState(false);
 
@@ -224,7 +147,11 @@ const VaccinationUpdate = () => {
     getChildById(childId).then((c) => setKid(c));
   }, [childId]);
   React.useEffect(() => {
-    getVaccineRecordsById(childId).then((rs) => setvaccineRecords(rs));
+    getVaccineRecordsById(childId).then((rs) =>
+      setvaccineRecords(
+        rs.sort((a, b) => (dayjs(a.date).isBefore(dayjs(b.date)) ? -1 : 1))
+      )
+    );
   }, [childId]);
   React.useEffect(() => {
     getReturnDatesById(childId).then((rd) => setReturnDates(rd));
@@ -240,14 +167,14 @@ const VaccinationUpdate = () => {
         <VaccinationNavbar />
       </Row>
 
-      <Row style={{paddingTop: "80px"}}>
+      <Row style={{ paddingTop: "80px" }}>
         <Link className="back-btn" to="/vaccinationchildren" underline="none">
           <button className="backbtn">Back </button>
         </Link>
       </Row>
 
       <Row>
-        <Col span={10} style={{paddingTop: "80px", paddingLeft: "150px" }}>
+        <Col span={10} style={{ paddingTop: "80px", paddingLeft: "150px" }}>
           <Card
             style={{
               width: 400,
@@ -373,27 +300,26 @@ const VaccinationUpdate = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="name"
-              label={{ value: "Month", position: "insideBottom" }}
+              label={{ value: "Date", position: "insideBottom" }}
             />
             <YAxis
               label={{ value: "Year", angle: -90, position: "insideLeft" }}
             />
             <Tooltip />
             <Legend />
-            <Line
+            {/* <Line
               type="monotone"
               dataKey="One_Year"
               stroke="#8884d8"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="Two_Year" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="Three_Year" stroke="#f5aa42" />
+            <Line type="monotone" dataKey="Two_Year" stroke="#82ca9d" /> */}
+            <Line type="monotone" dataKey="Weight" stroke="#f5aa42" />
           </LineChart>
         </Col>
       </Row>
 
-      <Row className="reminder" style={{padding: '50px 0px  50px 0px'}}>
- 
+      <Row className="reminder" style={{ padding: "50px 0px  50px 0px" }}>
         <Col span={4} style={{ paddingLeft: "100px" }}>
           <Button type="primary" onClick={showModal1}>
             Update Details
@@ -513,13 +439,53 @@ const VaccinationUpdate = () => {
             onCancel={handleCancel}
             okText="Update"
             cancelText="Cancel"
-            cancelButtonProps={{ className: "custom-cancel-button" }}
+            okButtonProps={{
+              hidden: true,
+            }}
+            cancelButtonProps={{
+              className: "custom-cancel-button",
+              hidden: true,
+            }}
             width={1000}
           >
             <div>
               <h3>Child's Weight Details</h3>
-              <Input placeholder="Child's Weight" />;
-              <Input placeholder="Month" />;
+              <Form
+                onFinish={(values) => {
+                  submitVaccineRecord({
+                    vaccineRecord: {
+                      location: user.centerName,
+                      date: values.date.format("YYYY-MM-DD"),
+                      weight: values.weight,
+                      child: {
+                        childId: childId,
+                      },
+                    },
+                  }).then((v) => {
+                    handleOk();
+                  });
+                }}
+                labelCol={{
+                  span: 5,
+                }}
+                wrapperCol={{
+                  span: 14,
+                }}
+                layout="horizontal"
+              >
+                <h3>Child's Weight Details</h3>
+                <Form.Item name="date" label="Date">
+                  <DatePicker />
+                </Form.Item>
+                <Form.Item name="weight" label="Child's Weight">
+                  <Input />
+                </Form.Item>
+                <Form.Item>
+                  <Button htmlType="submit" size="large" type="primary">
+                    Submit
+                  </Button>
+                </Form.Item>
+              </Form>
             </div>
           </Modal>
         </Col>

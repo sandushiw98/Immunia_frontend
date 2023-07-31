@@ -68,7 +68,7 @@ function App() {
             <Route path="/adminNavbar" element={<AdminNavbar />} />
             <Route path="/adminDonations" element={<AdminDonations />} />
             <Route path="/parentNavbar" element={<ParentNavbar />} />
-            <Route path="/parentsearch" element={<ParentSearch />} />
+            <Route path="/parentsearch/:centerId" element={<ParentSearch />} />
             <Route path="/parentbooking" element={<ParentBooking />} />
             <Route
               path="/parentchildaccount"
@@ -113,8 +113,11 @@ function App() {
             <Route path="/downloadpdfbutton" element={<DownloadPDFButton />} />
             <Route path="/map" element={<Map />} />
             <Route path="/resetpassword" element={<Resetpassword />} />
-            <Route path="/forgetpassword" element ={<Forgetpassword/>}/>
-            <Route path="/vaccinationchildren" element ={<VaccinationChildren/>}/>
+            <Route path="/forgetpassword" element={<Forgetpassword />} />
+            <Route
+              path="/vaccinationchildren"
+              element={<VaccinationChildren />}
+            />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

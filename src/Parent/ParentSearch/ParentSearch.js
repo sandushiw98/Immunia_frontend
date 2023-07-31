@@ -1,21 +1,28 @@
 import React from "react";
 import ParentNavbar from "../ParentNavbar/ParentNavbar";
-import {Col, Row, Card } from "antd";
+import { Col, Row, Card } from "antd";
 import image1 from "../../assets/images/LRH.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Map from "../../components/Map/Map";
-
-
+import { getVaccinationCenterById } from "../../services/vaccination-center";
 
 const ParentSearch = () => {
+  const params = useParams();
+  const [center, setcenter] = React.useState();
+  React.useEffect(() => {
+    if (params.centerId) {
+      getVaccinationCenterById(params.centerId).then((v) => setcenter(v));
+    }
+  }, [params.centerId]);
+  if (!center) {
+    return null;
+  }
   return (
     <>
       <Row>
         <ParentNavbar />
       </Row>
-      <Row style={{ paddingTop: "120px" }}>
-       
-      </Row>
+      <Row style={{ paddingTop: "120px" }}></Row>
       <Row style={{ padding: "60px" }}>
         <Col span={12}>
           <Card
@@ -44,7 +51,7 @@ const ParentSearch = () => {
               <Col span={12}>
                 <p style={{ fontSize: "15px" }}>
                   {" "}
-                  Location : Lady Ridgway Hospital Colombo 8{" "}
+                  Location : {center.centerName}{" "}
                 </p>
                 <p style={{ fontSize: "15px" }}> Distance : 1km away </p>
                 <br />
@@ -102,14 +109,14 @@ const ParentSearch = () => {
                 paddingTop: "20px",
               }}
             >
-              <Link  to='../../ParentBooking' underline="none">
+              <Link to="../../ParentBooking" underline="none">
                 <button className="appointment"> Make an Appointment</button>
               </Link>
             </Row>
           </Card>
         </Col>
         <Col span={12}>
-             <Map/>
+          <Map />
         </Col>
       </Row>
     </>

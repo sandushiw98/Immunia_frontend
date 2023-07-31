@@ -173,7 +173,7 @@ const ParentBooking = () => {
                   })}
                 </Select>
               </Form.Item>
-            
+
               <Form.Item name="vaccineType" label="Vaccine Type">
                 <Select>
                   {Object.keys(VaccineTypeEnum).map((v) => {
@@ -292,13 +292,13 @@ const ParentBooking = () => {
               </Row>
             </div>
           </Form>
-          <Row style={{paddingLeft: '660px',paddingTop: '100px'}}>
-  <Link to="/parentsearch" underline="none">
-    <Button type="primary">Search Location</Button>
-  </Link>
-</Row>
-
-        
+          {selectedCenter && (
+            <Row style={{ paddingLeft: "660px", paddingTop: "100px" }}>
+              <Link to={`/parentsearch/${selectedCenter}`} underline="none">
+                <Button type="primary">Search Location</Button>
+              </Link>
+            </Row>
+          )}
         </Col>
       </Row>
     </>

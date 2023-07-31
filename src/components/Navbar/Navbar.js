@@ -12,7 +12,7 @@ const scrollToSection = (sectionId) => {
   section.scrollIntoView({ behavior: "smooth" });
 };
 
-const AdminNavbar = () => {
+const Navbar = () => {
   const user = useUser();
   const items = [
     {
@@ -56,7 +56,7 @@ const AdminNavbar = () => {
         <Col span={2} className="nav-section">
           <Button onClick={() => scrollToSection("contact")}>CONTACT US</Button>
         </Col>
-        {!user ? (
+        {/* {!user ? (
           <>
             <Col span={8} className="nav-section-name">
               <Link className="login-btn" to="/login" underline="none">
@@ -75,6 +75,7 @@ const AdminNavbar = () => {
               </Link>
             </Col>
           </>
+          
         ) : (
           <Col span={9} className="nav-section-name">
             <Dropdown
@@ -90,10 +91,28 @@ const AdminNavbar = () => {
               />
             </Dropdown>
           </Col>
-        )}
+        )} */}
+        <>
+            <Col span={8} className="nav-section-name">
+              <Link className="login-btn" to="/login" underline="none">
+                Login
+                <div class="arrow-wrapper">
+                  <div class="arrow"></div>
+                </div>
+              </Link>
+            </Col>
+            <Col span={2} className="nav-section-name">
+              <Link className="login-btn" to="/signup" underline="none">
+                Signup
+                <div class="arrow-wrapper">
+                  <div class="arrow"></div>
+                </div>
+              </Link>
+            </Col>
+          </>
       </Row>
     </div>
   );
 };
 
-export default AdminNavbar;
+export default Navbar;

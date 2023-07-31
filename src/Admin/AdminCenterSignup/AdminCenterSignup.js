@@ -18,9 +18,9 @@ import {
 import "./AdminCentersignup.css";
 import { useState } from "react";
 import { saveVaccinationCenter } from "../../services/vaccination-center";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { generateRandomPassword } from "../../services/generateRandomPassword";
-
+import { useNavigate } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -78,20 +78,30 @@ export const uploadProps = {
 const AdminCenterSignup = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     console.log("Form values:", values);
     values.password = generateRandomPassword(8);
     const templateParams = {
       user_email: values.email,
-      password: values.password
-    }
-    emailjs.send('service_yqtp07c', 'template_wqyu7qv', templateParams, 'onmue6jxNsAMtwS7D')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
+      password: values.password,
+    };
+    emailjs
+      .send(
+        "service_yqtp07c",
+        "template_wqyu7qv",
+        templateParams,
+        "onmue6jxNsAMtwS7D"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
 
     saveVaccinationCenter({
       password: values.password,
@@ -103,7 +113,7 @@ const AdminCenterSignup = () => {
       province: values.province,
     }).then((v) => {
       if (v) {
-        // TODO : Navigate to success page
+        navigate("/viewCenter");
       }
     });
   };
@@ -145,46 +155,39 @@ const AdminCenterSignup = () => {
               console.log("Faled", v);
             }}
           >
-            {/* <Form.Item
-              name="photo"
-              valuePropName="fileList"
-              label="Upload Child Photo"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-              getValueFromEvent={normFile}
-            >
-              <Upload {...uploadProps} listType="picture-card">
-                <div>
-                  <PlusOutlined />
-                  <div>Upload</div>
-                </div>
-              </Upload>
-            </Form.Item> */}
-            <Form.Item
-              name="email"
-              label="Email"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Input />
-            </Form.Item>
-            {/* <Form.Item
-              name="password"
-              label="Password"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Input />
-            </Form.Item> */}
             <Form.Item
               name="centerName"
               label="Vaccination Center Name"
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter Vaccination Center Name",
+                },
+               
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              name="email"
+              label="Email"
+              labelAlign="right"
+              labelCol={{ span: 9 }}
+              wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your email address.",
+                },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address.",
+                },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -195,6 +198,13 @@ const AdminCenterSignup = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter center address.",
+                },
+               
+              ]}
             >
               <Input />
             </Form.Item>
@@ -204,6 +214,13 @@ const AdminCenterSignup = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter Vaccination Center ID number",
+                },
+               
+              ]}
             >
               <Input />
             </Form.Item>
@@ -248,28 +265,24 @@ const AdminCenterSignup = () => {
               labelAlign="right"
               labelCol={{ span: 9 }}
               wrapperCol={{ span: 17 }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your contact number.",
+                },
+                {
+                  pattern: /^[0-9]*$/, // Only numbers allowed
+                  message: "Contact number should only contain numbers.",
+                },
+                {
+                  min: 10,
+                  max: 10,
+                  message: "Contact number should be 10 digits long.",
+                },
+              ]}
             >
               <Input />
             </Form.Item>
-            {/* <Form.Item
-             name="comments"
-              label="Comments"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <TextArea rows={4} />
-            </Form.Item> */}
-            {/* <Form.Item
-              label="Upload Birth Certificate of your Child"
-              labelAlign="right"
-              labelCol={{ span: 9 }}
-              wrapperCol={{ span: 17 }}
-            >
-              <Upload {...props}>
-                <Button icon={<UploadOutlined />}>Click to Upload</Button>
-              </Upload>
-            </Form.Item> */}
 
             <Row className="lastbtn" gutter={48} style={{ paddingTop: "20px" }}>
               <Col span={18}></Col>
@@ -334,7 +347,6 @@ const AdminCenterSignup = () => {
       </Row>
     </>
   );
-
 };
 
 export default AdminCenterSignup;

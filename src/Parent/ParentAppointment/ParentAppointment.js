@@ -171,6 +171,11 @@ const Appointments = () => {
           pagination={false}
         />
       </Row>
+      <Row style={{ paddingLeft: "1750px", paddingBottom: '0px' }}>
+            <Link to="/parentsearch" underline="none">
+              <Button type="primary">Search Location</Button>
+            </Link>
+          </Row>
     </>
   );
 };

@@ -94,7 +94,7 @@ const ViewCenter = () => {
       ellipsis: true,
     },
     {
-      title: "Director's Name",
+      title: "Center email",
       dataIndex: "email",
       orter: (a, b) => a.email - b.email,
       sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
